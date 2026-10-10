@@ -4,17 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hushpaste: paste freely, leak nothing</title>
-<meta name="description" content="Hushpaste masks API keys, emails and other sensitive data in your browser before you paste into an AI chat, then restores them in the reply. Nothing is uploaded.">
 <link rel="canonical" href="https://gethushpaste.com/">
-<meta name="theme-color" content="#0C110E">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Hushpaste">
 <meta property="og:url" content="https://gethushpaste.com/">
+<meta name="description" content="Hushpaste masks API keys, emails and other sensitive data in your browser before you paste into an AI chat, then restores them in the reply. Nothing is uploaded.">
 <meta property="og:title" content="Hushpaste: paste freely, leak nothing">
 <meta property="og:description" content="Mask secrets and personal data before they reach an AI chat. Runs in your browser.">
-<meta property="og:image" content="https://gethushpaste.com/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0C110E;--bg2:#101713;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--line2:#33433B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limebg:#243012;--limeline:#3F5A1E;--coral:#FF9B80;--coralbg:#3A1F18}
@@ -52,8 +46,6 @@ nav.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-bet
 .wl input{flex:1 1 240px;min-width:0;height:52px;padding:0 16px;border-radius:8px;border:1px solid var(--line2);background:var(--panel);color:var(--text);font-size:16px}
 .wl button{height:52px;padding:0 24px;border:0;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;cursor:pointer}
 .err{margin:10px 0 0;color:#FF8A6B;font-size:14px}
-.wl .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
-.wl button:disabled{opacity:.6;cursor:default}
 .ok{margin-top:32px;max-width:560px;padding:20px 24px;border:1px solid var(--limeline);background:#172210;border-radius:12px}
 .small{margin:14px 0 0;font-size:14px;color:var(--mute)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.8}
@@ -152,12 +144,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <form novalidate>
 <label for="email-hero" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Work email</label>
 <input id="email-hero" type="email" name="email" placeholder="you@company.com" autocomplete="email">
-<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button type="submit">Get early access</button>
 <p class="err" role="alert" hidden style="flex-basis:100%;margin:0">Enter a valid email to join the waitlist.</p>
 </form>
-<div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens. <a href="kit.html">Open your AI Paste Safety Kit →</a></p></div>
-<p class="small">No spam. Your email is used only for launch news and the Safety Kit. <a href="privacy.html">Privacy</a> · <a href="#demo">Or try the free tool now →</a></p>
+<div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens.</p><p style="margin:14px 0 0"><a class="btn" href="/kit.html">Open your free Safety Kit</a></p></div>
+<p class="small">No spam, one email at launch. <a href="#demo">Or try the free tool now →</a></p>
 </div>
 </div>
 <div class="card">
@@ -177,7 +168,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 </div>
 </div>
 
-<div class="strip"><div class="wrap"><span style="color:var(--text)">Works with any AI chat</span><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span></div></div>
+<div class="strip"><div class="wrap"><span style="color:var(--text)">Built for the AI chats you already use</span><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span></div></div>
 
 <section>
 <div class="wrap">
@@ -200,7 +191,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="terms">
 <label for="terms" style="display:block;font-size:15px;font-weight:600">Extra words to mask <span style="font-weight:400;color:var(--mute)">(optional, separated by commas)</span></label>
 <input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe">
-<p class="small" style="margin-top:10px">Always detected: API keys, AWS, Google, GitHub and Slack tokens, JWTs, private keys, database URLs, passwords in key=value lines, emails, IBANs, card numbers, phone numbers, IP addresses.</p>
+<p class="small" style="margin-top:10px">Always detected: API keys, AWS keys, GitHub tokens, bearer tokens, emails, IBANs, phone numbers, IP addresses.</p>
 </div>
 
 <h3 class="s">1. Mask your text</h3>
@@ -236,13 +227,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 
 <section id="how">
 <div class="wrap">
-<h2>Three steps. Your secrets stay put.</h2>
+<h2>Three steps, one click, no workflow change.</h2>
 <div class="row">
-<div class="step"><p class="n">01</p><h3>Paste into the tool</h3><p>Drop a log, a ticket or a config into the box above. Masking happens as you type.</p></div>
-<div class="step"><p class="n">02</p><h3>Sensitive values become placeholders</h3><p>Keys, emails, IBANs and phones are swapped locally for tokens like [EMAIL_1]. For names and company terms, use the extra words box.</p></div>
+<div class="step"><p class="n">01</p><h3>Paste or type as usual</h3><p>Hushpaste watches the prompt box in your browser. Nothing to copy into another tool.</p></div>
+<div class="step"><p class="n">02</p><h3>Sensitive values become placeholders</h3><p>Keys, emails, IBANs, phones and names are swapped locally for tokens like [EMAIL_1].</p></div>
 <div class="step"><p class="n">03</p><h3>The answer comes back whole</h3><p>Placeholders in the reply are swapped back to your real values, in memory, in that tab only.</p></div>
 </div>
-<p class="small" style="margin-top:24px">Coming next: a browser extension that does this automatically inside ChatGPT, Claude and Gemini. The web tool above works today.</p>
+<p class="small" style="margin-top:24px">The browser extension that does this automatically is in development. The web tool above works today.</p>
 </div>
 </section>
 
@@ -253,7 +244,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <h2>Nothing to steal, because nothing leaves.</h2>
 <ul class="ticks" style="margin-top:32px">
 <li>Detection and replacement run in your browser. This page sends your text nowhere.</li>
-<li>Don't take our word for it: load this page, switch on airplane mode, then mask some text. It still works, because nothing is sent anywhere.</li>
 <li>The placeholder map lives in the open tab and is gone when you close it.</li>
 <li>No accounts, no cookies, no tracking of what you paste.</li>
 <li>The detection core is planned to be open source so it can be audited.</li>
@@ -330,18 +320,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <form novalidate>
 <label for="email-cta" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Work email</label>
 <input id="email-cta" type="email" name="email" placeholder="you@company.com" autocomplete="email">
-<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 <button type="submit">Join the waitlist</button>
 <p class="err" role="alert" hidden style="flex-basis:100%;margin:0">Enter a valid email to join the waitlist.</p>
 </form>
-<div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens. <a href="kit.html">Open your AI Paste Safety Kit →</a></p></div>
+<div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens.</p><p style="margin:14px 0 0"><a class="btn" href="/kit.html">Open your free Safety Kit</a></p></div>
 </div>
 </div>
 </section>
 
 </main>
 
-<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><span><a href="privacy.html" style="color:var(--mute)">Privacy</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Back to top</a></span></div></footer>
+<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><a href="#top" style="color:var(--mute)">Back to top</a></div></footer>
 
 <script>
 // ---- SETTINGS ----
@@ -350,7 +339,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
 
 (function () {
-  var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nDATABASE_URL=postgres://app:S3cr3tPass@10.24.3.17:5432/billing\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nDB_PASSWORD=hunter2-prod-9X\n\nCustomer anna.keller@acme-bank.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
+  var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@acme-bank.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
   var $ = function (id) { return document.getElementById(id); };
   var src = $('src'), reply = $('reply'), terms = $('terms');
   var cur = { tokens: [], masked: '' };
@@ -358,64 +347,29 @@ var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
 
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-  function luhn(d) {
-    var sum = 0, alt = false;
-    for (var i = d.length - 1; i >= 0; i--) {
-      var n = +d.charAt(i);
-      if (alt) { n *= 2; if (n > 9) n -= 9; }
-      sum += n; alt = !alt;
-    }
-    return sum % 10 === 0;
-  }
-  function cardOk(v) { var d = v.replace(/\D/g, ''); return d.length >= 13 && d.length <= 19 && luhn(d); }
-  function ibanOk(v) {
-    var t = v.replace(/\s/g, '').toUpperCase();
-    if (t.length < 15 || t.length > 34) return false;
-    var r = t.slice(4) + t.slice(0, 4), rem = 0;
-    for (var i = 0; i < r.length; i++) {
-      var c = r.charCodeAt(i), chunk = c >= 65 ? String(c - 55) : r.charAt(i);
-      for (var j = 0; j < chunk.length; j++) rem = (rem * 10 + (+chunk.charAt(j))) % 97;
-    }
-    return rem === 1;
-  }
-  function ipOk(v) { return v.split('.').every(function (p) { return +p <= 255; }); }
-
-  // Order matters: earlier rules win when two matches start at the same place.
-  var RULES = [
-    { t: 'PRIVATE_KEY', re: /-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----/g },
-    { t: 'DB_URL', re: /\b[a-z][a-z0-9+.-]*:\/\/[^\s:@\/]+:[^\s@\/]+@[^\s'"]+/gi },
-    { t: 'JWT', re: /\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}/g },
-    { t: 'API_KEY', re: /\b(?:sk|pk|rk)[-_][A-Za-z0-9_-]{16,}/g },
-    { t: 'AWS_KEY', re: /\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g },
-    { t: 'GOOGLE_KEY', re: /\bAIza[0-9A-Za-z_-]{35}/g },
-    { t: 'SLACK_TOKEN', re: /\bxox[baprs]-[A-Za-z0-9-]{10,}/g },
-    { t: 'GH_TOKEN', re: /\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})/g },
-    { t: 'BEARER_TOKEN', re: /Bearer\s+[A-Za-z0-9._~+\/-]{16,}=*/g },
-    { t: 'SECRET', re: /(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)["']?\s*[:=]\s*["']?([^\s"',;]{6,})/gi, group: true },
-    { t: 'EMAIL', re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g },
-    { t: 'IBAN', re: /\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\b/g, ok: ibanOk },
-    { t: 'CARD', re: /\b\d(?:[ -]?\d){12,18}\b/g, ok: cardOk },
-    { t: 'PHONE', re: /\+\d[\d\s().-]{8,}\d/g },
-    { t: 'IP_ADDRESS', re: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g, ok: ipOk }
-  ];
-
   function analyze(text, extra) {
     var rules = [];
     (extra || '').split(',').forEach(function (t) {
       var w = t.trim();
-      if (w.length >= 2) rules.push({ t: 'CUSTOM', re: new RegExp(w.replace(/[.*+?^$(){}|[\]\\]/g, '\\$&'), 'gi') });
+      if (w.length >= 2) rules.push(['CUSTOM', new RegExp(w.replace(/[.*+?^$(){}|[\]\\]/g, '\\$&'), 'gi')]);
     });
-    RULES.forEach(function (r) { rules.push(r); });
+    [
+      ['API_KEY', /\bsk-[A-Za-z0-9_-]{16,}/g],
+      ['AWS_KEY', /\bAKIA[0-9A-Z]{16}\b/g],
+      ['GH_TOKEN', /\bgh[pousr]_[A-Za-z0-9]{20,}/g],
+      ['BEARER_TOKEN', /Bearer\s+[A-Za-z0-9._~+-]{16,}=*/g],
+      ['EMAIL', /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g],
+      ['IBAN', /\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b/g],
+      ['PHONE', /\+\d[\d\s().-]{8,}\d/g],
+      ['IP_ADDRESS', /\b(?:\d{1,3}\.){3}\d{1,3}\b/g]
+    ].forEach(function (r) { rules.push(r); });
     var found = [];
     rules.forEach(function (r, pri) {
-      var re = r.re, m;
+      var re = r[1], m;
       re.lastIndex = 0;
       while ((m = re.exec(text)) !== null) {
         if (!m[0].length) { re.lastIndex++; continue; }
-        var val = m[0], start = m.index;
-        if (r.group && m[1]) { val = m[1]; start = m.index + m[0].length - m[1].length; }
-        if (r.ok && !r.ok(val)) continue;
-        found.push({ type: r.t, start: start, end: start + val.length, value: val, pri: pri });
+        found.push({ type: r[0], start: m.index, end: m.index + m[0].length, value: m[0], pri: pri });
       }
     });
     found.sort(function (a, b) { return a.start - b.start || a.pri - b.pri || b.end - a.end; });
@@ -492,44 +446,23 @@ var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
   render();
 
   // ---- waitlist forms ----
-  function showOk() {
-    Array.prototype.forEach.call(document.querySelectorAll('.wl'), function (w) {
-      w.querySelector('form').hidden = true;
-      w.querySelector('.ok').hidden = false;
-    });
-  }
   var forms = document.querySelectorAll('.wl form');
   Array.prototype.forEach.call(forms, function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var input = form.querySelector('input[type=email]');
-      var trap = form.querySelector('input[name=_gotcha]');
       var err = form.querySelector('.err');
-      var btn = form.querySelector('button[type=submit]');
       var v = input.value.trim();
-      if (!/^\S+@\S+\.\S+$/.test(v)) {
-        err.textContent = 'Enter a valid email to join the waitlist.';
-        err.hidden = false;
-        return;
-      }
+      if (!/^\S+@\S+\.\S+$/.test(v)) { err.hidden = false; return; }
       err.hidden = true;
-      if (trap && trap.value) { showOk(); return; } // bot filled the hidden field: pretend success, send nothing
-      if (!WAITLIST_URL) { showOk(); return; }
-      var label = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      fetch(WAITLIST_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: v })
-      }).then(function (res) {
-        if (!res.ok) throw new Error('bad status');
-        showOk();
-      }).catch(function () {
-        err.textContent = 'Could not send right now. Please try again in a minute.';
-        err.hidden = false;
-        btn.disabled = false;
-        btn.textContent = label;
+      if (WAITLIST_URL) {
+        try {
+          fetch(WAITLIST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: v }) });
+        } catch (x) {}
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('.wl'), function (w) {
+        w.querySelector('form').hidden = true;
+        w.querySelector('.ok').hidden = false;
       });
     });
   });
