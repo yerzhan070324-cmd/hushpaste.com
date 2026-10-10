@@ -1,0 +1,230 @@
+{
+  "name": "Hushpaste secret detection rules",
+  "version": "1.0.0",
+  "updated": "2026-10-10",
+  "format": "Each pattern is a JavaScript (ECMAScript) regular expression source string. Build it with new RegExp(pattern, flags).",
+  "how_to_use": [
+    "Run the rules in the order listed. When two matches start at the same position, the earlier rule wins.",
+    "If a rule has a validator, keep a match only when the validator passes.",
+    "If a rule has group set to 1, the secret is capture group 1, not the whole match.",
+    "Replace each match with a placeholder such as [API_KEY_1] and keep a local map so you can restore real values later."
+  ],
+  "validators": {
+    "luhn": "Remove everything except digits. Require 13 to 19 digits and a valid Luhn checksum.",
+    "iban_mod97": "Remove spaces and uppercase. Require 15 to 34 characters. Move the first 4 characters to the end, turn letters into numbers (A=10 ... Z=35), and the resulting number modulo 97 must equal 1.",
+    "ipv4_octets": "Every dot-separated part must be a number from 0 to 255."
+  },
+  "limits": "Regular expressions only catch values with a recognisable shape. Names, company names, project codenames and free-text secrets are not detected, so add your own terms and review the result before sending.",
+  "license": "Free to use and adapt. Provided as is, without warranty.",
+  "rules": [
+    {
+      "id": "PRIVATE_KEY",
+      "label": "Private key block",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "-----BEGIN [A-Z ]*PRIVATE KEY(?: BLOCK)?-----[\\s\\S]*?-----END [A-Z ]*PRIVATE KEY(?: BLOCK)?-----",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "RSA, EC, OpenSSH, PKCS#8 and PGP private key blocks, including the lines in between."
+    },
+    {
+      "id": "DB_URL",
+      "label": "Connection string with credentials",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\b[a-z][a-z0-9+.-]*:\\/\\/[^\\s:@\\/]+:[^\\s@\\/]+@[^\\s'\"]+",
+      "flags": "gi",
+      "validator": null,
+      "group": null,
+      "notes": "postgres://, mysql://, mongodb+srv://, redis://, https:// and similar URLs that contain user:password@."
+    },
+    {
+      "id": "JWT",
+      "label": "JSON Web Token",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Three dot-separated base64url parts, the first starting with eyJ. Often a live session or access token."
+    },
+    {
+      "id": "API_KEY",
+      "label": "Secret API key (sk-, pk-, rk- style)",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\b(?:sk|pk|rk)[-_][A-Za-z0-9_-]{16,}",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Covers the common sk-... style keys used by many AI and payment providers, including sk_live_ and sk_test_."
+    },
+    {
+      "id": "AWS_KEY",
+      "label": "AWS access key ID",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Long-term (AKIA) and temporary (ASIA) access key IDs. The matching secret key is caught by SECRET."
+    },
+    {
+      "id": "GOOGLE_KEY",
+      "label": "Google API key",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\bAIza[0-9A-Za-z_-]{35}",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Keys starting with AIza."
+    },
+    {
+      "id": "SLACK_TOKEN",
+      "label": "Slack token",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\bxox[baprs]-[A-Za-z0-9-]{10,}",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Bot, user, app, refresh and legacy tokens (xoxb-, xoxp-, xoxa-, xoxr-, xoxs-)."
+    },
+    {
+      "id": "GH_TOKEN",
+      "label": "GitHub token",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Personal, OAuth, user-to-server, server-to-server and refresh tokens, plus fine-grained tokens."
+    },
+    {
+      "id": "SENDGRID_KEY",
+      "label": "SendGrid API key",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Format SG.<22 characters>.<43 characters>."
+    },
+    {
+      "id": "NPM_TOKEN",
+      "label": "npm access token",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "\\bnpm_[A-Za-z0-9]{36}\\b",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Tokens starting with npm_ followed by 36 characters."
+    },
+    {
+      "id": "BEARER_TOKEN",
+      "label": "Bearer token in a header",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Matches the whole \"Bearer <token>\" text."
+    },
+    {
+      "id": "URL_SECRET",
+      "label": "Secret in a URL query string",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})",
+      "flags": "gi",
+      "validator": null,
+      "group": 1,
+      "notes": "Only the value after the = sign is the secret (capture group 1)."
+    },
+    {
+      "id": "SECRET",
+      "label": "Password or secret in a key=value line",
+      "category": "secrets",
+      "severity": "high",
+      "pattern": "(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})",
+      "flags": "gi",
+      "validator": null,
+      "group": 1,
+      "notes": "Catches .env lines, JSON fields and config entries such as DB_PASSWORD=..., \"token\": \"...\". Only the value (capture group 1) is the secret. May flag harmless words that follow a colon, so review matches."
+    },
+    {
+      "id": "EMAIL",
+      "label": "Email address",
+      "category": "personal",
+      "severity": "medium",
+      "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Common email format. Does not try to validate that the address exists."
+    },
+    {
+      "id": "PHONE",
+      "label": "International phone number",
+      "category": "personal",
+      "severity": "medium",
+      "pattern": "\\+\\d[\\d\\s().-]{8,}\\d",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Numbers written with a leading + and country code. Local formats without + are not detected."
+    },
+    {
+      "id": "IBAN",
+      "label": "IBAN",
+      "category": "financial",
+      "severity": "high",
+      "pattern": "\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b",
+      "flags": "g",
+      "validator": "iban_mod97",
+      "group": null,
+      "notes": "With or without spaces. Run the iban_mod97 validator to drop look-alikes."
+    },
+    {
+      "id": "CARD",
+      "label": "Payment card number",
+      "category": "financial",
+      "severity": "high",
+      "pattern": "\\b\\d(?:[ -]?\\d){12,18}\\b",
+      "flags": "g",
+      "validator": "luhn",
+      "group": null,
+      "notes": "13 to 19 digits, optional spaces or dashes. Run the luhn validator to drop random digit strings."
+    },
+    {
+      "id": "IP_ADDRESS",
+      "label": "IPv4 address",
+      "category": "network",
+      "severity": "medium",
+      "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
+      "flags": "g",
+      "validator": "ipv4_octets",
+      "group": null,
+      "notes": "Run the ipv4_octets validator so values such as 999.1.1.1 are ignored. Version numbers like 1.2.3.4 will still match."
+    },
+    {
+      "id": "US_SSN",
+      "label": "US Social Security number",
+      "category": "personal",
+      "severity": "high",
+      "pattern": "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Format 123-45-6789. Can produce false positives on other dash-separated numbers, so review matches."
+    }
+  ]
+}

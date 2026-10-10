@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Paste Safety Kit · Hushpaste</title>
+<meta name="description" content="A checklist of 20 things never to paste into AI, ready-to-import regex rules for secrets, and a one-page AI usage policy template.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://gethushpaste.com/kit.html">
+<meta name="theme-color" content="#0C110E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0C110E;--bg2:#101713;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--line2:#33433B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limeline:#3F5A1E}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Instrument Sans',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:var(--lime)}
+a:hover{color:#E3FF9A}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;margin:0}
+h1{font-size:clamp(38px,6.5vw,64px);line-height:1.02;letter-spacing:-.03em;margin-top:12px}
+h2{font-size:clamp(28px,4.2vw,40px);line-height:1.1;letter-spacing:-.02em}
+h3{font-size:20px;margin-top:36px}
+p{margin:14px 0 0;color:var(--soft)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--lime);margin:0}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;padding:20px 0}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.top a.back{color:var(--mute);font-size:15px;text-decoration:none;padding:12px 0}
+.lead{font-size:20px;color:var(--soft);max-width:640px}
+.btn{display:inline-block;border:0;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;padding:0 22px;min-height:48px;line-height:48px;text-decoration:none;cursor:pointer;font-family:inherit}
+.btn:hover{color:var(--bg);background:#D8FF78}
+.ghost{min-height:48px;padding:0 20px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--text);font-size:16px;cursor:pointer;font-family:inherit}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.toc{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:28px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:15px}
+.toc a{color:var(--soft);text-decoration:none;padding:6px 0}
+.toc a:hover{color:var(--lime)}
+section{padding:72px 0 0}
+.box{margin-top:24px;padding:20px 24px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.box p{margin:0;color:var(--text)}
+.box.g{border-color:var(--limeline)}
+.list{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.list label{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;cursor:pointer}
+.list input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--lime)}
+.list strong{display:block;font-weight:600;color:var(--text)}
+.list span span{display:block;margin-top:2px;font-size:15px;color:var(--mute)}
+.list input:checked ~ span strong{text-decoration:line-through;text-decoration-color:var(--mute);color:var(--mute)}
+pre{margin:16px 0 0;padding:16px 18px;background:var(--deep);border:1px solid var(--line);border-radius:12px;overflow-x:auto;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C9D4CD}
+code{font-family:'IBM Plex Mono',monospace;font-size:.9em;color:var(--text)}
+.policy{margin-top:20px;padding:28px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.policy h3{font-size:18px;margin-top:22px}
+.policy h3:first-child{margin-top:0;font-size:24px}
+.policy p{margin:8px 0 0}
+.policy .meta{color:var(--mute);font-size:15px}
+.policy ul{margin:8px 0 0;padding-left:22px;color:var(--soft)}
+.policy li{margin-top:6px}
+.fine{margin:40px 0 0;font-size:14px;color:var(--mute)}
+footer{padding:40px 0 56px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+@media print{
+  :root{--bg:#fff;--bg2:#fff;--panel:#fff;--deep:#fff;--line:#999;--line2:#999;--text:#000;--soft:#222;--mute:#444;--lime:#000;--limeline:#999}
+  body{font-size:12pt}
+  .noprint{display:none!important}
+  section{padding-top:28px;break-inside:auto}
+  .list label{break-inside:avoid}
+  .policy{break-inside:auto}
+  a{color:#000}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top noprint">
+<a class="logo" href="/"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a>
+<a class="back" href="/">← Back to Hushpaste</a>
+</div>
+
+<header>
+<p class="eyebrow">FREE · FROM HUSHPASTE</p>
+<h1>The AI Paste Safety Kit</h1>
+<p class="lead">Everything you need to stop leaks this week: a checklist, ready-to-import rules for secrets, and a one-page policy for your team.</p>
+<div class="actions noprint">
+<a class="btn" href="hushpaste-rules.json" download>Download rules (.json)</a>
+<button class="ghost" type="button" id="btnPrint">Print or save as PDF</button>
+</div>
+<nav class="toc noprint" aria-label="Kit contents">
+<a href="#checklist">1 · Checklist</a><a href="#rules">2 · Regex rules</a><a href="#policy">3 · Policy template</a>
+</nav>
+</header>
+
+<main>
+<section id="checklist">
+<p class="eyebrow">PART 1</p>
+<h2>20 things you should never paste into AI</h2>
+<p>Run through this list before you paste a log, ticket, email or file into any AI chat. If something on it is in your text, mask it, swap in a made-up value, or leave it out. Tap an item to tick it off.</p>
+
+<h3>Credentials and secrets</h3>
+<ul class="list">
+<li><label><input type="checkbox"><span><strong>1. API keys and access tokens</strong><span>Any key for a payment, AI, cloud or messaging service.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>2. Passwords, passphrases and recovery codes</strong><span>Including one-time codes and backup codes.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>3. Private keys and certificates</strong><span>SSH, TLS and PGP private keys. Public keys are fine.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>4. .env files and config files with secrets</strong><span>One file can hold a dozen secrets at once.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>5. Database connection strings</strong><span>The user:password@host part gives direct access.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>6. Session cookies, Authorization headers and JWTs</strong><span>Copied from browser tools or API logs, they let someone act as you.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>7. Cloud and CI/CD credentials</strong><span>AWS, Google Cloud, Azure, GitHub, GitLab and deployment tokens.</span></span></label></li>
+</ul>
+
+<h3>Customer and personal data</h3>
+<ul class="list">
+<li><label><input type="checkbox"><span><strong>8. Customer names with contact details</strong><span>A name plus an email, phone or order number identifies a person.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>9. Real email addresses and phone numbers</strong><span>Replace them with placeholders such as [EMAIL_1].</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>10. Home addresses and precise location data</strong><span>Including delivery addresses and GPS coordinates.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>11. Government IDs</strong><span>Passport, national ID, driver's licence, tax and social security numbers.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>12. Card numbers, CVV and bank account numbers</strong><span>Including IBANs and account statements.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>13. Health and medical records</strong><span>Diagnoses, prescriptions, lab results and insurance details.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>14. Employee and HR data</strong><span>Salaries, performance reviews, complaints and disciplinary cases.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>15. Job candidate data</strong><span>CVs with contact details and interview notes.</span></span></label></li>
+</ul>
+
+<h3>Company-confidential material</h3>
+<ul class="list">
+<li><label><input type="checkbox"><span><strong>16. Contracts and legal documents</strong><span>Anything under NDA or legal privilege.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>17. Unreleased financials and board materials</strong><span>Results, forecasts, fundraising and acquisition plans.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>18. Internal hostnames, IP addresses and network diagrams</strong><span>They map your infrastructure for an attacker.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>19. Security incident details and unpatched vulnerabilities</strong><span>Reports, exploit details and affected systems.</span></span></label></li>
+<li><label><input type="checkbox"><span><strong>20. Proprietary source code and trade secrets</strong><span>Follow your company's policy on what code may be shared.</span></span></label></li>
+</ul>
+
+<div class="box g">
+<p><strong>Rule of thumb:</strong> if you would not post it publicly, mask it or leave it out. The <a href="/#demo">free Hushpaste tool</a> masks values with a recognisable format, such as keys, emails, IBANs and phone numbers, right in your browser. For names and codenames, add them to its extra words box.</p>
+</div>
+</section>
+
+<section id="rules">
+<p class="eyebrow">PART 2</p>
+<h2>Ready-to-import regex rules</h2>
+<p>19 detection rules for secrets and personal data, in one JSON file. It includes everything the free web tool detects, plus formats such as SendGrid and npm tokens, secrets in URLs and US Social Security numbers. Each rule has an id, a pattern, flags, a severity and a note.</p>
+<div class="actions noprint">
+<a class="btn" href="hushpaste-rules.json" download>Download hushpaste-rules.json</a>
+</div>
+<h3>Use it in JavaScript</h3>
+<pre>const doc = await (await fetch('hushpaste-rules.json')).json();
+
+for (const rule of doc.rules) {
+  const re = new RegExp(rule.pattern, rule.flags);
+  for (const m of text.matchAll(re)) {
+    // if rule.group is 1, the secret is m[1], not m[0]
+    // if rule.validator is set, check the match first
+    console.log(rule.id, m[0]);
+  }
+}</pre>
+<div class="box">
+<p><strong>Good to know.</strong> Patterns use JavaScript regular expression syntax and work in most other languages with small changes. When two matches start at the same place, the earlier rule wins. Rules with a validator (card numbers, IBANs, IP addresses) need a quick check, which the file describes in plain words. Regular expressions only catch values with a recognisable shape. They do not detect names, company names or free-text secrets, so review the result before you send anything.</p>
+</div>
+</section>
+
+<section id="policy">
+<p class="eyebrow">PART 3</p>
+<h2>One-page AI usage policy template</h2>
+<p>Copy it into your own document and fill in the parts in [square brackets]. It is a starting point: adjust it to your company, tools and local law.</p>
+<div class="actions noprint">
+<button class="btn" type="button" id="btnCopy">Copy policy text</button>
+</div>
+
+<div class="policy" id="policyText">
+<h3>AI Usage Policy: [Company name]</h3>
+<p class="meta">Version 1.0 · Effective [date] · Owner: [name or team]</p>
+
+<h3>1. Purpose</h3>
+<p>This policy lets us use AI tools to work faster without exposing customer, employee or company data.</p>
+
+<h3>2. Scope</h3>
+<p>It applies to all employees, contractors and interns who use any AI chat, assistant, coding tool or API for work.</p>
+
+<h3>3. Approved tools</h3>
+<p>Use only these tools: [list of tools]. Sign in with your company account, never a personal one. Where a setting exists, turn off the use of our content for model training.</p>
+
+<h3>4. Never share</h3>
+<p>Do not put any of the following into an AI tool:</p>
+<ul>
+<li>passwords, API keys, tokens, private keys and other credentials;</li>
+<li>personal data of customers, employees or candidates, including contact details, IDs, payment and health data;</li>
+<li>contracts under NDA or legal privilege, unreleased financials and board materials;</li>
+<li>security incident details and internal network information;</li>
+<li>[add anything specific to your business].</li>
+</ul>
+
+<h3>5. Mask before you paste</h3>
+<p>When you need AI help with real material such as logs, tickets, configs or emails, mask sensitive values first with an approved masking tool, or replace them with placeholders like [EMAIL_1]. Check the masked text before you send it.</p>
+
+<h3>6. Check the output</h3>
+<p>AI can be wrong. You are responsible for anything you use or send. Verify facts, code and legal or financial statements before relying on them, and review AI-written text before it reaches a customer.</p>
+
+<h3>7. If something slips</h3>
+<p>If you paste restricted data into an AI tool by mistake: stop the conversation, rotate any exposed secret straight away, and tell [security contact] within [24 hours]. We treat an honest report as a chance to fix a problem, not as a reason for blame.</p>
+
+<h3>8. Exceptions</h3>
+<p>Anything not covered here needs written approval from [owner].</p>
+
+<h3>9. Review</h3>
+<p>We review this policy every [6 or 12] months and whenever we add a new AI tool.</p>
+
+<h3>Acknowledgement</h3>
+<p>I have read and understood this policy. Name: ____________________ Date: ______________</p>
+</div>
+
+<p class="fine">This kit is general information and a starting template, not legal advice. Have a qualified professional review any policy before you adopt it.</p>
+</section>
+</main>
+</div>
+
+<footer class="noprint"><div class="wrap"><span>Hushpaste · Paste freely. Leak nothing.</span><span><a href="privacy.html" style="color:var(--mute)">Privacy</a> &nbsp;·&nbsp; <a href="/" style="color:var(--mute)">Back to Hushpaste</a></span></div></footer>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  $('btnPrint').addEventListener('click', function () { window.print(); });
+  var btn = $('btnCopy');
+  btn.addEventListener('click', function () {
+    var text = $('policyText').innerText;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy policy text'; }, 1500); }
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        done();
+      } catch (e) {}
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+  });
+})();
+</script>
+</body>
+</html>
