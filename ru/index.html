@@ -249,6 +249,13 @@ header.site,main,footer{position:relative;z-index:1}
 .strip .wrap{align-items:center}
 @media (min-width:900px){header.site{position:sticky;top:0;z-index:20;background:rgba(12,17,14,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}header.site.scrolled{border-bottom-color:var(--line)}section,#top{scroll-margin-top:84px}}
 @media (prefers-reduced-motion:reduce){.aura i,.shine,.hero .eyebrow:before,.card.live,.mq-in{animation:none}.mq-in{flex-wrap:wrap;width:auto}.js .rv{opacity:1;transform:none;transition:none}.btn:after,.wl button:after{display:none}}
+.netm{display:flex;align-items:center;gap:10px;margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--soft)}
+.netm i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(200,247,81,.7)}
+.netm.warn i{background:#F2C46B;box-shadow:none}
+.netm small{color:var(--mute);font-size:12px}
+.check{margin-top:14px;padding:16px 20px;border:1px solid #4A3F1C;background:#1D1A0E;border-radius:14px;color:var(--soft);font-size:15px}
+.check strong{color:#F2C46B}
+.soon{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:4px;background:#33290F;color:#F2C46B;font-size:10px;letter-spacing:.06em;vertical-align:1px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -270,7 +277,7 @@ header.site,main,footer{position:relative;z-index:1}
 <div class="wrap">
 <div class="hero">
 <div>
-<p class="eyebrow">РАБОТАЕТ В БРАУЗЕРЕ · НИЧЕГО НЕ ЗАГРУЖАЕТСЯ · ОТКРЫТЫЙ КОД В ПЛАНАХ</p>
+<p class="eyebrow">РАБОТАЕТ В БРАУЗЕРЕ · НИЧЕГО НЕ ЗАГРУЖАЕТСЯ · КОД НА GITHUB</p>
 <h1>Вставляйте смело.<br><span class="shine">Без утечек.</span></h1>
 <p class="sub">Hushpaste убирает API-ключи, данные клиентов и другие секреты из вашего запроса прямо в браузере, до того как он попадёт в чат с ИИ. Когда приходит ответ, настоящие значения возвращаются на место.</p>
 <div class="wl">
@@ -339,6 +346,8 @@ header.site,main,footer{position:relative;z-index:1}
 </div>
 </div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
+<p class="netm" id="netm" role="status" hidden></p>
+<div class="check"><strong>Проверьте перед отправкой.</strong> <span>Имена, названия компаний и адреса автоматически не находятся, поэтому впишите их в поле дополнительных слов выше. Если ИИ изменит метку, она останется как есть и не восстановится. Поиск по шаблонам может пропустить необычный формат, так что прочитайте скрытый текст перед отправкой.</span></div>
 <div class="map" id="mapBox" hidden>
 <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.06em;color:var(--mute)">ЧТО ЗАМЕНЕНО (хранится только в этой вкладке)</p>
 <div id="map"></div>
@@ -429,7 +438,9 @@ header.site,main,footer{position:relative;z-index:1}
 <li>Политика безопасности страницы (CSP) разрешает только одно исходящее соединение: форму листа ожидания в Formspree. Шрифты и код загружаются с этого же сайта.</li>
 <li>Таблица замен живёт в открытой вкладке и исчезает, когда вы её закрываете.</li>
 <li>Без аккаунтов, без cookie, без слежки за тем, что вы вставляете.</li>
-<li>Ядро детекторов планируется открыть, чтобы его мог проверить любой.</li>
+<li>Проверьте сами: откройте инструменты разработчика в браузере, вкладку Network, и воспользуйтесь инструментом. Ни одного запроса не появится.</li>
+<li>Код открыт для чтения: <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">исходники и тесты на GitHub</a>. Тесты проверяют поиск, восстановление и эти правила приватности.</li>
+<li>Независимого аудита безопасности пока не было. Когда он пройдёт, здесь появится об этом запись.</li>
 </ul>
 </div>
 <div class="flow" style="flex:1 1 460px;min-width:0">
@@ -489,11 +500,11 @@ header.site,main,footer{position:relative;z-index:1}
 <section id="pricing" class="alt">
 <div class="wrap">
 <h2>Простые цены.</h2>
-<p style="margin:14px 0 0;color:var(--mute)">Планируемые цены раннего доступа, к запуску могут измениться.</p>
+<p style="margin:14px 0 0;max-width:720px;color:var(--mute)">Уже доступно: бесплатный веб-инструмент. Pro и Team в разработке. Запись в лист ожидания бесплатна, до запуска никаких списаний.</p>
 <div class="row" style="align-items:stretch">
 <label class="price"><input type="radio" name="plan" value="free"><span class="dot" aria-hidden="true"></span><p class="pn">БЕСПЛАТНО</p><p class="pp">$0</p><p class="pd">Веб-инструмент для редкого использования</p><ul class="ticks"><li>Веб-инструмент для скрытия данных</li><li>Встроенные детекторы</li><li>AI Paste Safety Kit</li></ul><a class="btn pick" href="#demo" data-plan="free">Открыть инструмент</a></label>
-<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO</p><p class="pp">$8<small> / месяц</small></p><p class="pd">Для тех, кто пользуется ИИ каждый день</p><ul class="ticks"><li>Расширение: скрывает данные при отправке</li><li>Возвращает значения в ответы</li><li>Свои правила и исключения</li></ul><a class="btn pick" href="#join" data-plan="pro">Выбрать Pro</a></label>
-<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM</p><p class="pp">$6<small> / человек / месяц</small></p><p class="pd">Для компаний, которым нужен ИИ с защитой</p><ul class="ticks"><li>Всё из Pro</li><li>Общие политики и правила администратора</li><li>Отчёты без содержимого запросов</li></ul><a class="btn pick" href="#join" data-plan="team">Выбрать Team</a></label>
+<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO <span class="soon">СКОРО</span></p><p class="pp">$8<small> / месяц</small></p><p class="pd">Для тех, кто пользуется ИИ каждый день</p><ul class="ticks"><li>Расширение: скрывает данные при отправке</li><li>Возвращает значения в ответы</li><li>Свои правила и исключения</li></ul><a class="btn pick" href="#join" data-plan="pro">В лист ожидания Pro</a></label>
+<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM <span class="soon">СКОРО</span></p><p class="pp">$6<small> / человек / месяц</small></p><p class="pd">Для компаний, которым нужен ИИ с защитой</p><ul class="ticks"><li>Всё из Pro</li><li>Общие политики и правила администратора</li><li>Отчёты без содержимого запросов</li></ul><a class="btn pick" href="#join" data-plan="team">В лист ожидания Team</a></label>
 </div>
 </div>
 </section>
@@ -510,7 +521,7 @@ header.site,main,footer{position:relative;z-index:1}
 <details><summary>Можно перетащить целый файл?</summary><p>Да. Перетащите .env, лог или текстовый файл в окно ввода или нажмите «откройте файл». Файл читает ваш браузер, никуда он не загружается.</p></details>
 <details><summary>Он что-то сохраняет?</summary><p>Нет. Нет аккаунтов и cookie, и ничего из вставленного не сохраняется. Закройте вкладку, и таблица замен исчезнет.</p></details>
 <details><summary>Может ли им пользоваться компания?</summary><p>Да. Бесплатный веб-инструмент не нужно устанавливать, и он ничего никуда не отправляет, поэтому его легко согласовать. Тариф Team добавляет общие правила и отчёты. Оставьте рабочий email и выберите Team.</p></details>
-<details><summary>Это открытый код?</summary><p>Ядро детекторов планируется открыть, чтобы любой мог проверить, что именно работает в браузере.</p></details>
+<details><summary>Это открытый код?</summary><p>Формально пока нет. Код сайта, включая все правила поиска, уже опубликован на GitHub вместе с тестами, которые может запустить любой. Открытая лицензия и независимый аудит безопасности в планах.</p></details>
 </div>
 </div>
 </section>
@@ -534,7 +545,7 @@ header.site,main,footer{position:relative;z-index:1}
 
 </main>
 
-<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Вставляйте смело. Без утечек.</span><span><a href="/privacy.html" style="color:var(--mute)">Конфиденциальность</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Статьи</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Наверх</a></span></div></footer>
+<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Вставляйте смело. Без утечек.</span><span><a href="/privacy.html" style="color:var(--mute)">Конфиденциальность</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Статьи</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="https://github.com/yerzhan070324-cmd/hushpaste.com" style="color:var(--mute)">GitHub</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Наверх</a></span></div></footer>
 
 <script src="/app.js"></script>
 
