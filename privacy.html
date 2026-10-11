@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy · Hushpaste</title>
 <meta name="description" content="How Hushpaste handles your data: text you mask never leaves your browser. We only store the email you give us for the waitlist.">
 <link rel="canonical" href="https://gethushpaste.com/privacy.html">
 <meta name="theme-color" content="#0C110E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
 :root{--bg:#0C110E;--panel:#141B17;--line:#26312B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751}
 *{box-sizing:border-box}
@@ -38,13 +39,14 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:14px}
 <h1>Privacy</h1>
 <p class="lead">The short version: the text you mask in Hushpaste is processed in your browser. We never receive it.</p>
 
-<div class="box"><p>Last updated: 10 October 2026</p></div>
+<div class="box"><p>Last updated: 11 October 2026</p></div>
 
 <h2>What stays on your device</h2>
 <ul>
 <li>Text you paste into the free tool is detected, masked and restored by JavaScript running on this page. It is not sent to us or to any other server.</li>
 <li>The map between placeholders and real values lives in the open tab and disappears when you close it.</li>
 <li>We do not use accounts, and we do not use analytics or tracking scripts.</li>
+<li>The pages carry a Content Security Policy that only allows one outgoing connection: the waitlist form to Formspree.</li>
 </ul>
 
 <h2>What we collect</h2>
@@ -57,7 +59,7 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:14px}
 <ul>
 <li><strong>Formspree</strong> receives and stores waitlist submissions on our behalf.</li>
 <li><strong>GitHub Pages</strong> hosts this site. Like any web host, it may log technical request data such as IP address.</li>
-<li><strong>Google Fonts</strong> serves the typefaces on this page, so your browser contacts Google to download them. Your masked text is never part of that request.</li>
+<li><strong>Fonts</strong> are served from this site itself. Your browser does not contact Google or any other font service.</li>
 </ul>
 
 <h2>Your choices</h2>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-fmWnW/guZsSzXbGHr/SqNjRpruA7cK49qWxEWaZkIic='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hushpaste: paste freely, leak nothing</title>
 <link rel="canonical" href="https://gethushpaste.com/">
@@ -9,7 +10,8 @@
 <meta name="description" content="Hushpaste masks API keys, emails and other sensitive data in your browser before you paste into an AI chat, then restores them in the reply. Nothing is uploaded.">
 <meta property="og:title" content="Hushpaste: paste freely, leak nothing">
 <meta property="og:description" content="Mask secrets and personal data before they reach an AI chat. Runs in your browser.">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <style>
 :root{--bg:#0C110E;--bg2:#101713;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--line2:#33433B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limebg:#243012;--limeline:#3F5A1E;--coral:#FF9B80;--coralbg:#3A1F18}
 *{box-sizing:border-box}
@@ -137,7 +139,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="wrap">
 <div class="hero">
 <div>
-<p class="eyebrow">RUNS IN YOUR BROWSER · ZERO SERVERS · OPEN SOURCE PLANNED</p>
+<p class="eyebrow">RUNS IN YOUR BROWSER · NOTHING UPLOADED · OPEN SOURCE PLANNED</p>
 <h1>Paste freely.<br><span style="color:var(--lime)">Leak nothing.</span></h1>
 <p class="sub">Hushpaste strips API keys, customer data and other secrets from your prompt inside the browser, before it reaches any AI chat. When the answer comes back, your real values slide back in.</p>
 <div class="wl">
@@ -156,7 +158,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="bd">
 <div>DB_HOST=<span class="bad">10.24.3.17</span></div>
 <div>STRIPE_KEY=<span class="bad">sk-live-4f9a8c1d2e7b3a60</span></div>
-<div>Refund for <span class="bad">anna.keller@acme-bank.com</span></div>
+<div>Refund for <span class="bad">anna.keller@example.com</span></div>
 </div>
 <div class="hd" style="border-top:1px solid var(--line);color:var(--lime)">THE AI RECEIVES</div>
 <div class="bd">
@@ -191,7 +193,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="terms">
 <label for="terms" style="display:block;font-size:15px;font-weight:600">Extra words to mask <span style="font-weight:400;color:var(--mute)">(optional, separated by commas)</span></label>
 <input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe">
-<p class="small" style="margin-top:10px">Always detected: API keys, AWS keys, GitHub tokens, bearer tokens, emails, IBANs, phone numbers, IP addresses.</p>
+<p class="small" style="margin-top:10px">Always detected: API keys and tokens (AWS, GitHub, Slack, Google, SendGrid, npm, JWT, bearer), private keys, passwords in key=value lines and URLs, database URLs, emails, IBANs, card numbers, phone numbers, IP addresses and US Social Security numbers.</p>
 </div>
 
 <h3 class="s">1. Mask your text</h3>
@@ -230,10 +232,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <h2>Three steps, one click, no workflow change.</h2>
 <div class="row">
 <div class="step"><p class="n">01</p><h3>Paste or type as usual</h3><p>Hushpaste watches the prompt box in your browser. Nothing to copy into another tool.</p></div>
-<div class="step"><p class="n">02</p><h3>Sensitive values become placeholders</h3><p>Keys, emails, IBANs, phones and names are swapped locally for tokens like [EMAIL_1].</p></div>
+<div class="step"><p class="n">02</p><h3>Sensitive values become placeholders</h3><p>Keys, tokens, emails, IBANs, cards, phones and your own extra words are swapped locally for placeholders like [EMAIL_1].</p></div>
 <div class="step"><p class="n">03</p><h3>The answer comes back whole</h3><p>Placeholders in the reply are swapped back to your real values, in memory, in that tab only.</p></div>
 </div>
-<p class="small" style="margin-top:24px">The browser extension that does this automatically is in development. The web tool above works today.</p>
+<p class="small" style="margin-top:24px">The browser extension that does this automatically is planned. The web tool above works today.</p>
 </div>
 </section>
 
@@ -244,6 +246,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <h2>Nothing to steal, because nothing leaves.</h2>
 <ul class="ticks" style="margin-top:32px">
 <li>Detection and replacement run in your browser. This page sends your text nowhere.</li>
+<li>The page's Content Security Policy only allows one outgoing connection: the waitlist form to Formspree. Fonts and code are served from this site.</li>
 <li>The placeholder map lives in the open tab and is gone when you close it.</li>
 <li>No accounts, no cookies, no tracking of what you paste.</li>
 <li>The detection core is planned to be open source so it can be audited.</li>
@@ -305,7 +308,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="faq">
 <details open><summary>Can you see my data?</summary><p>No. Detection and replacement run in your browser. There is no Hushpaste server in the data path, and the placeholder map is held in the open tab only.</p></details>
 <details><summary>Which sites will it support?</summary><p>Launch targets are the major AI chats, including ChatGPT, Claude and Gemini. Waitlist members help decide what comes next.</p></details>
-<details><summary>How accurate is detection?</summary><p>Values with a known format, such as keys, tokens, IBANs and emails, are caught by pattern matching. Names and organizations are not detected automatically yet, so add them in the "extra words" box and review the result before sending.</p></details>
+<details><summary>How accurate is detection?</summary><p>Values with a known format, such as keys, tokens, IBANs and emails, are caught by pattern matching. Names and organizations are not detected automatically yet, so add them in the "extra words" box and always read the masked text before you send it. No pattern-based tool can promise to catch everything.</p></details>
 <details><summary>What if the AI rewrites a placeholder?</summary><p>Restoration matches placeholders exactly. If a reply changes one, it stays as it is and is not guessed.</p></details>
 <details><summary>Is it open source?</summary><p>The detection core is planned to be, so anyone can audit exactly what runs in your browser.</p></details>
 </div>
@@ -334,56 +337,105 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 
 <script>
 // ---- SETTINGS ----
-// To collect emails: create a free form at formspree.io (or similar) and paste its URL here.
-// Example: 'https://formspree.io/f/xxxxxxxx'. Left empty, the form only shows the thank-you message.
+// Waitlist form endpoint (Formspree). The page's Content Security Policy only allows connections to formspree.io.
 var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
 
 (function () {
-  var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@acme-bank.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
+  'use strict';
+  // Detection rules: same content as hushpaste-rules.json (single source of truth, copied here at build time).
+  var RULES_DOC = {"rules":[{"id":"PRIVATE_KEY","pattern":"-----BEGIN [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----[\\s\\S]{0,12000}?(?:-----END [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----|$)","flags":"g","validator":null,"group":null},{"id":"DB_URL","pattern":"\\b[a-z][a-z0-9+.-]{1,30}:\\/\\/[^\\s:@\\/]{1,128}:[^\\s@\\/]{1,256}@[^\\s'\\\"]{1,512}","flags":"gi","validator":null,"group":null},{"id":"JWT","pattern":"\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}","flags":"g","validator":null,"group":null},{"id":"API_KEY","pattern":"\\b(?:sk|pk|rk)[-_][A-Za-z0-9_-]{16,}","flags":"g","validator":null,"group":null},{"id":"AWS_KEY","pattern":"\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b","flags":"g","validator":null,"group":null},{"id":"GOOGLE_KEY","pattern":"\\bAIza[0-9A-Za-z_-]{35}","flags":"g","validator":null,"group":null},{"id":"SLACK_TOKEN","pattern":"\\bxox[baprs]-[A-Za-z0-9-]{10,}","flags":"g","validator":null,"group":null},{"id":"GH_TOKEN","pattern":"\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})","flags":"g","validator":null,"group":null},{"id":"SENDGRID_KEY","pattern":"\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}","flags":"g","validator":null,"group":null},{"id":"NPM_TOKEN","pattern":"\\bnpm_[A-Za-z0-9]{36}\\b","flags":"g","validator":null,"group":null},{"id":"BEARER_TOKEN","pattern":"Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*","flags":"g","validator":null,"group":null},{"id":"URL_SECRET","pattern":"[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})","flags":"gi","validator":null,"group":1},{"id":"SECRET","pattern":"(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})","flags":"gi","validator":null,"group":1},{"id":"EMAIL","pattern":"[A-Za-z0-9._%+-]{1,100}@[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,24}","flags":"g","validator":null,"group":null},{"id":"PHONE","pattern":"\\+\\d[\\d\\s().-]{8,}\\d","flags":"g","validator":null,"group":null},{"id":"IBAN","pattern":"\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b","flags":"g","validator":"iban_mod97","group":null},{"id":"CARD","pattern":"\\b\\d(?:[ -]?\\d){12,18}\\b","flags":"g","validator":"luhn","group":null},{"id":"IP_ADDRESS","pattern":"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b","flags":"g","validator":"ipv4_octets","group":null},{"id":"US_SSN","pattern":"\\b\\d{3}-\\d{2}-\\d{4}\\b","flags":"g","validator":null,"group":null}]};
+  var MAX_CHARS = 300000;
+  var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@example.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
   var $ = function (id) { return document.getElementById(id); };
   var src = $('src'), reply = $('reply'), terms = $('terms');
   var cur = { tokens: [], masked: '' };
   var restoredText = '';
+  var PH_RE = /\[[A-Z_]{1,40}_\d{1,6}\]/g;
 
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  var VALIDATORS = {
+    luhn: function (v) {
+      var d = v.replace(/\D/g, '');
+      if (d.length < 13 || d.length > 19) return false;
+      var sum = 0, alt = false;
+      for (var i = d.length - 1; i >= 0; i--) {
+        var n = d.charCodeAt(i) - 48;
+        if (alt) { n *= 2; if (n > 9) n -= 9; }
+        sum += n; alt = !alt;
+      }
+      return sum % 10 === 0;
+    },
+    iban_mod97: function (v) {
+      var s = v.replace(/\s/g, '').toUpperCase();
+      if (s.length < 15 || s.length > 34 || !/^[A-Z]{2}\d{2}[A-Z0-9]+$/.test(s)) return false;
+      var r = s.slice(4) + s.slice(0, 4), rem = 0;
+      for (var i = 0; i < r.length; i++) {
+        var c = r.charCodeAt(i), piece = c >= 65 ? String(c - 55) : String(c - 48);
+        for (var j = 0; j < piece.length; j++) rem = (rem * 10 + (piece.charCodeAt(j) - 48)) % 97;
+      }
+      return rem === 1;
+    },
+    ipv4_octets: function (v) {
+      var p = v.split('.');
+      if (p.length !== 4) return false;
+      for (var i = 0; i < 4; i++) { if (!/^\d{1,3}$/.test(p[i]) || +p[i] > 255) return false; }
+      return true;
+    }
+  };
+
+  var COMPILED = RULES_DOC.rules.map(function (r) {
+    return {
+      id: r.id,
+      re: new RegExp(r.pattern, r.flags.indexOf('g') > -1 ? r.flags : r.flags + 'g'),
+      group: r.group,
+      validator: r.validator ? VALIDATORS[r.validator] : null
+    };
+  });
 
   function analyze(text, extra) {
     var rules = [];
     (extra || '').split(',').forEach(function (t) {
       var w = t.trim();
-      if (w.length >= 2) rules.push(['CUSTOM', new RegExp(w.replace(/[.*+?^$(){}|[\]\\]/g, '\\$&'), 'gi')]);
+      if (w.length >= 2) rules.push({ id: 'CUSTOM', re: new RegExp(w.replace(/[.*+?^$(){}|[\]\\]/g, '\\$&'), 'gi'), group: null, validator: null });
     });
-    [
-      ['API_KEY', /\bsk-[A-Za-z0-9_-]{16,}/g],
-      ['AWS_KEY', /\bAKIA[0-9A-Z]{16}\b/g],
-      ['GH_TOKEN', /\bgh[pousr]_[A-Za-z0-9]{20,}/g],
-      ['BEARER_TOKEN', /Bearer\s+[A-Za-z0-9._~+-]{16,}=*/g],
-      ['EMAIL', /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g],
-      ['IBAN', /\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b/g],
-      ['PHONE', /\+\d[\d\s().-]{8,}\d/g],
-      ['IP_ADDRESS', /\b(?:\d{1,3}\.){3}\d{1,3}\b/g]
-    ].forEach(function (r) { rules.push(r); });
+    COMPILED.forEach(function (r) { rules.push(r); });
+
     var found = [];
     rules.forEach(function (r, pri) {
-      var re = r[1], m;
+      var re = r.re, m;
       re.lastIndex = 0;
       while ((m = re.exec(text)) !== null) {
         if (!m[0].length) { re.lastIndex++; continue; }
-        found.push({ type: r[0], start: m.index, end: m.index + m[0].length, value: m[0], pri: pri });
+        var value = m[0], start = m.index;
+        if (r.group === 1) {
+          if (!m[1]) continue;
+          value = m[1]; start = m.index + m[0].length - m[1].length;
+        }
+        if (r.validator && !r.validator(value)) continue;
+        found.push({ type: r.id, start: start, end: start + value.length, value: value, pri: pri });
       }
     });
     found.sort(function (a, b) { return a.start - b.start || a.pri - b.pri || b.end - a.end; });
     var acc = [], last = 0;
     found.forEach(function (f) { if (f.start >= last) { acc.push(f); last = f.end; } });
+
+    // placeholders already present in the text must not be reused
+    var existing = Object.create(null);
+    (text.match(PH_RE) || []).forEach(function (p) { existing[p] = true; });
+
     var counters = {}, map = {}, order = [], html = '', plain = '', pos = 0;
     acc.forEach(function (f) {
       var gap = text.slice(pos, f.start);
       html += esc(gap); plain += gap;
-      var key = f.type + '|' + f.value.toLowerCase();
+      var norm = (f.type === 'EMAIL' || f.type === 'CUSTOM') ? f.value.toLowerCase() : f.value;
+      var key = f.type + '|' + norm;
       if (!map[key]) {
-        counters[f.type] = (counters[f.type] || 0) + 1;
-        map[key] = '[' + f.type + '_' + counters[f.type] + ']';
-        order.push({ ph: map[key], orig: f.value });
+        var n = counters[f.type] || 0, ph;
+        do { n++; ph = '[' + f.type + '_' + n + ']'; } while (existing[ph]);
+        counters[f.type] = n;
+        map[key] = ph;
+        order.push({ ph: ph, orig: f.value });
       }
       html += '<span class="tok">' + esc(map[key]) + '</span>';
       plain += map[key];
@@ -395,6 +447,16 @@ var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
   }
 
   function render() {
+    var tooLong = src.value.length > MAX_CHARS || reply.value.length > MAX_CHARS;
+    $('copy1').disabled = tooLong; $('copy2').disabled = tooLong;
+    if (tooLong) {
+      cur = { tokens: [], masked: '' }; restoredText = '';
+      $('out').textContent = 'This text is longer than ' + MAX_CHARS.toLocaleString('en-US') + ' characters, so nothing was processed. Split it into smaller parts.';
+      $('count').textContent = 'not processed';
+      $('map').textContent = ''; $('mapBox').hidden = true;
+      $('restored').textContent = ''; $('restCount').textContent = '0 values restored';
+      return;
+    }
     var a = analyze(src.value, terms.value);
     cur = { tokens: a.tokens, masked: a.plain };
     $('out').innerHTML = a.html;
@@ -403,15 +465,21 @@ var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
     a.tokens.forEach(function (t) { rows += '<div class="r"><span>' + esc(t.ph) + '</span><span>' + esc(t.orig) + '</span></div>'; });
     $('map').innerHTML = rows;
     $('mapBox').hidden = !a.tokens.length;
-    var r = reply.value, hits = 0;
-    a.tokens.forEach(function (t) {
-      var parts = r.split(t.ph);
-      if (parts.length > 1) hits += parts.length - 1;
-      r = parts.join(t.orig);
+    var lookup = Object.create(null), hits = 0;
+    a.tokens.forEach(function (t) { lookup[t.ph] = t.orig; });
+    var r = reply.value.replace(PH_RE, function (m) {
+      if (m in lookup) { hits++; return lookup[m]; }
+      return m;
     });
     restoredText = r;
     $('restored').textContent = r;
     $('restCount').textContent = hits === 1 ? '1 value restored' : hits + ' values restored';
+  }
+
+  var timer = null;
+  function schedule() {
+    if (src.value.length > 20000 || reply.value.length > 20000) { clearTimeout(timer); timer = setTimeout(render, 150); }
+    else render();
   }
 
   function copy(text, btn, label) {
@@ -429,9 +497,9 @@ var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
   }
 
   src.value = SAMPLE;
-  src.addEventListener('input', render);
-  reply.addEventListener('input', render);
-  terms.addEventListener('input', render);
+  src.addEventListener('input', schedule);
+  reply.addEventListener('input', schedule);
+  terms.addEventListener('input', schedule);
   $('btnSample').addEventListener('click', function () { src.value = SAMPLE; render(); });
   $('btnClear').addEventListener('click', function () { src.value = ''; reply.value = ''; render(); });
   $('btnExample').addEventListener('click', function () {
@@ -446,24 +514,41 @@ var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
   render();
 
   // ---- waitlist forms ----
+  function showOk() {
+    Array.prototype.forEach.call(document.querySelectorAll('.wl'), function (w) {
+      w.querySelector('form').hidden = true;
+      w.querySelector('.ok').hidden = false;
+    });
+  }
   var forms = document.querySelectorAll('.wl form');
   Array.prototype.forEach.call(forms, function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var input = form.querySelector('input[type=email]');
       var err = form.querySelector('.err');
+      var btn = form.querySelector('button');
       var v = input.value.trim();
-      if (!/^\S+@\S+\.\S+$/.test(v)) { err.hidden = false; return; }
+      if (!/^\S+@\S+\.\S+$/.test(v)) { err.textContent = 'Enter a valid email to join the waitlist.'; err.hidden = false; return; }
       err.hidden = true;
-      if (WAITLIST_URL) {
-        try {
-          fetch(WAITLIST_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ email: v }) });
-        } catch (x) {}
+      if (!WAITLIST_URL) { showOk(); return; }
+      var label = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Joining…';
+      function fail() {
+        btn.disabled = false; btn.textContent = label;
+        err.textContent = 'Sorry, your email was not saved. Please try again in a minute.';
+        err.hidden = false;
       }
-      Array.prototype.forEach.call(document.querySelectorAll('.wl'), function (w) {
-        w.querySelector('form').hidden = true;
-        w.querySelector('.ok').hidden = false;
-      });
+      var ctl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+      var to = setTimeout(function () { if (ctl) ctl.abort(); }, 12000);
+      fetch(WAITLIST_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: v }),
+        signal: ctl ? ctl.signal : undefined
+      }).then(function (res) {
+        clearTimeout(to);
+        if (res.ok) showOk(); else fail();
+      }).catch(function () { clearTimeout(to); fail(); });
     });
   });
 })();

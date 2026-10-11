@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-f4pl/myA3UQ/R/5Of1nlSxaButXL+fqBuW8eRc9r1C4='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Paste Safety Kit · Hushpaste</title>
 <meta name="description" content="A checklist of 20 things never to paste into AI, ready-to-import regex rules for secrets, and a one-page AI usage policy template.">
@@ -9,7 +10,7 @@
 <link rel="canonical" href="https://gethushpaste.com/kit.html">
 <meta name="theme-color" content="#0C110E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
 :root{--bg:#0C110E;--bg2:#101713;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--line2:#33433B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limeline:#3F5A1E}
 *{box-sizing:border-box}
@@ -135,7 +136,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <section id="rules">
 <p class="eyebrow">PART 2</p>
 <h2>Ready-to-import regex rules</h2>
-<p>19 detection rules for secrets and personal data, in one JSON file. It includes everything the free web tool detects, plus formats such as SendGrid and npm tokens, secrets in URLs and US Social Security numbers. Each rule has an id, a pattern, flags, a severity and a note.</p>
+<p>19 detection rules for secrets and personal data, in one JSON file. It is the same rule set the free web tool uses, including formats such as SendGrid and npm tokens, secrets in URLs and US Social Security numbers. Each rule has an id, a pattern, flags, a severity and a note.</p>
 <div class="actions noprint">
 <a class="btn" href="hushpaste-rules.json" download>Download hushpaste-rules.json</a>
 </div>
