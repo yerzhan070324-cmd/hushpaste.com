@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-fmWnW/guZsSzXbGHr/SqNjRpruA7cK49qWxEWaZkIic='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-a4gTJcV02Xi3pPoeo9WeTuKmuFlVNypi1+ay1Tw2e28='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: paste freely, leak nothing</title>
 <link rel="canonical" href="https://gethushpaste.com/">
 <meta property="og:url" content="https://gethushpaste.com/">
@@ -337,8 +338,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 
 <script>
 // ---- SETTINGS ----
-// Waitlist form endpoint (Formspree). The page's Content Security Policy only allows connections to formspree.io.
-var WAITLIST_URL = 'https://formspree.io/f/mnpjvzbo';
+// The waitlist endpoint lives in <meta name="waitlist-url"> in the head, so it can be changed without touching this script
+// (this script is pinned by a hash in the Content Security Policy; editing it requires updating that hash).
+var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="waitlist-url"]'); return m ? m.getAttribute('content') : ''; })();
 
 (function () {
   'use strict';
