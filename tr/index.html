@@ -249,6 +249,13 @@ header.site,main,footer{position:relative;z-index:1}
 .strip .wrap{align-items:center}
 @media (min-width:900px){header.site{position:sticky;top:0;z-index:20;background:rgba(12,17,14,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}header.site.scrolled{border-bottom-color:var(--line)}section,#top{scroll-margin-top:84px}}
 @media (prefers-reduced-motion:reduce){.aura i,.shine,.hero .eyebrow:before,.card.live,.mq-in{animation:none}.mq-in{flex-wrap:wrap;width:auto}.js .rv{opacity:1;transform:none;transition:none}.btn:after,.wl button:after{display:none}}
+.netm{display:flex;align-items:center;gap:10px;margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--soft)}
+.netm i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(200,247,81,.7)}
+.netm.warn i{background:#F2C46B;box-shadow:none}
+.netm small{color:var(--mute);font-size:12px}
+.check{margin-top:14px;padding:16px 20px;border:1px solid #4A3F1C;background:#1D1A0E;border-radius:14px;color:var(--soft);font-size:15px}
+.check strong{color:#F2C46B}
+.soon{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:4px;background:#33290F;color:#F2C46B;font-size:10px;letter-spacing:.06em;vertical-align:1px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -270,7 +277,7 @@ header.site,main,footer{position:relative;z-index:1}
 <div class="wrap">
 <div class="hero">
 <div>
-<p class="eyebrow">TARAYICIDA ÇALIŞIR · HİÇBİR ŞEY YÜKLENMEZ · AÇIK KAYNAK PLANLANIYOR</p>
+<p class="eyebrow">TARAYICINIZDA ÇALIŞIR · HİÇBİR ŞEY YÜKLENMEZ · KOD GITHUB'DA</p>
 <h1>Rahatça yapıştır.<br><span class="shine">Hiçbir şey sızmasın.</span></h1>
 <p class="sub">Hushpaste, API anahtarlarını, müşteri verilerini ve diğer sırları isteminizden daha tarayıcıda, herhangi bir yapay zekâ sohbetine ulaşmadan çıkarır. Yanıt geldiğinde gerçek değerleriniz yerine geri döner.</p>
 <div class="wl">
@@ -339,6 +346,8 @@ header.site,main,footer{position:relative;z-index:1}
 </div>
 </div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
+<p class="netm" id="netm" role="status" hidden></p>
+<div class="check"><strong>Göndermeden önce kontrol edin.</strong> <span>İsimler, şirket adları ve adresler otomatik olarak algılanmaz; bunları yukarıdaki ek kelimeler kutusuna ekleyin. Yapay zekâ bir yer tutucuyu değiştirirse olduğu gibi kalır ve geri yüklenmez. Desen eşleştirme alışılmadık biçimleri kaçırabilir, bu yüzden göndermeden önce maskelenmiş metni okuyun.</span></div>
 <div class="map" id="mapBox" hidden>
 <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.06em;color:var(--mute)">NELER DEĞİŞTİRİLDİ (yalnızca bu sekmede tutulur)</p>
 <div id="map"></div>
@@ -429,7 +438,9 @@ header.site,main,footer{position:relative;z-index:1}
 <li>Sayfanın güvenlik politikası (CSP) yalnızca tek bir dış bağlantıya izin verir: Formspree'ye giden bekleme listesi formu. Yazı tipleri ve kod bu siteden yüklenir.</li>
 <li>Yer tutucu tablosu açık sekmede yaşar ve sekmeyi kapattığınızda kaybolur.</li>
 <li>Hesap yok, çerez yok, yapıştırdıklarınızın takibi yok.</li>
-<li>Algılama çekirdeğinin denetlenebilmesi için açık kaynak olması planlanıyor.</li>
+<li>Kendiniz kontrol edin: tarayıcınızın geliştirici araçlarını açın, Network sekmesine gidin ve aracı kullanın. Hiçbir istek görünmez.</li>
+<li>Kodu okuyun: <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">GitHub'daki kaynak kod ve testler</a>. Testler algılamayı, geri yüklemeyi ve bu gizlilik kurallarını kapsar.</li>
+<li>Henüz bağımsız bir güvenlik denetimi yapılmadı. Yapıldığında bu sayfada belirtilecek.</li>
 </ul>
 </div>
 <div class="flow" style="flex:1 1 460px;min-width:0">
@@ -489,11 +500,11 @@ header.site,main,footer{position:relative;z-index:1}
 <section id="pricing" class="alt">
 <div class="wrap">
 <h2>Basit fiyatlar.</h2>
-<p style="margin:14px 0 0;color:var(--mute)">Planlanan erken erişim fiyatları, lansmanda değişebilir.</p>
+<p style="margin:14px 0 0;max-width:720px;color:var(--mute)">Bugün kullanılabilir: ücretsiz web aracı. Pro ve Team geliştiriliyor. Bekleme listesine katılmak ücretsizdir ve lansmandan önce hiçbir ücret alınmaz.</p>
 <div class="row" style="align-items:stretch">
 <label class="price"><input type="radio" name="plan" value="free"><span class="dot" aria-hidden="true"></span><p class="pn">ÜCRETSİZ</p><p class="pp">$0</p><p class="pd">Ara sıra kullanım için web aracı</p><ul class="ticks"><li>Yapıştır ve gizle web aracı</li><li>Yerleşik algılama kuralları</li><li>AI Paste Safety Kit</li></ul><a class="btn pick" href="#demo" data-plan="free">Aracı aç</a></label>
-<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO</p><p class="pp">$8<small> / ay</small></p><p class="pd">Yapay zekâyı her gün kullananlar için</p><ul class="ticks"><li>Tarayıcı eklentisi, gönderirken otomatik gizleme</li><li>Yanıtlarda gerçek değerleri geri getirme</li><li>Özel kurallar ve izin listeleri</li></ul><a class="btn pick" href="#join" data-plan="pro">Pro'yu seç</a></label>
-<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM</p><p class="pp">$6<small> / kullanıcı / ay</small></p><p class="pd">Güvenli yapay zekâ isteyen şirketler için</p><ul class="ticks"><li>Pro'daki her şey</li><li>Ortak politikalar ve yönetici kuralları</li><li>İçerik barındırmayan raporlar</li></ul><a class="btn pick" href="#join" data-plan="team">Team'i seç</a></label>
+<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO <span class="soon">YAKINDA</span></p><p class="pp">$8<small> / ay</small></p><p class="pd">Yapay zekâyı her gün kullananlar için</p><ul class="ticks"><li>Tarayıcı eklentisi, gönderirken otomatik gizleme</li><li>Yanıtlarda gerçek değerleri geri getirme</li><li>Özel kurallar ve izin listeleri</li></ul><a class="btn pick" href="#join" data-plan="pro">Pro listesine katıl</a></label>
+<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM <span class="soon">YAKINDA</span></p><p class="pp">$6<small> / kullanıcı / ay</small></p><p class="pd">Güvenli yapay zekâ isteyen şirketler için</p><ul class="ticks"><li>Pro'daki her şey</li><li>Ortak politikalar ve yönetici kuralları</li><li>İçerik barındırmayan raporlar</li></ul><a class="btn pick" href="#join" data-plan="team">Team listesine katıl</a></label>
 </div>
 </div>
 </section>
@@ -510,7 +521,7 @@ header.site,main,footer{position:relative;z-index:1}
 <details><summary>Bütün bir dosyayı bırakabilir miyim?</summary><p>Evet. Giriş paneline .env, log veya metin dosyası bırakın ya da "dosya açın" seçeneğini kullanın. Dosyayı tarayıcınız okur, hiçbir yere yüklenmez.</p></details>
 <details><summary>Bir şey saklıyor mu?</summary><p>Hayır. Hesap ve çerez yoktur, yapıştırdığınız hiçbir şey kaydedilmez. Sekmeyi kapatınca yer tutucu tablosu kaybolur.</p></details>
 <details><summary>Şirketim kullanabilir mi?</summary><p>Evet. Ücretsiz web aracı kurulum gerektirmez ve hiçbir yere veri göndermez, bu yüzden onaylanması kolaydır. Team planı ortak kurallar ve raporlar ekler. İş e-postanızla listeye katılın ve Team'i seçin.</p></details>
-<details><summary>Açık kaynak mı?</summary><p>Algılama çekirdeğinin açık kaynak olması planlanıyor, böylece tarayıcınızda tam olarak ne çalıştığını herkes denetleyebilir.</p></details>
+<details><summary>Açık kaynak mı?</summary><p>Resmî olarak henüz değil. Tüm algılama kuralları dahil bu sitenin kodu, herkesin çalıştırabileceği testlerle birlikte GitHub'da herkese açık. Açık kaynak lisansı ve bağımsız bir güvenlik denetimi planlanıyor.</p></details>
 </div>
 </div>
 </section>
@@ -534,7 +545,7 @@ header.site,main,footer{position:relative;z-index:1}
 
 </main>
 
-<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Rahatça yapıştır. Hiçbir şey sızmasın.</span><span><a href="/privacy.html" style="color:var(--mute)">Gizlilik</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Rehberler</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Başa dön</a></span></div></footer>
+<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Rahatça yapıştır. Hiçbir şey sızmasın.</span><span><a href="/privacy.html" style="color:var(--mute)">Gizlilik</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Rehberler</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="https://github.com/yerzhan070324-cmd/hushpaste.com" style="color:var(--mute)">GitHub</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Başa dön</a></span></div></footer>
 
 <script src="/app.js"></script>
 

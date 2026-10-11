@@ -249,6 +249,13 @@ header.site,main,footer{position:relative;z-index:1}
 .strip .wrap{align-items:center}
 @media (min-width:900px){header.site{position:sticky;top:0;z-index:20;background:rgba(12,17,14,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}header.site.scrolled{border-bottom-color:var(--line)}section,#top{scroll-margin-top:84px}}
 @media (prefers-reduced-motion:reduce){.aura i,.shine,.hero .eyebrow:before,.card.live,.mq-in{animation:none}.mq-in{flex-wrap:wrap;width:auto}.js .rv{opacity:1;transform:none;transition:none}.btn:after,.wl button:after{display:none}}
+.netm{display:flex;align-items:center;gap:10px;margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--soft)}
+.netm i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(200,247,81,.7)}
+.netm.warn i{background:#F2C46B;box-shadow:none}
+.netm small{color:var(--mute);font-size:12px}
+.check{margin-top:14px;padding:16px 20px;border:1px solid #4A3F1C;background:#1D1A0E;border-radius:14px;color:var(--soft);font-size:15px}
+.check strong{color:#F2C46B}
+.soon{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:4px;background:#33290F;color:#F2C46B;font-size:10px;letter-spacing:.06em;vertical-align:1px}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -270,7 +277,7 @@ header.site,main,footer{position:relative;z-index:1}
 <div class="wrap">
 <div class="hero">
 <div>
-<p class="eyebrow">RUNS IN YOUR BROWSER · NOTHING UPLOADED · OPEN SOURCE PLANNED</p>
+<p class="eyebrow">RUNS IN YOUR BROWSER · NOTHING UPLOADED · CODE ON GITHUB</p>
 <h1>Paste freely.<br><span class="shine">Leak nothing.</span></h1>
 <p class="sub">Hushpaste strips API keys, customer data and other secrets from your prompt inside the browser, before it reaches any AI chat. When the answer comes back, your real values slide back in.</p>
 <div class="wl">
@@ -339,6 +346,8 @@ header.site,main,footer{position:relative;z-index:1}
 </div>
 </div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
+<p class="netm" id="netm" role="status" hidden></p>
+<div class="check"><strong>Check before you send.</strong> <span>Names, company names and street addresses are not detected automatically, so add them to the extra words box above. If the AI changes a placeholder, it stays as it is and is not restored. Pattern matching can miss unusual formats, so read the masked text before you send it.</span></div>
 <div class="map" id="mapBox" hidden>
 <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.06em;color:var(--mute)">WHAT WAS REPLACED (kept only in this tab)</p>
 <div id="map"></div>
@@ -429,7 +438,9 @@ header.site,main,footer{position:relative;z-index:1}
 <li>The page's Content Security Policy only allows one outgoing connection: the waitlist form to Formspree. Fonts and code are served from this site.</li>
 <li>The placeholder map lives in the open tab and is gone when you close it.</li>
 <li>No accounts, no cookies, no tracking of what you paste.</li>
-<li>The detection core is planned to be open source so it can be audited.</li>
+<li>Check it yourself: open your browser's developer tools, go to the Network tab and use the tool. No request appears.</li>
+<li>Read the code: <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">source and tests on GitHub</a>. The tests cover detection, restoring and these privacy rules.</li>
+<li>No independent security audit has been done yet. This page will say so when one has.</li>
 </ul>
 </div>
 <div class="flow" style="flex:1 1 460px;min-width:0">
@@ -489,11 +500,11 @@ header.site,main,footer{position:relative;z-index:1}
 <section id="pricing" class="alt">
 <div class="wrap">
 <h2>Simple pricing.</h2>
-<p style="margin:14px 0 0;color:var(--mute)">Planned early-access pricing, subject to change at launch.</p>
+<p style="margin:14px 0 0;max-width:720px;color:var(--mute)">Available today: the free web tool. Pro and Team are in development. Joining the waitlist is free, and nothing is charged before launch.</p>
 <div class="row" style="align-items:stretch">
 <label class="price"><input type="radio" name="plan" value="free"><span class="dot" aria-hidden="true"></span><p class="pn">FREE</p><p class="pp">$0</p><p class="pd">Web tool for occasional use</p><ul class="ticks"><li>Paste-and-mask web tool</li><li>Built-in detection rules</li><li>AI Paste Safety Kit</li></ul><a class="btn pick" href="#demo" data-plan="free">Use the free tool</a></label>
-<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO</p><p class="pp">$8<small> / month</small></p><p class="pd">For individuals who use AI daily</p><ul class="ticks"><li>Browser extension, auto-mask on send</li><li>Restore real values in replies</li><li>Custom rules and allowlists</li></ul><a class="btn pick" href="#join" data-plan="pro">Choose Pro</a></label>
-<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM</p><p class="pp">$6<small> / user / month</small></p><p class="pd">For companies that want AI with guardrails</p><ul class="ticks"><li>Everything in Pro</li><li>Shared policies and admin rules</li><li>Reports that never contain content</li></ul><a class="btn pick" href="#join" data-plan="team">Choose Team</a></label>
+<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO <span class="soon">COMING SOON</span></p><p class="pp">$8<small> / month</small></p><p class="pd">For individuals who use AI daily</p><ul class="ticks"><li>Browser extension, auto-mask on send</li><li>Restore real values in replies</li><li>Custom rules and allowlists</li></ul><a class="btn pick" href="#join" data-plan="pro">Join the Pro waitlist</a></label>
+<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM <span class="soon">COMING SOON</span></p><p class="pp">$6<small> / user / month</small></p><p class="pd">For companies that want AI with guardrails</p><ul class="ticks"><li>Everything in Pro</li><li>Shared policies and admin rules</li><li>Reports that never contain content</li></ul><a class="btn pick" href="#join" data-plan="team">Join the Team waitlist</a></label>
 </div>
 </div>
 </section>
@@ -510,7 +521,7 @@ header.site,main,footer{position:relative;z-index:1}
 <details><summary>Can I drop a whole file?</summary><p>Yes. Drop a .env, log or text file on the input panel, or use "open a file". The file is read by your browser and never uploaded.</p></details>
 <details><summary>Does it store anything?</summary><p>No. There are no accounts and no cookies, and nothing you paste is saved. Close the tab and the placeholder map is gone.</p></details>
 <details><summary>Can my company use it?</summary><p>Yes. The free web tool needs no installation and sends nothing anywhere, which makes it easy to approve. The Team plan adds shared rules and reports. Join the waitlist with your work email and pick Team.</p></details>
-<details><summary>Is it open source?</summary><p>The detection core is planned to be, so anyone can audit exactly what runs in your browser.</p></details>
+<details><summary>Is it open source?</summary><p>Not formally yet. The code of this site, including every detection rule, is already public on GitHub with tests anyone can run. An open-source license and an independent security audit are planned.</p></details>
 </div>
 </div>
 </section>
@@ -534,7 +545,7 @@ header.site,main,footer{position:relative;z-index:1}
 
 </main>
 
-<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><span><a href="/privacy.html" style="color:var(--mute)">Privacy</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Guides</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Back to top</a></span></div></footer>
+<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><span><a href="/privacy.html" style="color:var(--mute)">Privacy</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Guides</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="https://github.com/yerzhan070324-cmd/hushpaste.com" style="color:var(--mute)">GitHub</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Back to top</a></span></div></footer>
 
 <script src="/app.js"></script>
 

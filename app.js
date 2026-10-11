@@ -11,6 +11,9 @@ var I18N = {
     copied: 'Copied',
     exampleReply: function (a, b) { return 'I would rotate ' + a + ' first, then check whether ' + b + ' appears in older logs or tickets.'; },
     nothingMasked: 'Nothing was masked, so there is nothing to restore.',
+    netZero: 'Network check: 0 requests since this page loaded. Your text has not left this tab.',
+    netSome: function (n) { return 'Network check: ' + n + (n === 1 ? ' request' : ' requests') + ' since this page loaded. Only the waitlist form is allowed to send.'; },
+    netHow: 'Verify it: developer tools → Network',
     plans: { free: 'Free', pro: 'Pro', team: 'Team' },
     badEmail: 'Enter a valid email to join the waitlist.',
     joining: 'Joining…',
@@ -28,6 +31,9 @@ var I18N = {
     exampleReply: function (a, b) { return 'Сначала я бы заменил ' + a + ', а потом проверил, не встречается ли ' + b + ' в старых логах и заявках.'; },
     nothingMasked: 'Ничего не замаскировано, восстанавливать нечего.',
     labels: { 'Private key': 'Приватный ключ', 'Database URL': 'URL базы данных', 'API key': 'API-ключ', 'AWS key': 'Ключ AWS', 'Google key': 'Ключ Google', 'Slack token': 'Токен Slack', 'GitHub token': 'Токен GitHub', 'SendGrid key': 'Ключ SendGrid', 'npm token': 'Токен npm', 'Bearer token': 'Bearer-токен', 'Secret in URL': 'Секрет в URL', 'Password': 'Пароль', 'Phone': 'Телефон', 'Card number': 'Номер карты', 'IIN': 'ИИН', 'IP address': 'IP-адрес', 'Your words': 'Ваши слова', 'SNILS': 'СНИЛС', 'INN': 'ИНН', 'Passport': 'Паспорт' },
+    netZero: 'Проверка сети: 0 запросов с момента загрузки страницы. Ваш текст не покидал эту вкладку.',
+    netSome: function (n) { return 'Проверка сети: запросов с момента загрузки страницы: ' + n + '. Отправлять данные разрешено только форме листа ожидания.'; },
+    netHow: 'Проверьте сами: инструменты разработчика → Network',
     plans: { free: 'Free', pro: 'Pro', team: 'Team' },
     badEmail: 'Введите корректный email, чтобы попасть в список.',
     joining: 'Отправляем…',
@@ -45,6 +51,9 @@ var I18N = {
     exampleReply: function (a, b) { return 'Önce ' + a + ' değerini yenilerdim, sonra ' + b + ' eski kayıtlarda veya taleplerde geçiyor mu diye bakardım.'; },
     nothingMasked: 'Hiçbir şey maskelenmedi, geri yüklenecek bir şey yok.',
     labels: { 'Private key': 'Özel anahtar', 'Database URL': 'Veritabanı URL', 'API key': 'API anahtarı', 'AWS key': 'AWS anahtarı', 'Google key': 'Google anahtarı', 'Slack token': 'Slack token', 'GitHub token': 'GitHub token', 'SendGrid key': 'SendGrid anahtarı', 'npm token': 'npm token', 'Secret in URL': 'URL’de sır', 'Password': 'Parola', 'Email': 'E-posta', 'Phone': 'Telefon', 'Card number': 'Kart numarası', 'IIN': 'IIN', 'IP address': 'IP adresi', 'Your words': 'Sizin kelimeleriniz', 'Passport': 'Pasaport' },
+    netZero: 'Ağ kontrolü: sayfa yüklendiğinden beri 0 istek. Metniniz bu sekmeden çıkmadı.',
+    netSome: function (n) { return 'Ağ kontrolü: sayfa yüklendiğinden beri ' + n + ' istek. Yalnızca bekleme listesi formunun veri göndermesine izin verilir.'; },
+    netHow: 'Kendiniz doğrulayın: geliştirici araçları → Network',
     plans: { free: 'Free', pro: 'Pro', team: 'Team' },
     badEmail: 'Bekleme listesine katılmak için geçerli bir e-posta girin.',
     joining: 'Gönderiliyor…',
@@ -423,4 +432,30 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
     el.addEventListener('transitionend', function () { el.style.transitionDelay = ''; }, { once: true });
     io.observe(el);
   });
+})();
+
+// ---- Live network check: counts requests this page makes after it has loaded ----
+(function () {
+  var box = document.getElementById('netm');
+  if (!box || !window.performance || !performance.getEntriesByType) return;
+  var base = null;
+  function draw() {
+    if (base === null) return;
+    var n = performance.getEntriesByType('resource').length - base;
+    box.textContent = '';
+    box.className = 'netm' + (n ? ' warn' : '');
+    box.appendChild(document.createElement('i'));
+    var t = document.createElement('span');
+    t.textContent = n ? T.netSome(n) : T.netZero;
+    var how = document.createElement('small');
+    how.textContent = ' ' + T.netHow;
+    t.appendChild(how);
+    box.appendChild(t);
+    box.hidden = false;
+  }
+  function start() { base = performance.getEntriesByType('resource').length; draw(); }
+  if (document.readyState === 'complete') start(); else window.addEventListener('load', start);
+  if ('PerformanceObserver' in window) {
+    try { new PerformanceObserver(draw).observe({ type: 'resource' }); } catch (e) { /* older browsers: count stays as drawn */ }
+  }
 })();
