@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is it safe to paste customer data into ChatGPT? · Hushpaste</title>
+<meta name="description" content="What happens to customer emails, tickets and documents you paste into AI chats, what the real risks are, and how to get the same help without the personal data.">
+<link rel="canonical" href="https://gethushpaste.com/guides/is-it-safe-to-paste-customer-data-into-chatgpt.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Hushpaste">
+<meta property="og:url" content="https://gethushpaste.com/guides/is-it-safe-to-paste-customer-data-into-chatgpt.html">
+<meta property="og:title" content="Is it safe to paste customer data into ChatGPT?">
+<meta property="og:description" content="What happens to customer emails, tickets and documents you paste into AI chats, what the real risks are, and how to get the same help without the personal data.">
+<meta property="og:image" content="https://gethushpaste.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0C110E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/fonts.css">
+<style>
+:root{--bg:#0C110E;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limeline:#3F5A1E;--coral:#FF9B80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Instrument Sans',system-ui,sans-serif;font-size:17px;line-height:1.65}
+a{color:var(--lime)}
+a:hover{color:#E3FF9A}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.top a.back{color:var(--mute);font-size:15px;text-decoration:none;padding:12px 0}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;padding:20px 0}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--lime);margin:24px 0 0}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;margin:0}
+h1{font-size:clamp(34px,6vw,52px);line-height:1.06;letter-spacing:-.02em;margin-top:12px}
+h2{font-size:26px;line-height:1.2;margin-top:48px}
+h3{font-size:20px;margin-top:28px}
+p,ul,ol{margin:14px 0 0;color:var(--soft)}
+ul,ol{padding-left:22px}
+li{margin-top:8px}
+strong{color:var(--text)}
+.lead{font-size:20px;color:var(--text)}
+pre{margin:16px 0 0;padding:16px 18px;background:var(--deep);border:1px solid var(--line);border-radius:12px;overflow-x:auto;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C9D4CD}
+code{font-family:'IBM Plex Mono',monospace;font-size:.9em;color:var(--text)}
+.bad{color:var(--coral)}
+.tok{color:var(--lime)}
+.cta{margin-top:40px;padding:24px;background:#172210;border:1px solid var(--limeline);border-radius:14px}
+.cta p{margin:0;color:var(--text)}
+.btn{display:inline-block;margin-top:16px;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;padding:0 22px;min-height:48px;line-height:48px;text-decoration:none}
+.btn:hover{color:var(--bg);background:#D8FF78}
+.more{margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
+.more ul{list-style:none;padding:0}
+footer{padding:48px 0 56px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+footer a{color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><a class="logo" href="/"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a><a class="back" href="/guides/">All guides</a></div>
+<main>
+<article>
+<p class="eyebrow">GUIDE · PRIVACY</p>
+<h1>Is it safe to paste customer data into ChatGPT?</h1>
+<p class="lead">Short answer: not by default. Rewriting a reply to an angry customer does not require the customer’s name, email or IBAN, so leave them out.</p>
+<h2>What happens to what you paste</h2>
+<ul>
+<li>It is sent to the AI provider's servers and stored in your chat history.</li>
+<li>Depending on your plan and settings, it may be used to improve models. Business plans usually turn this off; personal accounts often have it on by default.</li>
+<li>It can be seen by anyone with access to your account, and by the provider under its own policies.</li>
+</ul>
+<p>None of this is unusual for a cloud service. The problem is that customer data usually comes with obligations: privacy laws, contracts and your company's own rules.</p>
+
+<h2>The real risks</h2>
+<ul>
+<li><strong>Legal</strong>: under GDPR and similar laws, personal data shared with a third party needs a legal basis and often a data processing agreement.</li>
+<li><strong>Contractual</strong>: NDAs and customer contracts may forbid sharing their data with outside services.</li>
+<li><strong>Trust</strong>: one screenshot of a chat with a customer's details in it is a bad day for any company.</li>
+</ul>
+
+<h2>Get the same help without the data</h2>
+<p>For most tasks (rewriting a reply, summarising a ticket, drafting a refund email) the AI only needs the situation, not the identity.</p>
+<pre>Refund for <span class="bad">Anna Keller</span> (<span class="bad">anna.keller@example.com</span>), order <span class="bad">#88231</span>,
+IBAN <span class="bad">DE89 3704 0044 0532 0130 00</span>, she is upset about the delay.</pre>
+<p>becomes</p>
+<pre>Refund for <span class="tok">[NAME_1]</span> (<span class="tok">[EMAIL_1]</span>), order <span class="tok">[ORDER_1]</span>,
+IBAN <span class="tok">[IBAN_1]</span>, she is upset about the delay.</pre>
+<p>The answer is just as good, and you put the real details back before sending it to the customer.</p>
+
+<h2>A simple team rule</h2>
+<p>If you would not post it publicly, mask it or leave it out. The free <a href="/kit.html#checklist">checklist of 20 things never to paste into AI</a> is a quick way to share that rule with a team.</p>
+<div class="cta"><p><strong>Mask it in one paste.</strong> The free Hushpaste tool finds keys, tokens, emails, IBANs and other secrets in your text and swaps them for placeholders, right in your browser. Nothing is uploaded. When the AI answers, paste the reply back and the real values return.</p><a class="btn" href="/#demo">Open the free tool</a></div>
+</article>
+<nav class="more" aria-label="More guides"><p class="eyebrow" style="margin:0">MORE GUIDES</p><ul><li><a href="/guides/paste-env-file-into-chatgpt.html">How to paste a .env file into ChatGPT without leaking secrets</a></li><li><a href="/guides/hide-api-keys-from-ai.html">How to hide API keys before sharing code with AI</a></li><li><a href="/guides/redact-logs-before-chatgpt.html">How to redact logs before pasting them into ChatGPT</a></li></ul></nav>
+</main>
+</div>
+<footer><div class="wrap"><span>Hushpaste · Paste freely. Leak nothing.</span><span><a href="/guides/">Guides</a> &nbsp;·&nbsp; <a href="/kit.html">Safety Kit</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a></span></div></footer>
+</body>
+</html>
