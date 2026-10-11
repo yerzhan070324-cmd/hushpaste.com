@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-J2KanmBuEtnIHpiz9IEdlIe0fywpl2Cz3BfYPCXCTEM='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-J2oHByQkr6rujKwlHf4zsa16Yj3H41V2BHBXnZazFXo='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: paste freely, leak nothing</title>
@@ -88,6 +88,16 @@ nav.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-bet
 .tool h3.s{font-size:28px;margin-top:48px}
 .terms{margin-top:32px;padding:20px 24px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .terms input{display:block;width:100%;margin-top:10px;height:48px;padding:0 16px;border-radius:8px;border:1px solid var(--line2);background:var(--deep);color:var(--text);font-size:16px}
+.panel.drag{border-color:var(--lime);box-shadow:0 0 0 3px var(--limebg)}
+.drophint{margin:0;padding:10px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.drophint button{border:0;background:none;color:var(--lime);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.risk{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:20px;padding:16px 20px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.risk .lvl{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;padding:6px 10px;border-radius:6px}
+.risk .lvl.high{background:var(--coralbg);color:var(--coral)}
+.risk .lvl.medium{background:#33290F;color:#F2C46B}
+.risk .lvl.none{background:var(--limebg);color:var(--lime)}
+.risk .chip{font-size:14px;padding:4px 10px;border:1px solid var(--line2);border-radius:999px;color:var(--soft)}
+.risk .chip.high{border-color:#5A3A30;color:var(--coral)}
 .map{margin-top:20px;padding:20px 24px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .map .r{display:flex;flex-wrap:wrap;gap:4px 20px;padding:8px 0;border-top:1px solid #1F2A24;font-family:'IBM Plex Mono',monospace;font-size:13px}
 .map .r span:first-child{flex:0 0 180px;color:var(--lime)}
@@ -218,13 +228,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="panels">
 <div class="panel">
 <div class="bar"><label class="t" for="src">YOUR TEXT</label><div style="display:flex;gap:8px"><button type="button" class="ghost" id="btnSample">Sample</button><button type="button" class="ghost" id="btnClear">Clear</button></div></div>
-<textarea id="src" style="min-height:300px" placeholder="Paste a log, an email or a config file here"></textarea>
+<textarea id="src" style="min-height:300px" placeholder="Paste a log, an email or a config file here, or drop a file"></textarea>
+<p class="drophint">Drop a .env, log or text file here, or <button type="button" id="btnFile">open a file</button>. It is read in this tab only.<input type="file" id="file" hidden></p>
 </div>
 <div class="panel g">
 <div class="bar"><span class="t">MASKED · <span id="count">0 items</span></span><button type="button" class="btn btn-sm" id="copy1" style="border:0">Copy masked text</button></div>
 <div class="out" id="out" style="min-height:300px"></div>
 </div>
 </div>
+<div class="risk" id="risk" role="status" aria-live="polite"></div>
 <div class="map" id="mapBox" hidden>
 <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.06em;color:var(--mute)">WHAT WAS REPLACED (kept only in this tab)</p>
 <div id="map"></div>
@@ -364,6 +376,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
   'use strict';
   // Detection rules: same content as hushpaste-rules.json (single source of truth, copied here at build time).
   var RULES_DOC = {"rules":[{"id":"PRIVATE_KEY","pattern":"-----BEGIN [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----[\\s\\S]{0,12000}?(?:-----END [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----|$)","flags":"g","validator":null,"group":null},{"id":"DB_URL","pattern":"\\b[a-z][a-z0-9+.-]{1,30}:\\/\\/[^\\s:@\\/]{1,128}:[^\\s@\\/]{1,256}@[^\\s'\\\"]{1,512}","flags":"gi","validator":null,"group":null},{"id":"JWT","pattern":"\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}","flags":"g","validator":null,"group":null},{"id":"API_KEY","pattern":"\\b(?:sk|pk|rk)[-_](?=[A-Za-z0-9_-]*\\d)[A-Za-z0-9_-]{16,}","flags":"g","validator":null,"group":null},{"id":"AWS_KEY","pattern":"\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b","flags":"g","validator":null,"group":null},{"id":"GOOGLE_KEY","pattern":"\\bAIza[0-9A-Za-z_-]{35}","flags":"g","validator":null,"group":null},{"id":"SLACK_TOKEN","pattern":"\\bxox[baprs]-[A-Za-z0-9-]{10,}","flags":"g","validator":null,"group":null},{"id":"SLACK_WEBHOOK","pattern":"https:\\/\\/hooks\\.slack\\.com\\/services\\/[A-Za-z0-9_\\/-]{20,}","flags":"g","validator":null,"group":null},{"id":"GH_TOKEN","pattern":"\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})","flags":"g","validator":null,"group":null},{"id":"SENDGRID_KEY","pattern":"\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}","flags":"g","validator":null,"group":null},{"id":"NPM_TOKEN","pattern":"\\bnpm_[A-Za-z0-9]{36}\\b","flags":"g","validator":null,"group":null},{"id":"BEARER_TOKEN","pattern":"Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*","flags":"g","validator":null,"group":null},{"id":"BASIC_AUTH","pattern":"Basic\\s+([A-Za-z0-9+\\/]{12,}={0,2})","flags":"g","validator":null,"group":1},{"id":"URL_SECRET","pattern":"[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})","flags":"gi","validator":null,"group":1},{"id":"SECRET","pattern":"(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})","flags":"gi","validator":null,"group":1},{"id":"EMAIL","pattern":"[A-Za-z0-9._%+-]{1,100}@[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,24}","flags":"g","validator":null,"group":null},{"id":"PHONE","pattern":"\\+\\d[\\d\\s().-]{8,}\\d","flags":"g","validator":null,"group":null},{"id":"PHONE_LOCAL","pattern":"\\b8[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}\\b","flags":"g","validator":null,"group":null},{"id":"IBAN","pattern":"\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b","flags":"g","validator":"iban_mod97","group":null},{"id":"CARD","pattern":"\\b\\d(?:[ -]?\\d){12,18}\\b","flags":"g","validator":"luhn","group":null},{"id":"KZ_IIN","pattern":"\\b\\d{12}\\b","flags":"g","validator":"kz_iin","group":null},{"id":"IP_ADDRESS","pattern":"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b","flags":"g","validator":"ipv4_octets","group":null},{"id":"US_SSN","pattern":"\\b\\d{3}-\\d{2}-\\d{4}\\b","flags":"g","validator":null,"group":null}]};
+  var RULE_META = {"PRIVATE_KEY":["Private key","high"],"DB_URL":["Database URL","high"],"JWT":["JWT","high"],"API_KEY":["API key","high"],"AWS_KEY":["AWS key","high"],"GOOGLE_KEY":["Google key","high"],"SLACK_TOKEN":["Slack token","high"],"SLACK_WEBHOOK":["Slack webhook","high"],"GH_TOKEN":["GitHub token","high"],"SENDGRID_KEY":["SendGrid key","high"],"NPM_TOKEN":["npm token","high"],"BEARER_TOKEN":["Bearer token","high"],"BASIC_AUTH":["Basic auth","high"],"URL_SECRET":["Secret in URL","high"],"SECRET":["Password","high"],"EMAIL":["Email","medium"],"PHONE":["Phone","medium"],"PHONE_LOCAL":["Phone","medium"],"IBAN":["IBAN","high"],"CARD":["Card number","high"],"KZ_IIN":["IIN","high"],"IP_ADDRESS":["IP address","medium"],"US_SSN":["SSN","high"],"CUSTOM":["Your words","medium"]};
   var MAX_CHARS = 300000;
   var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@example.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
   var $ = function (id) { return document.getElementById(id); };
@@ -463,7 +476,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
         do { n++; ph = '[' + f.type + '_' + n + ']'; } while (existing[ph]);
         counters[f.type] = n;
         map[key] = ph;
-        order.push({ ph: ph, orig: f.value });
+        order.push({ ph: ph, orig: f.value, type: f.type });
       }
       html += '<span class="tok">' + esc(map[key]) + '</span>';
       plain += map[key];
@@ -482,6 +495,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
       $('out').textContent = 'This text is longer than ' + MAX_CHARS.toLocaleString('en-US') + ' characters, so nothing was processed. Split it into smaller parts.';
       $('count').textContent = 'not processed';
       $('map').textContent = ''; $('mapBox').hidden = true;
+      $('risk').textContent = '';
       $('restored').textContent = ''; $('restCount').textContent = '0 values restored';
       return;
     }
@@ -493,6 +507,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
     a.tokens.forEach(function (t) { rows += '<div class="r"><span>' + esc(t.ph) + '</span><span>' + esc(t.orig) + '</span></div>'; });
     $('map').innerHTML = rows;
     $('mapBox').hidden = !a.tokens.length;
+    renderRisk(a.tokens);
     var lookup = Object.create(null), hits = 0;
     a.tokens.forEach(function (t) { lookup[t.ph] = t.orig; });
     var r = reply.value.replace(PH_RE, function (m) {
@@ -503,6 +518,48 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
     $('restored').textContent = r;
     $('restCount').textContent = hits === 1 ? '1 value restored' : hits + ' values restored';
   }
+
+  function renderRisk(tokens) {
+    var box = $('risk');
+    if (!src.value.trim()) { box.textContent = ''; box.hidden = true; return; }
+    box.hidden = false;
+    var counts = {}, order = [], level = 'none';
+    tokens.forEach(function (t) {
+      if (!counts[t.type]) { counts[t.type] = 0; order.push(t.type); }
+      counts[t.type]++;
+    });
+    order.sort(function (x, y) {
+      var sx = (RULE_META[x] || [])[1] === 'high' ? 0 : 1, sy = (RULE_META[y] || [])[1] === 'high' ? 0 : 1;
+      return sx - sy || counts[y] - counts[x];
+    });
+    var chips = '';
+    order.forEach(function (type) {
+      var m = RULE_META[type] || [type, 'medium'];
+      if (m[1] === 'high') level = 'high'; else if (level === 'none') level = 'medium';
+      chips += '<span class="chip ' + m[1] + '">' + esc(m[0]) + (counts[type] > 1 ? ' ×' + counts[type] : '') + '</span>';
+    });
+    var title = level === 'high' ? 'HIGH RISK · DO NOT PASTE UNMASKED' : level === 'medium' ? 'PERSONAL DATA FOUND' : 'NOTHING SENSITIVE DETECTED';
+    box.innerHTML = '<span class="lvl ' + level + '">' + title + '</span>' + chips;
+  }
+
+  // ---- open or drop a file (read locally, never uploaded) ----
+  function loadFile(file) {
+    if (!file) return;
+    if (file.size > MAX_CHARS * 4) { src.value = ''; render(); $('out').textContent = 'This file is too large. Open a smaller part of it.'; return; }
+    var r = new FileReader();
+    r.onload = function () { src.value = String(r.result || ''); render(); };
+    r.readAsText(file);
+  }
+  $('btnFile').addEventListener('click', function () { $('file').click(); });
+  $('file').addEventListener('change', function () { loadFile(this.files && this.files[0]); this.value = ''; });
+  var srcPanel = src.parentNode;
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    srcPanel.addEventListener(ev, function (e) { e.preventDefault(); srcPanel.classList.add('drag'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    srcPanel.addEventListener(ev, function (e) { e.preventDefault(); if (ev === 'drop' || !srcPanel.contains(e.relatedTarget)) srcPanel.classList.remove('drag'); });
+  });
+  srcPanel.addEventListener('drop', function (e) { loadFile(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]); });
 
   var timer = null;
   function schedule() {
