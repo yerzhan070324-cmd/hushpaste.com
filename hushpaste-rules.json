@@ -1,6 +1,6 @@
 {
   "name": "Hushpaste secret detection rules",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "updated": "2026-10-11",
   "format": "Each pattern is a JavaScript (ECMAScript) regular expression source string. Build it with new RegExp(pattern, flags).",
   "how_to_use": [
@@ -13,7 +13,9 @@
     "luhn": "Remove everything except digits. Require 13 to 19 digits and a valid Luhn checksum.",
     "iban_mod97": "Remove spaces and uppercase. Require 15 to 34 characters. Move the first 4 characters to the end, turn letters into numbers (A=10 ... Z=35), and the resulting number modulo 97 must equal 1.",
     "ipv4_octets": "Every dot-separated part must be a number from 0 to 255.",
-    "kz_iin": "Require exactly 12 digits. Multiply the first 11 digits by weights 1 to 11 and take the sum modulo 11. If the result is 10, use weights 3,4,5,6,7,8,9,10,11,1,2 instead; if it is still 10 the number is invalid. The result must equal the 12th digit."
+    "kz_iin": "Require exactly 12 digits. Multiply the first 11 digits by weights 1 to 11 and take the sum modulo 11. If the result is 10, use weights 3,4,5,6,7,8,9,10,11,1,2 instead; if it is still 10 the number is invalid. The result must equal the 12th digit.",
+    "tr_tckn": "Require 11 digits, first not 0. Let d1..d11 be the digits. ((d1+d3+d5+d7+d9)*7 - (d2+d4+d6+d8)) mod 10 must equal d10, and (d1+...+d10) mod 10 must equal d11.",
+    "ru_snils": "Remove everything except digits (11). Multiply the first 9 digits by weights 9 down to 1 and sum. If the sum is below 100 the check number is the sum; if it is 100 or 101 the check is 0; otherwise take the sum modulo 101 and use 0 if that is 100. The check must equal the last 2 digits."
   },
   "limits": "Regular expressions only catch values with a recognisable shape. Names, company names, project codenames and free-text secrets are not detected, so add your own terms and review the result before sending.",
   "license": "Free to use and adapt. Provided as is, without warranty.",
@@ -217,6 +219,17 @@
       "notes": "Numbers written as 8 (701) 123-45-67, 8 701 123 4567 or 87011234567."
     },
     {
+      "id": "PHONE_TR",
+      "label": "Turkish mobile number written locally",
+      "category": "personal",
+      "severity": "medium",
+      "pattern": "\\b05\\d{2}[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}\\b",
+      "flags": "g",
+      "validator": null,
+      "group": null,
+      "notes": "Numbers written as 0532 123 45 67 or 05321234567. Numbers with +90 are caught by PHONE."
+    },
+    {
       "id": "IBAN",
       "label": "IBAN",
       "category": "financial",
@@ -248,6 +261,50 @@
       "validator": "kz_iin",
       "group": null,
       "notes": "12-digit Kazakh individual or business identification number, kept only when the check digit is valid."
+    },
+    {
+      "id": "TR_TCKN",
+      "label": "Turkish identity number (T.C. Kimlik No)",
+      "category": "personal",
+      "severity": "high",
+      "pattern": "\\b[1-9]\\d{10}\\b",
+      "flags": "g",
+      "validator": "tr_tckn",
+      "group": null,
+      "notes": "11-digit Turkish citizen or foreigner identity number, kept only when both check digits are valid."
+    },
+    {
+      "id": "RU_SNILS",
+      "label": "Russian SNILS (insurance number)",
+      "category": "personal",
+      "severity": "high",
+      "pattern": "\\b\\d{3}-\\d{3}-\\d{3}[ -]\\d{2}\\b",
+      "flags": "g",
+      "validator": "ru_snils",
+      "group": null,
+      "notes": "Written as 123-456-789 01, kept only when the check number is valid."
+    },
+    {
+      "id": "RU_INN",
+      "label": "Russian INN (tax number) after a label",
+      "category": "personal",
+      "severity": "high",
+      "pattern": "(?:ИНН|INN)\\s*[:№#]?\\s*(\\d{12}|\\d{10})\\b",
+      "flags": "gi",
+      "validator": null,
+      "group": 1,
+      "notes": "Matched only after the word INN or ИНН to avoid catching ordinary numbers."
+    },
+    {
+      "id": "PASSPORT",
+      "label": "Passport number after a label",
+      "category": "personal",
+      "severity": "high",
+      "pattern": "(?:паспорт|passport|pasaport)[^\\n\\d]{0,24}?([A-Z]{0,2}\\d[\\d ]{5,10}\\d)",
+      "flags": "gi",
+      "validator": null,
+      "group": 1,
+      "notes": "Matched only after the word passport, паспорт or pasaport, for example Passport N12345678 or паспорт 45 06 123456."
     },
     {
       "id": "IP_ADDRESS",
