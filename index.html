@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-n1mZHfy0jiwWmrBf5nECd/wBqk+EHD7Wwe2rHlfCbLI='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-J2KanmBuEtnIHpiz9IEdlIe0fywpl2Cz3BfYPCXCTEM='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: paste freely, leak nothing</title>
@@ -104,10 +104,17 @@ ul.ticks li:before{content:"";flex:none;width:8px;height:8px;margin-top:10px;bac
 .chips span{padding:14px 22px;border:1px solid var(--line2);border-radius:999px;font-size:18px}
 .kit{padding:48px;background:var(--panel);border:1px solid var(--limeline);border-radius:18px;display:flex;flex-wrap:wrap;gap:40px;align-items:center}
 .kit>div{flex:1 1 380px;min-width:0}
-.price{padding:32px;background:var(--deep);border:1px solid var(--line);border-radius:16px}
-.price.hot{background:#172210;border:2px solid var(--lime)}
+.price{position:relative;display:flex;flex-direction:column;padding:32px;background:var(--deep);border:2px solid var(--line);border-radius:16px;cursor:pointer;transition:border-color .15s,background .15s}
+.price:hover{border-color:var(--line2)}
+.price input{position:absolute;opacity:0;pointer-events:none}
+.price:has(input:checked){background:#172210;border-color:var(--lime)}
+.price:has(input:focus-visible){outline:2px solid var(--lime);outline-offset:3px}
+.price .dot{position:absolute;top:28px;right:28px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line2)}
+.price:has(input:checked) .dot{border:7px solid var(--lime)}
+.price ul.ticks{flex:1}
+.price .pick{margin-top:28px;text-align:center}
+.price:has(input:checked) .pn{color:var(--lime)}
 .price .pn{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mute)}
-.price.hot .pn{color:var(--lime)}
 .price .pp{margin:12px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:48px;line-height:1}
 .price .pp small{font-size:18px;font-weight:500;color:var(--mute)}
 .price .pd{margin:8px 0 24px;color:var(--mute);font-size:15px}
@@ -306,9 +313,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <h2>Simple pricing.</h2>
 <p style="margin:14px 0 0;color:var(--mute)">Planned early-access pricing, subject to change at launch.</p>
 <div class="row" style="align-items:stretch">
-<div class="price"><p class="pn">FREE</p><p class="pp">$0</p><p class="pd">Web tool for occasional use</p><ul class="ticks"><li>Paste-and-mask web tool</li><li>Built-in detection rules</li><li>AI Paste Safety Kit</li></ul></div>
-<div class="price hot"><p class="pn">PRO</p><p class="pp">$8<small> / month</small></p><p class="pd" style="color:var(--soft)">For individuals who use AI daily</p><ul class="ticks"><li>Browser extension, auto-mask on send</li><li>Restore real values in replies</li><li>Custom rules and allowlists</li></ul></div>
-<div class="price"><p class="pn">TEAM</p><p class="pp">$6<small> / user / month</small></p><p class="pd">For companies that want AI with guardrails</p><ul class="ticks"><li>Everything in Pro</li><li>Shared policies and admin rules</li><li>Reports that never contain content</li></ul></div>
+<label class="price"><input type="radio" name="plan" value="free"><span class="dot" aria-hidden="true"></span><p class="pn">FREE</p><p class="pp">$0</p><p class="pd">Web tool for occasional use</p><ul class="ticks"><li>Paste-and-mask web tool</li><li>Built-in detection rules</li><li>AI Paste Safety Kit</li></ul><a class="btn pick" href="#demo" data-plan="free">Use the free tool</a></label>
+<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO</p><p class="pp">$8<small> / month</small></p><p class="pd">For individuals who use AI daily</p><ul class="ticks"><li>Browser extension, auto-mask on send</li><li>Restore real values in replies</li><li>Custom rules and allowlists</li></ul><a class="btn pick" href="#join" data-plan="pro">Choose Pro</a></label>
+<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM</p><p class="pp">$6<small> / user / month</small></p><p class="pd">For companies that want AI with guardrails</p><ul class="ticks"><li>Everything in Pro</li><li>Shared policies and admin rules</li><li>Reports that never contain content</li></ul><a class="btn pick" href="#join" data-plan="team">Choose Team</a></label>
 </div>
 </div>
 </section>
@@ -330,6 +337,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="wrap" style="max-width:760px">
 <h2>Get early access.</h2>
 <p class="sub">Join the waitlist and be first to get the browser extension and the free Safety Kit.</p>
+<p class="sub" style="font-size:16px;margin-top:10px">Your plan: <strong class="plan-name">Pro</strong> · <a href="#pricing" style="color:var(--bg)">change</a></p>
 <div class="wl">
 <form novalidate>
 <label for="email-cta" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Work email</label>
@@ -533,6 +541,25 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
   $('copy2').addEventListener('click', function () { copy(restoredText, this, 'Copy restored text'); });
   render();
 
+  // ---- plan picker ----
+  var PLAN_LABELS = { free: 'Free', pro: 'Pro', team: 'Team' };
+  function currentPlan() {
+    var c = document.querySelector('input[name=plan]:checked');
+    return c ? c.value : 'pro';
+  }
+  function syncPlan() {
+    var label = PLAN_LABELS[currentPlan()];
+    Array.prototype.forEach.call(document.querySelectorAll('.plan-name'), function (el) { el.textContent = label; });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=plan]'), function (r) { r.addEventListener('change', syncPlan); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-plan]'), function (a) {
+    a.addEventListener('click', function () {
+      var r = document.querySelector('input[name=plan][value="' + a.getAttribute('data-plan') + '"]');
+      if (r) { r.checked = true; syncPlan(); }
+    });
+  });
+  syncPlan();
+
   // ---- waitlist forms ----
   function showOk() {
     Array.prototype.forEach.call(document.querySelectorAll('.wl'), function (w) {
@@ -563,7 +590,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
       fetch(WAITLIST_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: v }),
+        body: JSON.stringify({ email: v, plan: currentPlan() }),
         signal: ctl ? ctl.signal : undefined
       }).then(function (res) {
         clearTimeout(to);
