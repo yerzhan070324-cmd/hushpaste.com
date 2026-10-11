@@ -211,12 +211,51 @@ table.cmp{width:100%;min-width:620px;border-collapse:collapse;font-size:15px}
 .cta .ok{margin:36px auto 0;background:var(--bg);color:var(--text);text-align:left}
 footer{padding:40px 0}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute)}
+/* motion layer */
+body{position:relative}
+.aura{position:absolute;top:0;left:0;right:0;height:1100px;overflow:hidden;pointer-events:none;z-index:0}
+.aura:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,247,81,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(200,247,81,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 60% 30%,#000 20%,transparent 75%)}
+.aura i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+.aura i:nth-child(1){width:520px;height:520px;left:55%;top:60px;background:#5E7F1A;animation:drift1 18s ease-in-out infinite alternate}
+.aura i:nth-child(2){width:420px;height:420px;left:-120px;top:340px;background:#1F4A3A;animation:drift2 22s ease-in-out infinite alternate}
+.aura i:nth-child(3){width:300px;height:300px;left:35%;top:520px;background:#3B4A12;opacity:.35;animation:drift1 26s ease-in-out infinite alternate-reverse}
+@keyframes drift1{to{transform:translate(-120px,80px) scale(1.15)}}
+@keyframes drift2{to{transform:translate(140px,-60px) scale(.9)}}
+header.site,main,footer{position:relative;z-index:1}
+.shine{background:linear-gradient(100deg,var(--lime) 0%,var(--lime) 40%,#F6FFD9 50%,var(--lime) 60%,var(--lime) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s ease-in-out infinite}
+@keyframes shine{0%,40%{background-position:100% 0}100%{background-position:0 0}}
+.hero .eyebrow:before{content:"";display:inline-block;width:8px;height:8px;margin:0 10px 1px 0;border-radius:50%;background:var(--lime);vertical-align:middle;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(200,247,81,.6)}70%,100%{box-shadow:0 0 0 10px rgba(200,247,81,0)}}
+.card.live{animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.btn,.wl button{position:relative;overflow:hidden;transition:box-shadow .25s,translate .25s}
+.btn:after,.wl button:after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover:after,.wl button:hover:after{left:130%}
+.btn:hover,.wl button:hover{box-shadow:0 8px 30px -6px rgba(200,247,81,.55);translate:0 -1px}
+.cat,.box,.step,.cc,.price{position:relative;transition:translate .25s,border-color .25s,box-shadow .25s}
+.cat:hover,.box:hover,.step:hover,.cc:hover{translate:0 -4px;border-color:var(--limeline);box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
+.price:hover{translate:0 -4px}
+.spot:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(200,247,81,.11),transparent 60%);opacity:0;transition:opacity .3s}
+.spot:hover:after{opacity:1}
+.band .spot:after{background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(200,247,81,.16),transparent 60%)}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),translate .25s,border-color .25s,box-shadow .25s,background .15s}
+.js .rv.in{opacity:1;transform:none}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--lime);box-shadow:0 0 12px rgba(200,247,81,.7);transform-origin:0 50%;transform:scaleX(0);z-index:50;pointer-events:none}
+.mq{flex:1 1 300px;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-in{display:flex;width:max-content;animation:mq 28s linear infinite}
+.mq-in span{padding:0 22px;white-space:nowrap}
+.mq-in span:before{content:"◆";margin-right:22px;color:var(--limeline)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.strip .wrap{align-items:center}
+@media (min-width:900px){header.site{position:sticky;top:0;z-index:20;background:rgba(12,17,14,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}header.site.scrolled{border-bottom-color:var(--line)}section,#top{scroll-margin-top:84px}}
+@media (prefers-reduced-motion:reduce){.aura i,.shine,.hero .eyebrow:before,.card.live,.mq-in{animation:none}.mq-in{flex-wrap:wrap;width:auto}.js .rv{opacity:1;transform:none;transition:none}.btn:after,.wl button:after{display:none}}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
 
-<div class="wrap">
+<div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="site"><div class="wrap">
 <nav class="top">
 <a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a>
 <div class="links">
@@ -224,7 +263,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <a class="btn" href="#join">Ранний доступ</a>
 </div>
 </nav>
-</div>
+</div></header>
 
 <main id="top">
 
@@ -232,7 +271,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="hero">
 <div>
 <p class="eyebrow">РАБОТАЕТ В БРАУЗЕРЕ · НИЧЕГО НЕ ЗАГРУЖАЕТСЯ · ОТКРЫТЫЙ КОД В ПЛАНАХ</p>
-<h1>Вставляйте смело.<br><span style="color:var(--lime)">Без утечек.</span></h1>
+<h1>Вставляйте смело.<br><span class="shine">Без утечек.</span></h1>
 <p class="sub">Hushpaste убирает API-ключи, данные клиентов и другие секреты из вашего запроса прямо в браузере, до того как он попадёт в чат с ИИ. Когда приходит ответ, настоящие значения возвращаются на место.</p>
 <div class="wl">
 <form novalidate>
@@ -261,7 +300,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 </div>
 
 <div class="wrap"><div class="stats"><div><b>28</b><span>детекторов, многие с проверкой контрольных сумм</span></div><div><b>0</b><span>байт вашего текста уходит в сеть</span></div><div><b>3</b><span>языка: English, Русский, Türkçe</span></div><div><b>$0</b><span>за веб-инструмент, без регистрации</span></div></div></div>
-<div class="strip"><div class="wrap"><span style="color:var(--text)">Для чатов с ИИ, которыми вы уже пользуетесь</span><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span></div></div>
+<div class="strip"><div class="wrap"><span style="color:var(--text)">Для чатов с ИИ, которыми вы уже пользуетесь</span><div class="mq"><div class="mq-in"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span><span>DeepSeek</span><span>Perplexity</span><span>Mistral</span><span>Grok</span><span aria-hidden="true" class="dup">ChatGPT</span><span aria-hidden="true" class="dup">Claude</span><span aria-hidden="true" class="dup">Gemini</span><span aria-hidden="true" class="dup">Copilot</span><span aria-hidden="true" class="dup">DeepSeek</span><span aria-hidden="true" class="dup">Perplexity</span><span aria-hidden="true" class="dup">Mistral</span><span aria-hidden="true" class="dup">Grok</span></div></div></div></div>
 
 <section>
 <div class="wrap">
