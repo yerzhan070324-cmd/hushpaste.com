@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-a4gTJcV02Xi3pPoeo9WeTuKmuFlVNypi1+ay1Tw2e28='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-n1mZHfy0jiwWmrBf5nECd/wBqk+EHD7Wwe2rHlfCbLI='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: paste freely, leak nothing</title>
@@ -11,6 +11,16 @@
 <meta name="description" content="Hushpaste masks API keys, emails and other sensitive data in your browser before you paste into an AI chat, then restores them in the reply. Nothing is uploaded.">
 <meta property="og:title" content="Hushpaste: paste freely, leak nothing">
 <meta property="og:description" content="Mask secrets and personal data before they reach an AI chat. Runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hushpaste">
+<meta property="og:image" content="https://gethushpaste.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hushpaste: paste freely, leak nothing">
+<meta name="twitter:description" content="Mask secrets and personal data before they reach an AI chat. Runs in your browser.">
+<meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
+<meta name="theme-color" content="#0C110E">
 <link rel="stylesheet" href="fonts.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <style>
@@ -151,7 +161,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <p class="err" role="alert" hidden style="flex-basis:100%;margin:0">Enter a valid email to join the waitlist.</p>
 </form>
 <div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens.</p><p style="margin:14px 0 0"><a class="btn" href="/kit.html">Open your free Safety Kit</a></p></div>
-<p class="small">No spam, one email at launch. <a href="#demo">Or try the free tool now →</a></p>
+<p class="small">No spam, one email at launch. <a href="privacy.html">Privacy</a>. <a href="#demo">Or try the free tool now →</a></p>
 </div>
 </div>
 <div class="card">
@@ -194,7 +204,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="terms">
 <label for="terms" style="display:block;font-size:15px;font-weight:600">Extra words to mask <span style="font-weight:400;color:var(--mute)">(optional, separated by commas)</span></label>
 <input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe">
-<p class="small" style="margin-top:10px">Always detected: API keys and tokens (AWS, GitHub, Slack, Google, SendGrid, npm, JWT, bearer), private keys, passwords in key=value lines and URLs, database URLs, emails, IBANs, card numbers, phone numbers, IP addresses and US Social Security numbers.</p>
+<p class="small" style="margin-top:10px">Always detected: API keys and tokens (AWS, GitHub, Slack, Google, SendGrid, npm, JWT, bearer, basic auth), Slack webhooks, private keys, passwords in key=value lines and URLs, database URLs, emails, IBANs, card numbers, phone numbers, IP addresses, US Social Security numbers and Kazakh IIN/BIN.</p>
 </div>
 
 <h3 class="s">1. Mask your text</h3>
@@ -334,7 +344,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 
 </main>
 
-<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><a href="#top" style="color:var(--mute)">Back to top</a></div></footer>
+<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><span><a href="privacy.html" style="color:var(--mute)">Privacy</a> &nbsp;·&nbsp; <a href="kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="#top" style="color:var(--mute)">Back to top</a></span></div></footer>
 
 <script>
 // ---- SETTINGS ----
@@ -345,7 +355,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
 (function () {
   'use strict';
   // Detection rules: same content as hushpaste-rules.json (single source of truth, copied here at build time).
-  var RULES_DOC = {"rules":[{"id":"PRIVATE_KEY","pattern":"-----BEGIN [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----[\\s\\S]{0,12000}?(?:-----END [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----|$)","flags":"g","validator":null,"group":null},{"id":"DB_URL","pattern":"\\b[a-z][a-z0-9+.-]{1,30}:\\/\\/[^\\s:@\\/]{1,128}:[^\\s@\\/]{1,256}@[^\\s'\\\"]{1,512}","flags":"gi","validator":null,"group":null},{"id":"JWT","pattern":"\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}","flags":"g","validator":null,"group":null},{"id":"API_KEY","pattern":"\\b(?:sk|pk|rk)[-_][A-Za-z0-9_-]{16,}","flags":"g","validator":null,"group":null},{"id":"AWS_KEY","pattern":"\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b","flags":"g","validator":null,"group":null},{"id":"GOOGLE_KEY","pattern":"\\bAIza[0-9A-Za-z_-]{35}","flags":"g","validator":null,"group":null},{"id":"SLACK_TOKEN","pattern":"\\bxox[baprs]-[A-Za-z0-9-]{10,}","flags":"g","validator":null,"group":null},{"id":"GH_TOKEN","pattern":"\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})","flags":"g","validator":null,"group":null},{"id":"SENDGRID_KEY","pattern":"\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}","flags":"g","validator":null,"group":null},{"id":"NPM_TOKEN","pattern":"\\bnpm_[A-Za-z0-9]{36}\\b","flags":"g","validator":null,"group":null},{"id":"BEARER_TOKEN","pattern":"Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*","flags":"g","validator":null,"group":null},{"id":"URL_SECRET","pattern":"[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})","flags":"gi","validator":null,"group":1},{"id":"SECRET","pattern":"(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})","flags":"gi","validator":null,"group":1},{"id":"EMAIL","pattern":"[A-Za-z0-9._%+-]{1,100}@[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,24}","flags":"g","validator":null,"group":null},{"id":"PHONE","pattern":"\\+\\d[\\d\\s().-]{8,}\\d","flags":"g","validator":null,"group":null},{"id":"IBAN","pattern":"\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b","flags":"g","validator":"iban_mod97","group":null},{"id":"CARD","pattern":"\\b\\d(?:[ -]?\\d){12,18}\\b","flags":"g","validator":"luhn","group":null},{"id":"IP_ADDRESS","pattern":"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b","flags":"g","validator":"ipv4_octets","group":null},{"id":"US_SSN","pattern":"\\b\\d{3}-\\d{2}-\\d{4}\\b","flags":"g","validator":null,"group":null}]};
+  var RULES_DOC = {"rules":[{"id":"PRIVATE_KEY","pattern":"-----BEGIN [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----[\\s\\S]{0,12000}?(?:-----END [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----|$)","flags":"g","validator":null,"group":null},{"id":"DB_URL","pattern":"\\b[a-z][a-z0-9+.-]{1,30}:\\/\\/[^\\s:@\\/]{1,128}:[^\\s@\\/]{1,256}@[^\\s'\\\"]{1,512}","flags":"gi","validator":null,"group":null},{"id":"JWT","pattern":"\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}","flags":"g","validator":null,"group":null},{"id":"API_KEY","pattern":"\\b(?:sk|pk|rk)[-_](?=[A-Za-z0-9_-]*\\d)[A-Za-z0-9_-]{16,}","flags":"g","validator":null,"group":null},{"id":"AWS_KEY","pattern":"\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b","flags":"g","validator":null,"group":null},{"id":"GOOGLE_KEY","pattern":"\\bAIza[0-9A-Za-z_-]{35}","flags":"g","validator":null,"group":null},{"id":"SLACK_TOKEN","pattern":"\\bxox[baprs]-[A-Za-z0-9-]{10,}","flags":"g","validator":null,"group":null},{"id":"SLACK_WEBHOOK","pattern":"https:\\/\\/hooks\\.slack\\.com\\/services\\/[A-Za-z0-9_\\/-]{20,}","flags":"g","validator":null,"group":null},{"id":"GH_TOKEN","pattern":"\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})","flags":"g","validator":null,"group":null},{"id":"SENDGRID_KEY","pattern":"\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}","flags":"g","validator":null,"group":null},{"id":"NPM_TOKEN","pattern":"\\bnpm_[A-Za-z0-9]{36}\\b","flags":"g","validator":null,"group":null},{"id":"BEARER_TOKEN","pattern":"Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*","flags":"g","validator":null,"group":null},{"id":"BASIC_AUTH","pattern":"Basic\\s+([A-Za-z0-9+\\/]{12,}={0,2})","flags":"g","validator":null,"group":1},{"id":"URL_SECRET","pattern":"[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})","flags":"gi","validator":null,"group":1},{"id":"SECRET","pattern":"(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})","flags":"gi","validator":null,"group":1},{"id":"EMAIL","pattern":"[A-Za-z0-9._%+-]{1,100}@[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,24}","flags":"g","validator":null,"group":null},{"id":"PHONE","pattern":"\\+\\d[\\d\\s().-]{8,}\\d","flags":"g","validator":null,"group":null},{"id":"PHONE_LOCAL","pattern":"\\b8[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}\\b","flags":"g","validator":null,"group":null},{"id":"IBAN","pattern":"\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b","flags":"g","validator":"iban_mod97","group":null},{"id":"CARD","pattern":"\\b\\d(?:[ -]?\\d){12,18}\\b","flags":"g","validator":"luhn","group":null},{"id":"KZ_IIN","pattern":"\\b\\d{12}\\b","flags":"g","validator":"kz_iin","group":null},{"id":"IP_ADDRESS","pattern":"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b","flags":"g","validator":"ipv4_octets","group":null},{"id":"US_SSN","pattern":"\\b\\d{3}-\\d{2}-\\d{4}\\b","flags":"g","validator":null,"group":null}]};
   var MAX_CHARS = 300000;
   var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@example.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
   var $ = function (id) { return document.getElementById(id); };
@@ -377,6 +387,14 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
         for (var j = 0; j < piece.length; j++) rem = (rem * 10 + (piece.charCodeAt(j) - 48)) % 97;
       }
       return rem === 1;
+    },
+    kz_iin: function (v) {
+      if (!/^\d{12}$/.test(v)) return false;
+      var d = v.split('').map(Number), w1 = [1,2,3,4,5,6,7,8,9,10,11], w2 = [3,4,5,6,7,8,9,10,11,1,2];
+      function sum(w) { var t = 0; for (var i = 0; i < 11; i++) t += d[i] * w[i]; return t % 11; }
+      var c = sum(w1);
+      if (c === 10) c = sum(w2);
+      return c !== 10 && c === d[11];
     },
     ipv4_octets: function (v) {
       var p = v.split('.');
