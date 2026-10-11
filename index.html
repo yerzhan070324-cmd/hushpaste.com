@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-J2oHByQkr6rujKwlHf4zsa16Yj3H41V2BHBXnZazFXo='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-LwkTjr2e37i9IVo10vMq4H7cydoseS1OpBrV30qJWKA='; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data:; connect-src https://formspree.io; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: paste freely, leak nothing</title>
@@ -130,6 +130,31 @@ ul.ticks li:before{content:"";flex:none;width:8px;height:8px;margin-top:10px;bac
 .price .pd{margin:8px 0 24px;color:var(--mute);font-size:15px}
 .price ul.ticks li{font-size:16px;gap:12px}
 .price ul.ticks li:before{margin-top:9px}
+.ill{display:block;width:100%;height:auto;margin-bottom:20px;border-radius:12px;background:var(--deep);border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:48px}
+.cat{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;min-width:0}
+.cat h3{font-size:19px}
+.cat p{margin:8px 0 0;color:var(--soft);font-size:15px}
+.cat .ex{margin-top:14px;padding:10px 12px;background:var(--deep);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
+.cat .ex .bad,.cat .ex .tok{padding:0 4px}
+.local{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
+.cc{padding:24px;border:1px solid var(--limeline);background:#141E10;border-radius:14px}
+.cc .code{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;padding:4px 10px;border-radius:6px;background:var(--lime);color:var(--bg);font-weight:600}
+.cc h3{margin-top:14px;font-size:21px}
+.cc ul{margin:12px 0 0;padding-left:18px;color:var(--soft);font-size:15px}
+.cc li{margin-top:6px}
+.tblw{margin-top:40px;overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+table.cmp{width:100%;min-width:620px;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+.cmp thead th{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--mute);font-weight:500;background:var(--panel)}
+.cmp thead th.us{color:var(--lime)}
+.cmp td.us{background:#141E10;color:var(--text)}
+.cmp td{color:var(--soft)}
+.cmp tr:last-child td{border-bottom:0}
+.yes{color:var(--lime);font-weight:600}
+.no{color:var(--coral)}
+.team{display:flex;flex-wrap:wrap;gap:40px;align-items:center}
+.team>div{flex:1 1 380px;min-width:0}
 .faq{max-width:860px;margin:40px auto 0;border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:22px 0;min-height:44px;font-size:19px;font-weight:500}
@@ -156,7 +181,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <nav class="top">
 <a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a>
 <div class="links">
-<a href="#demo">Free tool</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="/guides/">Guides</a>
+<a href="#demo">Free tool</a><a href="#detects">What it catches</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="/guides/">Guides</a>
 <a class="btn" href="#join">Get early access</a>
 </div>
 </nav>
@@ -221,7 +246,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="terms">
 <label for="terms" style="display:block;font-size:15px;font-weight:600">Extra words to mask <span style="font-weight:400;color:var(--mute)">(optional, separated by commas)</span></label>
 <input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe">
-<p class="small" style="margin-top:10px">Always detected: API keys and tokens (AWS, GitHub, Slack, Google, SendGrid, npm, JWT, bearer, basic auth), Slack webhooks, private keys, passwords in key=value lines and URLs, database URLs, emails, IBANs, card numbers, phone numbers, IP addresses, US Social Security numbers and Kazakh IIN/BIN.</p>
+<p class="small" style="margin-top:10px">Always detected: API keys and tokens (AWS, GitHub, Slack, Google, SendGrid, npm, JWT, bearer, basic auth), Slack webhooks, private keys, passwords in key=value lines and URLs, database URLs, emails, IBANs, card numbers, phone numbers, IP addresses, US Social Security numbers, and local IDs: Kazakh IIN/BIN, Turkish TC Kimlik, Russian SNILS and INN, and passport numbers.</p>
 </div>
 
 <h3 class="s">1. Mask your text</h3>
@@ -259,13 +284,61 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 
 <section id="how">
 <div class="wrap">
-<h2>Three steps, one click, no workflow change.</h2>
+<p class="eyebrow">HOW IT WORKS</p>
+<h2>Three steps. Seconds, not a new workflow.</h2>
 <div class="row">
-<div class="step"><p class="n">01</p><h3>Paste or type as usual</h3><p>Hushpaste watches the prompt box in your browser. Nothing to copy into another tool.</p></div>
-<div class="step"><p class="n">02</p><h3>Sensitive values become placeholders</h3><p>Keys, tokens, emails, IBANs, cards, phones and your own extra words are swapped locally for placeholders like [EMAIL_1].</p></div>
-<div class="step"><p class="n">03</p><h3>The answer comes back whole</h3><p>Placeholders in the reply are swapped back to your real values, in memory, in that tab only.</p></div>
+<div class="step"><svg class="ill" viewBox="0 0 320 150" role="img" aria-label="A text file with secrets highlighted, being dropped into the tool"><rect x="0" y="0" width="320" height="150" fill="#0A0E0C"/><rect x="70" y="22" width="120" height="106" rx="10" fill="#141B17" stroke="#33433B"/><rect x="86" y="42" width="70" height="8" rx="4" fill="#33433B"/><rect x="86" y="60" width="88" height="8" rx="4" fill="#FF9B80"/><rect x="86" y="78" width="56" height="8" rx="4" fill="#33433B"/><rect x="86" y="96" width="80" height="8" rx="4" fill="#FF9B80"/><path d="M228 40v50" stroke="#C8F751" stroke-width="4" stroke-linecap="round"/><path d="M212 74l16 18 16-18" fill="none" stroke="#C8F751" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="204" y="100" width="48" height="10" rx="5" fill="#33433B"/></svg><p class="n">01</p><h3>Paste text or drop a file</h3><p>Logs, .env files, tickets, emails. Hushpaste scans them in this page and marks every secret and every piece of personal data it recognises.</p></div>
+<div class="step"><svg class="ill" viewBox="0 0 320 150" role="img" aria-label="Masked text with placeholders being sent to an AI chat"><rect x="0" y="0" width="320" height="150" fill="#0A0E0C"/><rect x="24" y="30" width="112" height="90" rx="10" fill="#141B17" stroke="#33433B"/><rect x="38" y="48" width="60" height="8" rx="4" fill="#33433B"/><rect x="38" y="66" width="76" height="12" rx="4" fill="#243012" stroke="#3F5A1E"/><rect x="38" y="88" width="50" height="12" rx="4" fill="#243012" stroke="#3F5A1E"/><path d="M148 75h34" stroke="#C8F751" stroke-width="4" stroke-linecap="round"/><path d="M172 63l14 12-14 12" fill="none" stroke="#C8F751" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="196" y="30" width="100" height="90" rx="14" fill="#141B17" stroke="#33433B"/><circle cx="218" cy="54" r="9" fill="#33433B"/><rect x="234" y="49" width="46" height="10" rx="5" fill="#33433B"/><rect x="212" y="76" width="68" height="10" rx="5" fill="#243012"/><rect x="212" y="94" width="50" height="10" rx="5" fill="#243012"/></svg><p class="n">02</p><h3>Send only placeholders</h3><p>Copy the masked text into ChatGPT, Claude, Gemini or any other chat. The AI sees [API_KEY_1] and [EMAIL_1], never the real values.</p></div>
+<div class="step"><svg class="ill" viewBox="0 0 320 150" role="img" aria-label="An AI reply where placeholders are swapped back to real values"><rect x="0" y="0" width="320" height="150" fill="#0A0E0C"/><rect x="40" y="30" width="240" height="90" rx="10" fill="#141B17" stroke="#3F5A1E"/><rect x="58" y="50" width="70" height="10" rx="5" fill="#33433B"/><rect x="136" y="47" width="74" height="16" rx="5" fill="#243012" stroke="#3F5A1E"/><path d="M216 55h14" stroke="#C8F751" stroke-width="3" stroke-linecap="round"/><rect x="236" y="47" width="30" height="16" rx="5" fill="#E9EFEA"/><rect x="58" y="78" width="120" height="10" rx="5" fill="#33433B"/><rect x="58" y="98" width="90" height="10" rx="5" fill="#33433B"/><circle cx="252" cy="96" r="13" fill="#C8F751"/><path d="M245 96l5 5 9-10" fill="none" stroke="#0C110E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="n">03</p><h3>Get the real answer back</h3><p>Paste the reply into step 2 of the tool. Every placeholder is swapped back to your real value, in memory, in this tab only.</p></div>
 </div>
-<p class="small" style="margin-top:24px">The browser extension that does this automatically is planned. The web tool above works today.</p>
+<p class="small" style="margin-top:24px">A browser extension that does this automatically inside the chat is planned. The web tool works today.</p>
+</div>
+</section>
+
+<section id="detects" class="alt">
+<div class="wrap">
+<p class="eyebrow">WHAT IT CATCHES</p>
+<h2>28 detectors for the things that should never leave.</h2>
+<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Every detector looks for a known shape, and many also check a checksum, so ordinary numbers are left alone. Cards pass a Luhn check, IBANs a mod-97 check, and national IDs their official check digits.</p>
+<div class="grid">
+<div class="cat"><h3>API keys and tokens</h3><p>OpenAI-style sk- keys, Stripe, AWS, Google, GitHub, Slack, SendGrid, npm.</p><div class="ex"><span class="bad">sk_live_51Hx9aQ…</span> → <span class="tok">[API_KEY_1]</span></div></div>
+<div class="cat"><h3>Passwords and connection strings</h3><p>password= lines, database URLs with user:password@, secrets in URLs.</p><div class="ex"><span class="bad">postgres://app:S3cr3t@db</span> → <span class="tok">[DB_URL_1]</span></div></div>
+<div class="cat"><h3>Sessions and auth headers</h3><p>JWTs, Bearer and Basic Authorization headers, Slack webhooks, private key blocks.</p><div class="ex">Bearer <span class="bad">eyJhbGciOi…</span> → <span class="tok">[BEARER_TOKEN_1]</span></div></div>
+<div class="cat"><h3>Contact details</h3><p>Emails, international phones, and local formats like 8 (701) … and 0532 ….</p><div class="ex"><span class="bad">0532 123 45 67</span> → <span class="tok">[PHONE_TR_1]</span></div></div>
+<div class="cat"><h3>Money</h3><p>IBANs from any country and payment card numbers, both checksum-verified.</p><div class="ex"><span class="bad">TR33 0006 1005 …</span> → <span class="tok">[IBAN_1]</span></div></div>
+<div class="cat"><h3>National IDs</h3><p>Kazakh IIN/BIN, Turkish TC Kimlik, Russian SNILS and INN, US SSN, passport numbers.</p><div class="ex">IIN <span class="bad">040312500125</span> → <span class="tok">[KZ_IIN_1]</span></div></div>
+<div class="cat"><h3>Infrastructure</h3><p>Internal IP addresses and hostnames inside connection strings.</p><div class="ex">DB_HOST=<span class="bad">10.24.3.17</span> → <span class="tok">[IP_ADDRESS_1]</span></div></div>
+<div class="cat"><h3>Your own words</h3><p>Client names, project codenames, anything else. Add them once in the extra words box.</p><div class="ex"><span class="bad">Project Falcon</span> → <span class="tok">[CUSTOM_1]</span></div></div>
+</div>
+</div>
+</section>
+
+<section id="local">
+<div class="wrap">
+<p class="eyebrow">BUILT FOR WHERE YOU WORK</p>
+<h2>Made for Kazakhstan, Türkiye and the CIS.</h2>
+<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Many AI privacy tools focus on US formats. Hushpaste also recognises the IDs, phone numbers and bank details people actually paste here, and validates them the official way.</p>
+<div class="local">
+<div class="cc"><span class="code">KZ</span><h3>Kazakhstan</h3><ul><li>IIN and BIN, with check digit</li><li>Phones: +7 7xx and 8 (7xx)</li><li>KZ IBANs (Kaspi, Halyk and others)</li></ul></div>
+<div class="cc"><span class="code">TR</span><h3>Türkiye</h3><ul><li>T.C. Kimlik No, with both check digits</li><li>Phones: +90 and 05xx</li><li>TR IBANs</li></ul></div>
+<div class="cc"><span class="code">RU</span><h3>Russia and the CIS</h3><ul><li>SNILS, with check number</li><li>INN after "ИНН" or "INN"</li><li>Passport numbers after "паспорт"</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="alt">
+<div class="wrap">
+<p class="eyebrow">WHY MASKING</p>
+<h2>Better than deleting by hand. Better than banning AI.</h2>
+<div class="tblw"><table class="cmp">
+<thead><tr><th></th><th class="us">HUSHPASTE</th><th>DELETING BY HAND</th><th>BANNING AI</th></tr></thead>
+<tbody>
+<tr><td>Time per paste</td><td class="us"><span class="yes">Seconds</span></td><td>Minutes, every time</td><td>—</td></tr>
+<tr><td>AI still understands the text</td><td class="us"><span class="yes">Yes</span>, typed placeholders</td><td>Often not, context is gone</td><td class="no">No AI at all</td></tr>
+<tr><td>Real values back in the answer</td><td class="us"><span class="yes">Automatic</span></td><td class="no">By hand</td><td>—</td></tr>
+<tr><td>Catches what people miss</td><td class="us"><span class="yes">28 detectors</span>, checksums</td><td class="no">Depends on attention</td><td class="no">People use it anyway</td></tr>
+<tr><td>Your text leaves the device</td><td class="us"><span class="yes">Never</span></td><td>—</td><td>—</td></tr>
+</tbody></table></div>
 </div>
 </section>
 
@@ -297,6 +370,22 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <div class="wrap">
 <h2>For people who can't afford one bad paste.</h2>
 <div class="chips"><span>Developers and DevOps</span><span>Legal</span><span>Finance and banking</span><span>Customer support</span><span>HR and recruiting</span></div>
+<div class="team" style="margin-top:64px">
+<div>
+<p class="eyebrow">FOR TEAMS</p>
+<h2 style="font-size:clamp(28px,4vw,42px)">Let your team use AI. Keep the data in.</h2>
+<p style="margin:16px 0 0;color:var(--soft)">One leaked customer list costs more than a year of any tool. Hushpaste gives every person on the team the same safety net, without reading a single prompt.</p>
+</div>
+<div>
+<ul class="ticks">
+<li>Shared rules: add your client names and codenames once, for everyone</li>
+<li>A ready AI usage policy to roll out this week (free in the Safety Kit)</li>
+<li>Reports that count what was masked, never what was written</li>
+<li>Nothing to host and nothing to approve: it runs in the browser</li>
+</ul>
+<a class="btn" href="#pricing" data-plan="team" style="margin-top:24px">See the Team plan</a>
+</div>
+</div>
 </div>
 </section>
 
@@ -340,6 +429,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-bet
 <details><summary>Which sites will it support?</summary><p>Launch targets are the major AI chats, including ChatGPT, Claude and Gemini. Waitlist members help decide what comes next.</p></details>
 <details><summary>How accurate is detection?</summary><p>Values with a known format, such as keys, tokens, IBANs and emails, are caught by pattern matching. Names and organizations are not detected automatically yet, so add them in the "extra words" box and always read the masked text before you send it. No pattern-based tool can promise to catch everything.</p></details>
 <details><summary>What if the AI rewrites a placeholder?</summary><p>Restoration matches placeholders exactly. If a reply changes one, it stays as it is and is not guessed.</p></details>
+<details><summary>Does it work with Kazakh, Turkish and Russian data?</summary><p>Yes. It recognises Kazakh IIN/BIN, Turkish TC Kimlik numbers, Russian SNILS and INN, passport numbers written after "passport", "паспорт" or "pasaport", local phone formats and IBANs from every country. Names written in any language can be added in the extra words box.</p></details>
+<details><summary>Can I drop a whole file?</summary><p>Yes. Drop a .env, log or text file on the input panel, or use "open a file". The file is read by your browser and never uploaded.</p></details>
+<details><summary>Does it store anything?</summary><p>No. There are no accounts and no cookies, and nothing you paste is saved. Close the tab and the placeholder map is gone.</p></details>
+<details><summary>Can my company use it?</summary><p>Yes. The free web tool needs no installation and sends nothing anywhere, which makes it easy to approve. The Team plan adds shared rules and reports. Join the waitlist with your work email and pick Team.</p></details>
 <details><summary>Is it open source?</summary><p>The detection core is planned to be, so anyone can audit exactly what runs in your browser.</p></details>
 </div>
 </div>
@@ -375,8 +468,8 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
 (function () {
   'use strict';
   // Detection rules: same content as hushpaste-rules.json (single source of truth, copied here at build time).
-  var RULES_DOC = {"rules":[{"id":"PRIVATE_KEY","pattern":"-----BEGIN [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----[\\s\\S]{0,12000}?(?:-----END [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----|$)","flags":"g","validator":null,"group":null},{"id":"DB_URL","pattern":"\\b[a-z][a-z0-9+.-]{1,30}:\\/\\/[^\\s:@\\/]{1,128}:[^\\s@\\/]{1,256}@[^\\s'\\\"]{1,512}","flags":"gi","validator":null,"group":null},{"id":"JWT","pattern":"\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}","flags":"g","validator":null,"group":null},{"id":"API_KEY","pattern":"\\b(?:sk|pk|rk)[-_](?=[A-Za-z0-9_-]*\\d)[A-Za-z0-9_-]{16,}","flags":"g","validator":null,"group":null},{"id":"AWS_KEY","pattern":"\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b","flags":"g","validator":null,"group":null},{"id":"GOOGLE_KEY","pattern":"\\bAIza[0-9A-Za-z_-]{35}","flags":"g","validator":null,"group":null},{"id":"SLACK_TOKEN","pattern":"\\bxox[baprs]-[A-Za-z0-9-]{10,}","flags":"g","validator":null,"group":null},{"id":"SLACK_WEBHOOK","pattern":"https:\\/\\/hooks\\.slack\\.com\\/services\\/[A-Za-z0-9_\\/-]{20,}","flags":"g","validator":null,"group":null},{"id":"GH_TOKEN","pattern":"\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})","flags":"g","validator":null,"group":null},{"id":"SENDGRID_KEY","pattern":"\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}","flags":"g","validator":null,"group":null},{"id":"NPM_TOKEN","pattern":"\\bnpm_[A-Za-z0-9]{36}\\b","flags":"g","validator":null,"group":null},{"id":"BEARER_TOKEN","pattern":"Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*","flags":"g","validator":null,"group":null},{"id":"BASIC_AUTH","pattern":"Basic\\s+([A-Za-z0-9+\\/]{12,}={0,2})","flags":"g","validator":null,"group":1},{"id":"URL_SECRET","pattern":"[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})","flags":"gi","validator":null,"group":1},{"id":"SECRET","pattern":"(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})","flags":"gi","validator":null,"group":1},{"id":"EMAIL","pattern":"[A-Za-z0-9._%+-]{1,100}@[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,24}","flags":"g","validator":null,"group":null},{"id":"PHONE","pattern":"\\+\\d[\\d\\s().-]{8,}\\d","flags":"g","validator":null,"group":null},{"id":"PHONE_LOCAL","pattern":"\\b8[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}\\b","flags":"g","validator":null,"group":null},{"id":"IBAN","pattern":"\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b","flags":"g","validator":"iban_mod97","group":null},{"id":"CARD","pattern":"\\b\\d(?:[ -]?\\d){12,18}\\b","flags":"g","validator":"luhn","group":null},{"id":"KZ_IIN","pattern":"\\b\\d{12}\\b","flags":"g","validator":"kz_iin","group":null},{"id":"IP_ADDRESS","pattern":"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b","flags":"g","validator":"ipv4_octets","group":null},{"id":"US_SSN","pattern":"\\b\\d{3}-\\d{2}-\\d{4}\\b","flags":"g","validator":null,"group":null}]};
-  var RULE_META = {"PRIVATE_KEY":["Private key","high"],"DB_URL":["Database URL","high"],"JWT":["JWT","high"],"API_KEY":["API key","high"],"AWS_KEY":["AWS key","high"],"GOOGLE_KEY":["Google key","high"],"SLACK_TOKEN":["Slack token","high"],"SLACK_WEBHOOK":["Slack webhook","high"],"GH_TOKEN":["GitHub token","high"],"SENDGRID_KEY":["SendGrid key","high"],"NPM_TOKEN":["npm token","high"],"BEARER_TOKEN":["Bearer token","high"],"BASIC_AUTH":["Basic auth","high"],"URL_SECRET":["Secret in URL","high"],"SECRET":["Password","high"],"EMAIL":["Email","medium"],"PHONE":["Phone","medium"],"PHONE_LOCAL":["Phone","medium"],"IBAN":["IBAN","high"],"CARD":["Card number","high"],"KZ_IIN":["IIN","high"],"IP_ADDRESS":["IP address","medium"],"US_SSN":["SSN","high"],"CUSTOM":["Your words","medium"]};
+  var RULES_DOC = {"rules":[{"id":"PRIVATE_KEY","pattern":"-----BEGIN [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----[\\s\\S]{0,12000}?(?:-----END [A-Z ]{0,30}PRIVATE KEY(?: BLOCK)?-----|$)","flags":"g","validator":null,"group":null},{"id":"DB_URL","pattern":"\\b[a-z][a-z0-9+.-]{1,30}:\\/\\/[^\\s:@\\/]{1,128}:[^\\s@\\/]{1,256}@[^\\s'\\\"]{1,512}","flags":"gi","validator":null,"group":null},{"id":"JWT","pattern":"\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}","flags":"g","validator":null,"group":null},{"id":"API_KEY","pattern":"\\b(?:sk|pk|rk)[-_](?=[A-Za-z0-9_-]*\\d)[A-Za-z0-9_-]{16,}","flags":"g","validator":null,"group":null},{"id":"AWS_KEY","pattern":"\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b","flags":"g","validator":null,"group":null},{"id":"GOOGLE_KEY","pattern":"\\bAIza[0-9A-Za-z_-]{35}","flags":"g","validator":null,"group":null},{"id":"SLACK_TOKEN","pattern":"\\bxox[baprs]-[A-Za-z0-9-]{10,}","flags":"g","validator":null,"group":null},{"id":"SLACK_WEBHOOK","pattern":"https:\\/\\/hooks\\.slack\\.com\\/services\\/[A-Za-z0-9_\\/-]{20,}","flags":"g","validator":null,"group":null},{"id":"GH_TOKEN","pattern":"\\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})","flags":"g","validator":null,"group":null},{"id":"SENDGRID_KEY","pattern":"\\bSG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43}","flags":"g","validator":null,"group":null},{"id":"NPM_TOKEN","pattern":"\\bnpm_[A-Za-z0-9]{36}\\b","flags":"g","validator":null,"group":null},{"id":"BEARER_TOKEN","pattern":"Bearer\\s+[A-Za-z0-9._~+\\/-]{16,}=*","flags":"g","validator":null,"group":null},{"id":"BASIC_AUTH","pattern":"Basic\\s+([A-Za-z0-9+\\/]{12,}={0,2})","flags":"g","validator":null,"group":1},{"id":"URL_SECRET","pattern":"[?&](?:api[_-]?key|access[_-]?token|token|secret|password|key)=([^&\\s#]{6,})","flags":"gi","validator":null,"group":1},{"id":"SECRET","pattern":"(?:password|passwd|pwd|secret(?:[_-]?(?:access[_-]?)?key)?|token|api[_-]?(?:key|secret)|apikey|access[_-]?key|private[_-]?key)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"',;]{6,})","flags":"gi","validator":null,"group":1},{"id":"EMAIL","pattern":"[A-Za-z0-9._%+-]{1,100}@[A-Za-z0-9.-]{1,255}\\.[A-Za-z]{2,24}","flags":"g","validator":null,"group":null},{"id":"PHONE","pattern":"\\+\\d[\\d\\s().-]{8,}\\d","flags":"g","validator":null,"group":null},{"id":"PHONE_LOCAL","pattern":"\\b8[\\s-]?\\(?\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}\\b","flags":"g","validator":null,"group":null},{"id":"PHONE_TR","pattern":"\\b05\\d{2}[\\s-]?\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}\\b","flags":"g","validator":null,"group":null},{"id":"IBAN","pattern":"\\b[A-Z]{2}\\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,3})?\\b","flags":"g","validator":"iban_mod97","group":null},{"id":"CARD","pattern":"\\b\\d(?:[ -]?\\d){12,18}\\b","flags":"g","validator":"luhn","group":null},{"id":"KZ_IIN","pattern":"\\b\\d{12}\\b","flags":"g","validator":"kz_iin","group":null},{"id":"TR_TCKN","pattern":"\\b[1-9]\\d{10}\\b","flags":"g","validator":"tr_tckn","group":null},{"id":"RU_SNILS","pattern":"\\b\\d{3}-\\d{3}-\\d{3}[ -]\\d{2}\\b","flags":"g","validator":"ru_snils","group":null},{"id":"RU_INN","pattern":"(?:ИНН|INN)\\s*[:№#]?\\s*(\\d{12}|\\d{10})\\b","flags":"gi","validator":null,"group":1},{"id":"PASSPORT","pattern":"(?:паспорт|passport|pasaport)[^\\n\\d]{0,24}?([A-Z]{0,2}\\d[\\d ]{5,10}\\d)","flags":"gi","validator":null,"group":1},{"id":"IP_ADDRESS","pattern":"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b","flags":"g","validator":"ipv4_octets","group":null},{"id":"US_SSN","pattern":"\\b\\d{3}-\\d{2}-\\d{4}\\b","flags":"g","validator":null,"group":null}]};
+  var RULE_META = {"PRIVATE_KEY":["Private key","high"],"DB_URL":["Database URL","high"],"JWT":["JWT","high"],"API_KEY":["API key","high"],"AWS_KEY":["AWS key","high"],"GOOGLE_KEY":["Google key","high"],"SLACK_TOKEN":["Slack token","high"],"SLACK_WEBHOOK":["Slack webhook","high"],"GH_TOKEN":["GitHub token","high"],"SENDGRID_KEY":["SendGrid key","high"],"NPM_TOKEN":["npm token","high"],"BEARER_TOKEN":["Bearer token","high"],"BASIC_AUTH":["Basic auth","high"],"URL_SECRET":["Secret in URL","high"],"SECRET":["Password","high"],"EMAIL":["Email","medium"],"PHONE":["Phone","medium"],"PHONE_LOCAL":["Phone","medium"],"IBAN":["IBAN","high"],"CARD":["Card number","high"],"KZ_IIN":["IIN","high"],"IP_ADDRESS":["IP address","medium"],"US_SSN":["SSN","high"],"CUSTOM":["Your words","medium"],"PHONE_TR":["Phone","medium"],"TR_TCKN":["TC Kimlik","high"],"RU_SNILS":["SNILS","high"],"RU_INN":["INN","high"],"PASSPORT":["Passport","high"]};
   var MAX_CHARS = 300000;
   var SAMPLE = 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@example.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.';
   var $ = function (id) { return document.getElementById(id); };
@@ -416,6 +509,24 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
       var c = sum(w1);
       if (c === 10) c = sum(w2);
       return c !== 10 && c === d[11];
+    },
+    tr_tckn: function (v) {
+      if (!/^[1-9]\d{10}$/.test(v)) return false;
+      var d = v.split('').map(Number);
+      var d10 = ((d[0] + d[2] + d[4] + d[6] + d[8]) * 7 - (d[1] + d[3] + d[5] + d[7])) % 10;
+      if (d10 < 0) d10 += 10;
+      var sum = 0;
+      for (var i = 0; i < 10; i++) sum += d[i];
+      return d10 === d[9] && sum % 10 === d[10];
+    },
+    ru_snils: function (v) {
+      var d = v.replace(/\D/g, '');
+      if (d.length !== 11) return false;
+      var sum = 0;
+      for (var i = 0; i < 9; i++) sum += (+d[i]) * (9 - i);
+      var check = sum < 100 ? sum : (sum === 100 || sum === 101) ? 0 : sum % 101;
+      if (check === 100) check = 0;
+      return check === +d.slice(9);
     },
     ipv4_octets: function (v) {
       var p = v.split('.');
