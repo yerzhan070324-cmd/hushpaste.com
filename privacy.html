@@ -41,14 +41,14 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:14px}
 <h1>Privacy</h1>
 <p class="lead">The short version: the text you mask in Hushpaste is processed in your browser. We never receive it.</p>
 
-<div class="box"><p>Last updated: 11 October 2026</p></div>
+<div class="box"><p>Last updated: 12 October 2026</p></div>
 
 <h2>What stays on your device</h2>
 <ul>
 <li>Text you paste into the free tool is detected, masked and restored by JavaScript running on this page. It is not sent to us or to any other server.</li>
 <li>The map between placeholders and real values lives in the open tab and disappears when you close it.</li>
-<li>We do not use accounts, and we do not use analytics or tracking scripts.</li>
-<li>The pages carry a Content Security Policy that only allows one outgoing connection: the waitlist form to Formspree.</li>
+<li>We do not use accounts, and we run no analytics or tracking scripts. We do count page visits, using a GoatCounter tracking pixel: a 1&times;1 image request that records only which page was opened and when. It runs no JavaScript, sets no cookies, cannot read the page, and never sees anything you paste.</li>
+<li>The pages carry a Content Security Policy that allows two outgoing requests and nothing else: the waitlist form to Formspree, and the visit-counting image to GoatCounter. Third-party scripts remain blocked outright.</li>
 </ul>
 
 <h2>What we collect</h2>
@@ -60,6 +60,7 @@ footer{padding:48px 0 56px;color:var(--mute);font-size:14px}
 <h2>Services this site uses</h2>
 <ul>
 <li><strong>Formspree</strong> receives and stores waitlist submissions on our behalf.</li>
+<li><strong>GoatCounter</strong> counts page visits. Each visit sends the page address, the page title and the time. As with any image request, your browser also sends its IP address and User-Agent; GoatCounter uses these to derive the browser and the country, holds them in memory for up to eight hours to recognise a repeat visit, and does not store IP addresses in its database. It sets no cookies, stores nothing in your browser, runs no script on this site, and cannot read page content or anything you paste.</li>
 <li><strong>GitHub Pages</strong> hosts this site. Like any web host, it may log technical request data such as IP address.</li>
 <li><strong>Fonts</strong> are served from this site itself. Your browser does not contact Google or any other font service.</li>
 </ul>
