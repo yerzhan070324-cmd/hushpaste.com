@@ -51,6 +51,11 @@ section{padding:96px 0}
 .btn{display:inline-block;border:0;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;padding:0 24px;min-height:52px;line-height:52px;text-decoration:none;cursor:pointer}
 .btn:hover{color:var(--bg);background:#D8FF78}
 .btn-sm{min-height:44px;line-height:44px;padding:0 18px;font-size:14px}
+.gochat{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.gochat .t{margin-right:4px}
+.gochat a{display:inline-block;min-height:40px;line-height:38px;padding:0 14px;border-radius:8px;border:1px solid var(--limeline);background:var(--limebg);color:var(--lime);font-size:14px;font-weight:600;text-decoration:none}
+.gochat a:hover{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+.gochat .note{flex-basis:100%;color:var(--mute);font-size:13px;margin:2px 0 0}
 .ghost{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--text);font-size:14px;cursor:pointer}
 nav.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;padding:8px 0}
@@ -347,6 +352,7 @@ header.site,main,footer{position:relative;z-index:1}
 <div class="out" id="out" style="min-height:300px"></div>
 </div>
 </div>
+<div class="gochat" id="gochat" hidden><span class="t">NOW PASTE IT INTO</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><p class="note">Opens in a new tab, so this tab stays open for the restore step.</p></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
 <p class="netm" id="netm" role="status" hidden></p>
 <div class="check"><strong>Check before you send.</strong> <span>Names, company names and street addresses are not detected automatically, so add them to the extra words box above. If the AI changes a placeholder, it stays as it is and is not restored. Pattern matching can miss unusual formats, so read the masked text before you send it.</span></div>

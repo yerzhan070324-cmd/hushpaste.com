@@ -207,7 +207,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
       cur = { tokens: [], masked: '' }; restoredText = '';
       $('out').textContent = T.tooLong(MAX_CHARS.toLocaleString('en-US'));
       $('count').textContent = T.notProcessed;
-      $('map').textContent = ''; $('mapBox').hidden = true;
+      $('map').textContent = ''; $('mapBox').hidden = true; $('gochat').hidden = true;
       $('risk').textContent = '';
       $('restored').textContent = ''; $('restCount').textContent = T.restored(0);
       return;
@@ -220,6 +220,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
     a.tokens.forEach(function (t) { rows += '<div class="r"><span>' + esc(t.ph) + '</span><span>' + esc(t.orig) + '</span></div>'; });
     $('map').innerHTML = rows;
     $('mapBox').hidden = !a.tokens.length;
+    $('gochat').hidden = !a.tokens.length;
     renderRisk(a.tokens);
     var lookup = Object.create(null), hits = 0;
     a.tokens.forEach(function (t) { lookup[t.ph] = t.orig; });
