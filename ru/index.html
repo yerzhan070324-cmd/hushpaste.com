@@ -273,7 +273,7 @@ header.site,main,footer{position:relative;z-index:1}
 <nav class="top">
 <a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a>
 <div class="links">
-<a href="#demo">Бесплатный инструмент</a><a href="#detects">Что ловит</a><a href="#how">Как работает</a><a href="#pricing">Цены</a><a href="#faq">Вопросы</a><a href="/guides/">Статьи</a><span class="lang" aria-label="Язык"><a href="/" lang="en">EN</a><a href="/ru/" lang="ru" aria-current="page">RU</a><a href="/tr/" lang="tr">TR</a></span>
+<a href="#demo">Бесплатный инструмент</a><a href="#detects">Что ловит</a><a href="#pricing">Цены</a><a href="#faq">Вопросы</a><a href="/guides/">Статьи</a><span class="lang" aria-label="Язык"><a href="/" lang="en">EN</a><a href="/ru/" lang="ru" aria-current="page">RU</a><a href="/tr/" lang="tr">TR</a></span>
 <a class="btn" href="#join">Ранний доступ</a>
 </div>
 </nav>
@@ -355,7 +355,7 @@ header.site,main,footer{position:relative;z-index:1}
 <div class="gochat" id="gochat" hidden><span class="t">ТЕПЕРЬ ВСТАВЬТЕ В</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><p class="note">Откроется в новой вкладке — эта останется открытой, чтобы восстановить ответ.</p></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
 <p class="netm" id="netm" role="status" hidden></p>
-<div class="check"><strong>Проверьте перед отправкой.</strong> <span>Имена, названия компаний и адреса автоматически не находятся, поэтому впишите их в поле дополнительных слов выше. Если ИИ изменит метку, она останется как есть и не восстановится. Поиск по шаблонам может пропустить необычный формат, так что прочитайте скрытый текст перед отправкой.</span></div>
+<div class="check"><strong>Проверьте перед отправкой.</strong> <span>Имена и адреса не находятся автоматически &mdash; впишите их в поле дополнительных слов. Прочитайте замаскированный текст перед отправкой.</span></div>
 <div class="map" id="mapBox" hidden>
 <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.06em;color:var(--mute)">ЧТО ЗАМЕНЕНО (хранится только в этой вкладке)</p>
 <div id="map"></div>
@@ -376,24 +376,13 @@ header.site,main,footer{position:relative;z-index:1}
 </div>
 </section>
 
-<section id="how">
-<div class="wrap">
-<p class="eyebrow">КАК ЭТО РАБОТАЕТ</p>
-<h2>Три шага. Секунды, а не новый процесс.</h2>
-<div class="row">
-<div class="step"><svg class="ill" viewBox="0 0 320 150" role="img" aria-label="Файл с подсвеченными секретами перетаскивают в инструмент"><rect x="0" y="0" width="320" height="150" fill="#0A0E0C"/><rect x="70" y="22" width="120" height="106" rx="10" fill="#141B17" stroke="#33433B"/><rect x="86" y="42" width="70" height="8" rx="4" fill="#33433B"/><rect x="86" y="60" width="88" height="8" rx="4" fill="#FF9B80"/><rect x="86" y="78" width="56" height="8" rx="4" fill="#33433B"/><rect x="86" y="96" width="80" height="8" rx="4" fill="#FF9B80"/><path d="M228 40v50" stroke="#C8F751" stroke-width="4" stroke-linecap="round"/><path d="M212 74l16 18 16-18" fill="none" stroke="#C8F751" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="204" y="100" width="48" height="10" rx="5" fill="#33433B"/></svg><p class="n">01</p><h3>Вставьте текст или файл</h3><p>Логи, .env, заявки, письма. Hushpaste проверяет их прямо на странице и отмечает каждый секрет и все личные данные, которые узнаёт.</p></div>
-<div class="step"><svg class="ill" viewBox="0 0 320 150" role="img" aria-label="Текст с метками отправляется в чат с ИИ"><rect x="0" y="0" width="320" height="150" fill="#0A0E0C"/><rect x="24" y="30" width="112" height="90" rx="10" fill="#141B17" stroke="#33433B"/><rect x="38" y="48" width="60" height="8" rx="4" fill="#33433B"/><rect x="38" y="66" width="76" height="12" rx="4" fill="#243012" stroke="#3F5A1E"/><rect x="38" y="88" width="50" height="12" rx="4" fill="#243012" stroke="#3F5A1E"/><path d="M148 75h34" stroke="#C8F751" stroke-width="4" stroke-linecap="round"/><path d="M172 63l14 12-14 12" fill="none" stroke="#C8F751" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="196" y="30" width="100" height="90" rx="14" fill="#141B17" stroke="#33433B"/><circle cx="218" cy="54" r="9" fill="#33433B"/><rect x="234" y="49" width="46" height="10" rx="5" fill="#33433B"/><rect x="212" y="76" width="68" height="10" rx="5" fill="#243012"/><rect x="212" y="94" width="50" height="10" rx="5" fill="#243012"/></svg><p class="n">02</p><h3>Отправляйте только метки</h3><p>Скопируйте скрытый текст в ChatGPT, Claude, Gemini или любой другой чат. ИИ видит [API_KEY_1] и [EMAIL_1], а не настоящие значения.</p></div>
-<div class="step"><svg class="ill" viewBox="0 0 320 150" role="img" aria-label="Ответ ИИ, в котором метки заменены обратно на настоящие значения"><rect x="0" y="0" width="320" height="150" fill="#0A0E0C"/><rect x="40" y="30" width="240" height="90" rx="10" fill="#141B17" stroke="#3F5A1E"/><rect x="58" y="50" width="70" height="10" rx="5" fill="#33433B"/><rect x="136" y="47" width="74" height="16" rx="5" fill="#243012" stroke="#3F5A1E"/><path d="M216 55h14" stroke="#C8F751" stroke-width="3" stroke-linecap="round"/><rect x="236" y="47" width="30" height="16" rx="5" fill="#E9EFEA"/><rect x="58" y="78" width="120" height="10" rx="5" fill="#33433B"/><rect x="58" y="98" width="90" height="10" rx="5" fill="#33433B"/><circle cx="252" cy="96" r="13" fill="#C8F751"/><path d="M245 96l5 5 9-10" fill="none" stroke="#0C110E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="n">03</p><h3>Получите настоящий ответ</h3><p>Вставьте ответ во второй шаг. Каждая метка заменится вашим значением, в памяти и только в этой вкладке.</p></div>
-</div>
-<p class="small" style="margin-top:24px">Расширение для браузера, которое делает это прямо в чате, в планах. Веб-инструмент работает уже сейчас.</p>
-</div>
-</section>
+
 
 <section id="detects" class="alt">
 <div class="wrap">
 <p class="eyebrow">ЧТО ЛОВИТ</p>
 <h2>28 детекторов для того, что не должно утечь.</h2>
-<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Каждый детектор ищет известный формат, а многие ещё и проверяют контрольную сумму, поэтому обычные числа не трогаются. Карты проверяются по Луну, IBAN по mod-97, документы по официальным контрольным цифрам.</p>
+<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Многие детекторы ещё и проверяют контрольную сумму, поэтому обычные числа не трогаются: карты по Луну, IBAN по mod-97, документы по официальным цифрам.</p>
 <div class="grid">
 <div class="cat"><h3>API-ключи и токены</h3><p>Ключи вида sk- (OpenAI и другие), Stripe, AWS, Google, GitHub, Slack, SendGrid, npm.</p><div class="ex"><span class="bad">sk_live_51Hx9aQ…</span> → <span class="tok">[API_KEY_1]</span></div></div>
 <div class="cat"><h3>Пароли и строки подключения</h3><p>Строки password=, адреса баз данных с user:password@, секреты в URL.</p><div class="ex"><span class="bad">postgres://app:S3cr3t@db</span> → <span class="tok">[DB_URL_1]</span></div></div>
@@ -442,13 +431,13 @@ header.site,main,footer{position:relative;z-index:1}
 <p class="eyebrow">БЕЗОПАСНОСТЬ</p>
 <h2>Нечего украсть, потому что ничего не уходит.</h2>
 <ul class="ticks" style="margin-top:32px">
-<li>Поиск и замена работают в вашем браузере. Эта страница никуда не отправляет ваш текст.</li>
-<li>Политика безопасности страницы (CSP) разрешает ровно два исходящих запроса и больше ничего: форму листа ожидания в Formspree и картинку 1&times;1, которая считает посещения через GoatCounter &mdash; без скриптов, без куки, без доступа к тому, что вы вставили. Сторонние скрипты запрещены полностью. Шрифты и код загружаются с этого же сайта.</li>
+<li>Поиск и замена работают в вашем браузере. Эта страница никуда не отправляет ваш текст и не ставит cookie.</li>
+<li>Сторонние скрипты запрещены полностью. Разрешены ровно два запроса: форма листа ожидания и счётчик посещений 1&times;1 &mdash; <a href="/privacy.html">что видит каждый</a>.</li>
 <li>Таблица замен живёт в открытой вкладке и исчезает, когда вы её закрываете.</li>
-<li>Без аккаунтов, без cookie, без слежки за тем, что вы вставляете.</li>
-<li>Проверьте сами: откройте инструменты разработчика в браузере, вкладку Network, и воспользуйтесь инструментом. Ни одного запроса не появится.</li>
-<li>Код открыт для чтения: <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">исходники и тесты на GitHub</a>. Тесты проверяют поиск, восстановление и эти правила приватности.</li>
-<li>Независимого аудита безопасности пока не было. Когда он пройдёт, здесь появится об этом запись.</li>
+
+<li>Проверьте сами: инструменты разработчика &rarr; Network, затем поработайте в инструменте. Ни одного запроса.</li>
+<li>Код открыт: <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">исходники и тесты на GitHub</a> &mdash; тесты проверяют и эти правила приватности.</li>
+<li>Независимого аудита безопасности пока не было. Когда он пройдёт, мы это здесь напишем.</li>
 </ul>
 </div>
 <div class="flow" style="flex:1 1 460px;min-width:0">
@@ -464,7 +453,7 @@ header.site,main,footer{position:relative;z-index:1}
 
 <section>
 <div class="wrap">
-<h2>Для тех, кому нельзя ошибиться ни разу.</h2>
+<p class="eyebrow">ДЛЯ КОГО ЭТО</p>
 <div class="chips"><span>Разработчики и DevOps</span><span>Юристы</span><span>Финансы и банки</span><span>Поддержка клиентов</span><span>HR и рекрутинг</span></div>
 <div class="team" style="margin-top:64px">
 <div>
@@ -522,12 +511,9 @@ header.site,main,footer{position:relative;z-index:1}
 <h2 style="max-width:860px;margin:0 auto">Честные ответы на вопросы.</h2>
 <div class="faq">
 <details open><summary>Вы видите мои данные?</summary><p>Нет. Поиск и замена работают в вашем браузере. Серверов Hushpaste на пути данных нет, а таблица замен хранится только в открытой вкладке.</p></details>
-<details><summary>Какие сайты будут поддерживаться?</summary><p>На старте основные чаты с ИИ: ChatGPT, Claude и Gemini. Что дальше, помогут решить участники листа ожидания.</p></details>
 <details><summary>Насколько точно он находит данные?</summary><p>Значения известного формата (ключи, токены, IBAN, email) находятся по шаблонам. Имена и названия организаций пока не определяются автоматически, поэтому добавьте их в поле дополнительных слов и всегда просматривайте текст перед отправкой. Ни один инструмент на шаблонах не может гарантировать, что найдёт всё.</p></details>
 <details><summary>Что если ИИ изменит метку?</summary><p>Восстановление ищет метки точно. Если ответ её изменил, она остаётся как есть, ничего не угадывается.</p></details>
 <details><summary>Работает ли с казахстанскими, турецкими и российскими данными?</summary><p>Да. Он распознаёт ИИН/БИН, турецкий TC Kimlik, СНИЛС и ИНН, номера паспортов после слов «паспорт», «passport» или «pasaport», местные форматы телефонов и IBAN любых стран. Имена на любом языке можно добавить в поле дополнительных слов.</p></details>
-<details><summary>Можно перетащить целый файл?</summary><p>Да. Перетащите .env, лог или текстовый файл в окно ввода или нажмите «откройте файл». Файл читает ваш браузер, никуда он не загружается.</p></details>
-<details><summary>Он что-то сохраняет?</summary><p>Нет. Нет аккаунтов и cookie, и ничего из вставленного не сохраняется. Закройте вкладку, и таблица замен исчезнет.</p></details>
 <details><summary>Может ли им пользоваться компания?</summary><p>Да. Бесплатный веб-инструмент не нужно устанавливать, и он ничего никуда не отправляет, поэтому его легко согласовать. Тариф Team добавляет общие правила и отчёты. Оставьте рабочий email и выберите Team.</p></details>
 <details><summary>Это открытый код?</summary><p>Формально пока нет. Код сайта, включая все правила поиска, уже опубликован на GitHub вместе с тестами, которые может запустить любой. Открытая лицензия и независимый аудит безопасности в планах.</p></details>
 </div>
