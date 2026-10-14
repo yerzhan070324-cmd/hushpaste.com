@@ -66,6 +66,9 @@ var I18N = {
 };
 var T = I18N[LANG] || I18N.en;
 
+// Opened from the home screen on older iPhones: show only the tool (newer ones use the display-mode media query)
+if (window.navigator && window.navigator.standalone === true) document.documentElement.classList.add('standalone');
+
 // ---- SETTINGS ----
 // The waitlist endpoint lives in <meta name="waitlist-url"> in the head, so it can be changed without touching this script
 var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="waitlist-url"]'); return m ? m.getAttribute('content') : ''; })();
@@ -311,8 +314,13 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
       : T.nothingMasked;
     render();
   });
-  $('copy1').addEventListener('click', function () { copy(cur.masked, this, 'Copy masked text'); });
-  $('copy2').addEventListener('click', function () { copy(restoredText, this, 'Copy restored text'); });
+  // each button returns to its own label (in the page's language) after showing "Copied"
+  function labelOf(btn) {
+    if (!btn.getAttribute('data-label')) btn.setAttribute('data-label', btn.textContent);
+    return btn.getAttribute('data-label');
+  }
+  $('copy1').addEventListener('click', function () { copy(cur.masked, this, labelOf(this)); });
+  $('copy2').addEventListener('click', function () { copy(restoredText, this, labelOf(this)); });
   render();
 
   // ---- plan picker ----

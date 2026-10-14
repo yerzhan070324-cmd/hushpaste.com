@@ -24,8 +24,9 @@
 <meta name="twitter:title" content="Hushpaste: paste freely, leak nothing">
 <meta name="twitter:description" content="Mask secrets and personal data before they reach an AI chat. Runs in your browser.">
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
-<meta name="theme-color" content="#0C110E">
-<link rel="stylesheet" href="/fonts.css">
+<meta name="theme-color" content="#D9CDAE">
+<link rel="stylesheet" href="/fonts-dossier.css">
+<link rel="stylesheet" href="/dossier.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -33,518 +34,126 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Hushpaste">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<style>
-:root{--bg:#0C110E;--bg2:#101713;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--line2:#33433B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limebg:#243012;--limeline:#3F5A1E;--coral:#FF9B80;--coralbg:#3A1F18}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Instrument Sans',system-ui,sans-serif;font-size:17px;line-height:1.55}
-a{color:var(--lime)}
-a:hover{color:#E3FF9A}
-button,input,textarea{font-family:inherit}
-:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
-::placeholder{color:#6F7F77}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.mono{font-family:'IBM Plex Mono',monospace}
-.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:700}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--lime);margin:0 0 16px}
-h1,h2,h3{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700}
-h2{font-size:clamp(32px,4.5vw,52px);line-height:1.08;letter-spacing:-.02em;max-width:760px}
-h3{font-size:24px}
-section{padding:96px 0}
-.alt{background:var(--bg2);border-top:1px solid #1B2520;border-bottom:1px solid #1B2520}
-.btn{display:inline-block;border:0;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;padding:0 24px;min-height:52px;line-height:52px;text-decoration:none;cursor:pointer}
-.btn:hover{color:var(--bg);background:#D8FF78}
-.btn-sm{min-height:44px;line-height:44px;padding:0 18px;font-size:14px}
-.gochat{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
-.gochat .t{margin-right:4px}
-.gochat a{display:inline-block;min-height:40px;line-height:38px;padding:0 14px;border-radius:8px;border:1px solid var(--limeline);background:var(--limebg);color:var(--lime);font-size:14px;font-weight:600;text-decoration:none}
-.gochat a:hover{background:var(--lime);color:var(--bg);border-color:var(--lime)}
-.gochat .note{flex-basis:100%;color:var(--mute);font-size:13px;margin:2px 0 0}
-.ghost{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--text);font-size:14px;cursor:pointer}
-nav.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 0}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;padding:8px 0}
-.links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;font-size:15px}
-.links a{color:var(--mute);text-decoration:none;padding:12px 0}
-.lang{display:inline-flex;gap:2px;padding:2px;border:1px solid var(--line2);border-radius:8px}
-.links .lang a{padding:6px 8px;border-radius:6px;font-family:'IBM Plex Mono',monospace;font-size:12px}
-.links .lang a[aria-current]{background:var(--lime);color:var(--bg)}
-.links a.btn{color:var(--bg);padding:0 18px;min-height:44px;line-height:44px}
-.hero{display:flex;flex-wrap:wrap;gap:56px;align-items:center;padding:56px 0 88px}
-.hero>div{flex:1 1 440px;min-width:0}
-.hero h1{font-size:clamp(44px,7vw,84px);line-height:1;letter-spacing:-.03em}
-.sub{margin:28px 0 0;max-width:560px;font-size:19px;color:var(--soft)}
-.wl form{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;max-width:560px}
-.wl input{flex:1 1 240px;min-width:0;height:52px;padding:0 16px;border-radius:8px;border:1px solid var(--line2);background:var(--panel);color:var(--text);font-size:16px}
-.wl button{height:52px;padding:0 24px;border:0;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;cursor:pointer}
-.err{margin:10px 0 0;color:#FF8A6B;font-size:14px}
-.ok{margin-top:32px;max-width:560px;padding:20px 24px;border:1px solid var(--limeline);background:#172210;border-radius:12px}
-.small{margin:14px 0 0;font-size:14px;color:var(--mute)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.8}
-.card .hd{padding:12px 20px;border-bottom:1px solid var(--line);color:var(--mute);font-size:12px;letter-spacing:.06em}
-.card .bd{padding:16px 20px;overflow-x:auto;white-space:nowrap}
-.card.live{position:relative;box-shadow:0 30px 80px -30px rgba(200,247,81,.25)}
-.card.live .hd{display:flex;align-items:center;gap:12px}
-.dots{display:inline-flex;gap:6px}
-.dots i{width:10px;height:10px;border-radius:50%;background:var(--line2)}
-.pill{margin-left:auto;display:inline-grid;font-size:11px}
-.pill>span{grid-area:1/1;padding:3px 8px;border-radius:999px;text-align:center}
-.pill .p1{background:#33290F;color:#F2C46B;animation:p1 9s infinite}
-.pill .p2{background:var(--limebg);color:var(--lime);opacity:0;animation:p2 9s infinite}
-.card.live .bd{position:relative;font-size:13px}
-.card.live .bd .cm{color:var(--mute)}
-.sw{display:inline-grid;vertical-align:top}
-.sw>span{grid-area:1/1;justify-self:start}
-.sw .bad{animation:swb 9s var(--d) infinite both}
-.sw .tok{opacity:0;animation:swt 9s var(--d) infinite both}
-.scan{position:absolute;left:0;right:0;top:0;height:2px;background:var(--lime);box-shadow:0 0 18px 4px rgba(200,247,81,.45);opacity:0;animation:scan 9s infinite;pointer-events:none}
-.card.live .ft{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:12px 20px;border-top:1px solid var(--line);font-size:12px;color:var(--mute)}
-.card.live .ft .lk{color:var(--lime)}
-@keyframes scan{0%{top:0;opacity:1}32%{top:100%;opacity:1}34%,100%{top:100%;opacity:0}}
-@keyframes swb{0%{opacity:1}4%,84%{opacity:0}88%,100%{opacity:1}}
-@keyframes swt{0%{opacity:0}4%,84%{opacity:1}88%,100%{opacity:0}}
-@keyframes p1{0%,34%{opacity:1}38%,94%{opacity:0}98%,100%{opacity:1}}
-@keyframes p2{0%,34%{opacity:0}38%,94%{opacity:1}98%,100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.sw .bad,.pill .p1{animation:none;opacity:0}.sw .tok,.pill .p2{animation:none;opacity:1}.scan{display:none}}
-.bad{background:var(--coralbg);color:var(--coral);padding:1px 5px;border-radius:4px}
-.tok{background:var(--limebg);color:var(--lime);padding:1px 5px;border-radius:4px}
-.strip{padding:28px 0;border-top:1px solid #1B2520;border-bottom:1px solid #1B2520;background:var(--bg2)}
-.strip .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mute)}
-.row{display:flex;flex-wrap:wrap;gap:20px;margin-top:48px}
-.row>*{flex:1 1 300px;min-width:0}
-.box{padding:28px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
-.box p{margin:12px 0 0;color:var(--soft)}
-.box .k{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--coral)}
-.step{padding:28px;border-top:2px solid var(--lime);background:var(--panel);border-radius:0 0 14px 14px}
-.step .n{margin:0;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--lime)}
-.step h3{margin-top:12px}
-.step p{margin:10px 0 0;color:var(--soft)}
-.panels{display:flex;flex-wrap:wrap;gap:20px;margin-top:20px}
-.panel{flex:1 1 460px;min-width:0;background:var(--deep);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.panel.g{border-color:var(--limeline)}
-.panel .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line);min-height:64px}
-.panel .bar .t{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--mute)}
-.panel.g .bar .t{color:var(--lime)}
-.panel textarea{display:block;width:100%;border:0;background:var(--deep);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;padding:16px;resize:vertical}
-.out{padding:16px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C9D4CD;word-break:break-word;white-space:pre-wrap}
-.tool h3.s{font-size:28px;margin-top:48px}
-.terms{margin-top:32px;padding:20px 24px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
-.terms input{display:block;width:100%;margin-top:10px;height:48px;padding:0 16px;border-radius:8px;border:1px solid var(--line2);background:var(--deep);color:var(--text);font-size:16px}
-.panel.drag{border-color:var(--lime);box-shadow:0 0 0 3px var(--limebg)}
-.drophint{margin:0;padding:10px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
-.drophint button{border:0;background:none;color:var(--lime);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
-.risk{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:20px;padding:16px 20px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
-.risk .lvl{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;padding:6px 10px;border-radius:6px}
-.risk .lvl.high{background:var(--coralbg);color:var(--coral)}
-.risk .lvl.medium{background:#33290F;color:#F2C46B}
-.risk .lvl.none{background:var(--limebg);color:var(--lime)}
-.risk .chip{font-size:14px;padding:4px 10px;border:1px solid var(--line2);border-radius:999px;color:var(--soft)}
-.risk .chip.high{border-color:#5A3A30;color:var(--coral)}
-.map{margin-top:20px;padding:20px 24px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
-.map .r{display:flex;flex-wrap:wrap;gap:4px 20px;padding:8px 0;border-top:1px solid #1F2A24;font-family:'IBM Plex Mono',monospace;font-size:13px}
-.map .r span:first-child{flex:0 0 180px;color:var(--lime)}
-.map .r span:last-child{flex:1 1 240px;min-width:0;color:var(--soft);word-break:break-all}
-.flow{display:flex;flex-direction:column;gap:14px;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:13px}
-.flow div{padding:18px 20px;background:var(--deep);border:1px solid var(--line);border-radius:10px}
-.flow .a{padding:0 0 0 20px;border:0;background:none;color:var(--lime)}
-.flow .me{background:#172210;border-color:var(--limeline);color:var(--lime)}
-.flow .no{border:1px dashed #5A3A30;color:var(--coral);background:none;margin-top:10px}
-ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;color:var(--soft)}
-ul.ticks li{display:flex;gap:14px}
-ul.ticks li:before{content:"";flex:none;width:8px;height:8px;margin-top:10px;background:var(--lime)}
-.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
-.chips span{padding:14px 22px;border:1px solid var(--line2);border-radius:999px;font-size:18px}
-.kit{padding:48px;background:var(--panel);border:1px solid var(--limeline);border-radius:18px;display:flex;flex-wrap:wrap;gap:40px;align-items:center}
-.kit>div{flex:1 1 380px;min-width:0}
-.price{position:relative;display:flex;flex-direction:column;padding:32px;background:var(--deep);border:2px solid var(--line);border-radius:16px;cursor:pointer;transition:border-color .15s,background .15s}
-.price:hover{border-color:var(--line2)}
-.price input{position:absolute;opacity:0;pointer-events:none}
-.price:has(input:checked){background:#172210;border-color:var(--lime)}
-.price:has(input:focus-visible){outline:2px solid var(--lime);outline-offset:3px}
-.price .dot{position:absolute;top:28px;right:28px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line2)}
-.price:has(input:checked) .dot{border:7px solid var(--lime)}
-.price ul.ticks{flex:1}
-.price .pick{margin-top:28px;text-align:center}
-.price:has(input:checked) .pn{color:var(--lime)}
-.price .pn{margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mute)}
-.price .pp{margin:12px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:48px;line-height:1}
-.price .pp small{font-size:18px;font-weight:500;color:var(--mute)}
-.price .pd{margin:8px 0 24px;color:var(--mute);font-size:15px}
-.price ul.ticks li{font-size:16px;gap:12px}
-.price ul.ticks li:before{margin-top:9px}
-.ill{display:block;width:100%;height:auto;margin-bottom:20px;border-radius:12px;background:var(--deep);border:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:48px}
-.cat{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;min-width:0}
-.cat h3{font-size:19px}
-.cat p{margin:8px 0 0;color:var(--soft);font-size:15px}
-.cat .ex{margin-top:14px;padding:10px 12px;background:var(--deep);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
-.cat .ex .bad,.cat .ex .tok{padding:0 4px}
-.band{background:var(--lime);color:var(--bg)}
-.band h2{color:var(--bg)}
-.band .eyebrow{color:#3B4A12}
-.band p{color:#26330C!important}
-.band .cc{background:var(--bg);border-color:var(--bg)}
-.band .cc h3{color:var(--text)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;padding:40px 0 8px}
-.stats b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:40px;line-height:1;color:var(--lime)}
-.stats span{display:block;margin-top:8px;font-size:14px;color:var(--mute)}
-.local{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:40px}
-.cc{padding:24px;border:1px solid var(--limeline);background:#141E10;border-radius:14px}
-.cc .code{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;padding:4px 10px;border-radius:6px;background:var(--lime);color:var(--bg);font-weight:600}
-.cc h3{margin-top:14px;font-size:21px}
-.cc ul{margin:12px 0 0;padding-left:18px;color:var(--soft);font-size:15px}
-.cc li{margin-top:6px}
-.tblw{margin-top:40px;overflow-x:auto;border:1px solid var(--line);border-radius:14px}
-table.cmp{width:100%;min-width:620px;border-collapse:collapse;font-size:15px}
-.cmp th,.cmp td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
-.cmp thead th{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--mute);font-weight:500;background:var(--panel)}
-.cmp thead th.us{color:var(--lime)}
-.cmp td.us{background:#141E10;color:var(--text)}
-.cmp td{color:var(--soft)}
-.cmp tr:last-child td{border-bottom:0}
-.yes{color:var(--lime);font-weight:600}
-.no{color:var(--coral)}
-.team{display:flex;flex-wrap:wrap;gap:40px;align-items:center}
-.team>div{flex:1 1 380px;min-width:0}
-.faq{max-width:860px;margin:40px auto 0;border-top:1px solid var(--line)}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:22px 0;min-height:44px;font-size:19px;font-weight:500}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary:after{content:"+";font-family:'IBM Plex Mono',monospace;color:var(--lime);font-size:22px}
-.faq details[open] summary:after{content:"\2212"}
-.faq p{margin:0 0 24px;max-width:700px;color:var(--soft)}
-.cta{background:var(--lime);color:var(--bg);text-align:center}
-.cta h2{margin:0 auto;font-size:clamp(36px,5.5vw,64px);line-height:1.04;letter-spacing:-.03em}
-.cta .sub{margin:18px auto 0;color:#26330C}
-.cta .wl form{margin:36px auto 0;justify-content:center}
-.cta .wl input{border:2px solid var(--bg);background:#F4FADF;color:var(--bg)}
-.cta .wl button{background:var(--bg);color:var(--lime)}
-.cta .err{color:#7A1F0A;font-weight:500}
-.cta .ok{margin:36px auto 0;background:var(--bg);color:var(--text);text-align:left}
-footer{padding:40px 0}
-footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute)}
-/* motion layer */
-body{position:relative}
-.aura{position:absolute;top:0;left:0;right:0;height:1100px;overflow:hidden;pointer-events:none;z-index:0}
-.aura:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(200,247,81,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(200,247,81,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 60% 30%,#000 20%,transparent 75%)}
-.aura i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
-.aura i:nth-child(1){width:520px;height:520px;left:55%;top:60px;background:#5E7F1A;animation:drift1 18s ease-in-out infinite alternate}
-.aura i:nth-child(2){width:420px;height:420px;left:-120px;top:340px;background:#1F4A3A;animation:drift2 22s ease-in-out infinite alternate}
-.aura i:nth-child(3){width:300px;height:300px;left:35%;top:520px;background:#3B4A12;opacity:.35;animation:drift1 26s ease-in-out infinite alternate-reverse}
-@keyframes drift1{to{transform:translate(-120px,80px) scale(1.15)}}
-@keyframes drift2{to{transform:translate(140px,-60px) scale(.9)}}
-header.site,main,footer{position:relative;z-index:1}
-.shine{background:linear-gradient(100deg,var(--lime) 0%,var(--lime) 40%,#F6FFD9 50%,var(--lime) 60%,var(--lime) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s ease-in-out infinite}
-@keyframes shine{0%,40%{background-position:100% 0}100%{background-position:0 0}}
-.hero .eyebrow:before{content:"";display:inline-block;width:8px;height:8px;margin:0 10px 1px 0;border-radius:50%;background:var(--lime);vertical-align:middle;animation:ping 2s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(200,247,81,.6)}70%,100%{box-shadow:0 0 0 10px rgba(200,247,81,0)}}
-.card.live{animation:float 7s ease-in-out infinite}
-@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
-.btn,.wl button{position:relative;overflow:hidden;transition:box-shadow .25s,translate .25s}
-.btn:after,.wl button:after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s}
-.btn:hover:after,.wl button:hover:after{left:130%}
-.btn:hover,.wl button:hover{box-shadow:0 8px 30px -6px rgba(200,247,81,.55);translate:0 -1px}
-.cat,.box,.step,.cc,.price{position:relative;transition:translate .25s,border-color .25s,box-shadow .25s}
-.cat:hover,.box:hover,.step:hover,.cc:hover{translate:0 -4px;border-color:var(--limeline);box-shadow:0 18px 40px -20px rgba(0,0,0,.8)}
-.price:hover{translate:0 -4px}
-.spot:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(200,247,81,.11),transparent 60%);opacity:0;transition:opacity .3s}
-.spot:hover:after{opacity:1}
-.band .spot:after{background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(200,247,81,.16),transparent 60%)}
-.js .rv{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),translate .25s,border-color .25s,box-shadow .25s,background .15s}
-.js .rv.in{opacity:1;transform:none}
-.progress{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--lime);box-shadow:0 0 12px rgba(200,247,81,.7);transform-origin:0 50%;transform:scaleX(0);z-index:50;pointer-events:none}
-.mq{flex:1 1 300px;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.mq-in{display:flex;width:max-content;animation:mq 28s linear infinite}
-.mq-in span{padding:0 22px;white-space:nowrap}
-.mq-in span:before{content:"◆";margin-right:22px;color:var(--limeline)}
-@keyframes mq{to{transform:translateX(-50%)}}
-.strip .wrap{align-items:center}
-@media (min-width:900px){header.site{position:sticky;top:0;z-index:20;background:rgba(12,17,14,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}header.site.scrolled{border-bottom-color:var(--line)}section,#top{scroll-margin-top:84px}}
-@media (prefers-reduced-motion:reduce){.aura i,.shine,.hero .eyebrow:before,.card.live,.mq-in{animation:none}.mq-in{flex-wrap:wrap;width:auto}.js .rv{opacity:1;transform:none;transition:none}.btn:after,.wl button:after{display:none}}
-.netm{display:flex;align-items:center;gap:10px;margin:14px 0 0;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--soft)}
-.netm i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px rgba(200,247,81,.7)}
-.netm.warn i{background:#F2C46B;box-shadow:none}
-.netm small{color:var(--mute);font-size:12px}
-.check{margin-top:14px;padding:16px 20px;border:1px solid #4A3F1C;background:#1D1A0E;border-radius:14px;color:var(--soft);font-size:15px}
-.check strong{color:#F2C46B}
-.soon{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:4px;background:#33290F;color:#F2C46B;font-size:10px;letter-spacing:.06em;vertical-align:1px}
-[hidden]{display:none!important}
-</style>
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
 
-<div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
 <header class="site"><div class="wrap">
-<nav class="top">
-<a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a>
-<div class="links">
-<a href="#demo">Free tool</a><a href="#detects">What it catches</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="/guides/">Guides</a><span class="lang" aria-label="Language"><a href="/" lang="en" aria-current="page">EN</a><a href="/ru/" lang="ru">RU</a><a href="/tr/" lang="tr">TR</a></span>
-<a class="btn" href="#join">Get early access</a>
-</div>
+<a class="logo" href="/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#1C1A17"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#F7F4EC"/></svg>HUSHPASTE</a>
+<nav class="top-links" aria-label="Main">
+<a class="web-only" href="/guides/">Guides</a>
+<span class="lang" aria-label="Language"><a href="/" lang="en" aria-current="page">EN</a><a href="/ru/" lang="ru">RU</a><a href="/tr/" lang="tr">TR</a></span>
 </nav>
 </div></header>
 
-<main id="top">
+<main class="wrap" id="top">
 
-<div class="wrap">
-<div class="hero">
-<div>
-<p class="eyebrow">RUNS IN YOUR BROWSER · NOTHING UPLOADED · CODE ON GITHUB</p>
-<h1>Paste freely.<br><span class="shine">Leak nothing.</span></h1>
-<p class="sub">Hushpaste strips API keys, customer data and other secrets from your prompt inside the browser, before it reaches any AI chat. When the answer comes back, your real values slide back in.</p>
-<div class="wl">
-<form novalidate>
-<label for="email-hero" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Work email</label>
-<input id="email-hero" type="email" name="email" placeholder="you@company.com" autocomplete="email">
-<button type="submit">Get early access</button>
-<p class="err" role="alert" hidden style="flex-basis:100%;margin:0">Enter a valid email to join the waitlist.</p>
-</form>
-<div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens.</p><p style="margin:14px 0 0"><a class="btn" href="/kit.html">Open your free Safety Kit</a></p></div>
-<p class="small">No spam, one email at launch. <a href="/privacy.html">Privacy</a>. <a href="#demo">Or try the free tool now →</a></p>
-</div>
-</div>
-<div class="card live" aria-label="Animation: secrets in a prompt are replaced with placeholders">
-<div class="hd"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>prompt.txt</span><span class="pill"><span class="p1">SCANNING…</span><span class="p2">5 SECRETS MASKED</span></span></div>
-<div class="bd"><span class="scan" aria-hidden="true"></span>
-<div class="cm"># why does the deploy fail?</div>
-<div>DB_URL=<span class="sw" style="--d:0.56s"><span class="bad">postgres://app:S3cr3t@10.0.4.12/prod</span><span class="tok">[DB_URL_1]</span></span></div>
-<div>STRIPE_KEY=<span class="sw" style="--d:1.08s"><span class="bad">sk_live_51Hx9aQ2kLmN8</span><span class="tok">[API_KEY_1]</span></span></div>
-<div>Customer: <span class="sw" style="--d:1.6s"><span class="bad">aigerim@example.kz</span><span class="tok">[EMAIL_1]</span></span></div>
-<div>Phone: <span class="sw" style="--d:2.12s"><span class="bad">+7 701 234 56 78</span><span class="tok">[PHONE_1]</span></span></div>
-<div>IIN <span class="sw" style="--d:2.64s"><span class="bad">040312500125</span><span class="tok">[KZ_IIN_1]</span></span></div>
-</div>
-<div class="ft"><span>AI receives placeholders only</span><span class="lk">0 bytes uploaded</span></div>
-</div>
-</div>
-</div>
-
-<div class="wrap"><div class="stats"><div><b>28</b><span>detectors, many checksum-verified</span></div><div><b>0</b><span>bytes of your text uploaded</span></div><div><b>3</b><span>languages: English, Русский, Türkçe</span></div><div><b>$0</b><span>for the web tool, no sign-up</span></div></div></div>
-<div class="strip"><div class="wrap"><span style="color:var(--text)">Built for the AI chats you already use</span><div class="mq"><div class="mq-in"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span><span>DeepSeek</span><span>Perplexity</span><span>Mistral</span><span>Grok</span><span aria-hidden="true" class="dup">ChatGPT</span><span aria-hidden="true" class="dup">Claude</span><span aria-hidden="true" class="dup">Gemini</span><span aria-hidden="true" class="dup">Copilot</span><span aria-hidden="true" class="dup">DeepSeek</span><span aria-hidden="true" class="dup">Perplexity</span><span aria-hidden="true" class="dup">Mistral</span><span aria-hidden="true" class="dup">Grok</span></div></div></div></div>
-
-<section>
-<div class="wrap">
-<h2>Your team is already pasting this into AI.</h2>
-<div class="row">
-<div class="box"><p class="k">LOGS AND STACK TRACES</p><p>Tokens, internal hostnames and user IDs ride along inside every error dump.</p></div>
-<div class="box"><p class="k">CUSTOMER EMAILS AND TICKETS</p><p>Names, phone numbers and IBANs get pasted into "just rewrite this politely".</p></div>
-<div class="box"><p class="k">CONFIGS AND CODE</p><p>One .env file or connection string, one paste, one incident report.</p></div>
-</div>
-<p style="margin:40px 0 0;font-size:20px">Banning AI doesn't work. Blind trust doesn't either. <span style="color:var(--lime)">Mask first, then send.</span></p>
-</div>
+<div class="tabbed web-only">
+<span class="tab" aria-hidden="true">FILE NO. HP-001</span>
+<section class="sheet cover" aria-labelledby="h-cover">
+<div class="kicker"><span>HUSHPASTE</span><span class="stamp" aria-hidden="true">CONFIDENTIAL</span></div>
+<h1 id="h-cover">Some things the AI doesn't need to know.</h1>
+<p class="lede">Hushpaste blacks out <span class="bar">passwords</span>, <span class="bar">keys</span> and <span class="bar">personal data</span> before you send text to an AI. Then it puts them back in the answer.</p>
+<p class="facts">Runs in your browser · Nothing uploaded · Free</p>
+<a class="btn" href="#demo">Redact my text ↓</a>
 </section>
-
-<section id="demo" class="alt tool">
-<div class="wrap">
-<p class="eyebrow">FREE WEB TOOL · NOTHING IS UPLOADED</p>
-<h2>Mask it. Send it. <span style="color:var(--lime)">Restore it.</span></h2>
-<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Everything runs in this page. Paste your text, copy the masked version into any AI chat, then paste the answer back to swap the real values in again. The sample uses fake values only.</p>
-
-<div class="terms">
-<label for="terms" style="display:block;font-size:15px;font-weight:600">Extra words to mask <span style="font-weight:400;color:var(--mute)">(optional, separated by commas)</span></label>
-<input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe">
-<p class="small" style="margin-top:10px">Always detected: API keys and tokens (AWS, GitHub, Slack, Google, SendGrid, npm, JWT, bearer, basic auth), Slack webhooks, private keys, passwords in key=value lines and URLs, database URLs, emails, IBANs, card numbers, phone numbers, IP addresses, US Social Security numbers, and local IDs: Kazakh IIN/BIN, Turkish TC Kimlik, Russian SNILS and INN, and passport numbers.</p>
 </div>
 
-<h3 class="s">1. Mask your text</h3>
-<div class="panels">
+<section class="sheet tool" id="demo" aria-labelledby="h-tool">
+<h2 id="h-tool">Redact before you send</h2>
+<p class="soft">Three steps. Everything stays on this page.</p>
+
+<div class="step"><h3><label for="src">1. Paste the document</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Sample</button><button type="button" class="mini" id="btnClear">Clear</button></div></div>
 <div class="panel">
-<div class="bar"><label class="t" for="src">YOUR TEXT</label><div style="display:flex;gap:8px"><button type="button" class="ghost" id="btnSample">Sample</button><button type="button" class="ghost" id="btnClear">Clear</button></div></div>
-<textarea id="src" style="min-height:300px" placeholder="Paste a log, an email or a config file here, or drop a file"></textarea>
-<p class="drophint">Drop a .env, log or text file here, or <button type="button" id="btnFile">open a file</button>. It is read in this tab only.<input type="file" id="file" hidden></p>
+<textarea id="src" placeholder="Paste a log, an email or a config file" spellcheck="false"></textarea>
+<p class="drophint">Or <button type="button" id="btnFile">open a file</button>. It is read in this tab only.<input type="file" id="file" hidden></p>
 </div>
-<div class="panel g">
-<div class="bar"><span class="t">MASKED · <span id="count">0 items</span></span><button type="button" class="btn btn-sm" id="copy1" style="border:0">Copy masked text</button></div>
-<div class="out" id="out" style="min-height:300px"></div>
-</div>
-</div>
-<div class="gochat" id="gochat" hidden><span class="t">NOW PASTE IT INTO</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><p class="note">Opens in a new tab, so this tab stays open for the restore step.</p></div>
+<details class="extra">
+<summary>Hide your own words too: names, companies</summary>
+<label for="terms">Words to hide, separated by commas</label>
+<input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe" autocomplete="off">
+</details>
+
+<div class="step"><h3>2. Redacted copy</h3><span class="meta" id="count">0 items</span></div>
+<div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
+<p class="note"><b>NOTE:</b> Names and addresses aren't caught automatically. Add them in step 1, and read the copy before you send it.</p>
+<button type="button" class="btn" id="copy1">Copy redacted text</button>
+<div class="gochat" id="gochat" hidden><span class="t">Now paste it into:</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Opens in a new tab. Keep this one open for step 3.</span></div>
 <p class="netm" id="netm" role="status" hidden></p>
-<div class="check"><strong>Check before you send.</strong> <span>Names and addresses are not detected automatically &mdash; add them in the extra words box. Read the masked text before you send.</span></div>
-<div class="map" id="mapBox" hidden>
-<p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.06em;color:var(--mute)">WHAT WAS REPLACED (kept only in this tab)</p>
+<details class="map" id="mapBox" hidden>
+<summary>What was blacked out (kept only in this tab)</summary>
 <div id="map"></div>
-</div>
+</details>
 
-<h3 class="s">2. Restore the AI's answer</h3>
-<p style="margin:8px 0 0;color:var(--mute)">Paste the reply you got back. Every placeholder from step 1 is swapped for the real value.</p>
-<div class="panels">
-<div class="panel">
-<div class="bar"><label class="t" for="reply">AI REPLY WITH PLACEHOLDERS</label><button type="button" class="ghost" id="btnExample">Example reply</button></div>
-<textarea id="reply" style="min-height:220px" placeholder="Paste the AI's answer here"></textarea>
-</div>
-<div class="panel g">
-<div class="bar"><span class="t">RESTORED · <span id="restCount">0 values restored</span></span><button type="button" class="btn btn-sm" id="copy2" style="border:0">Copy restored text</button></div>
-<div class="out" id="restored" style="min-height:220px;color:var(--text)"></div>
-</div>
-</div>
+<div class="step"><h3><label for="reply">3. Paste the AI's answer</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Example</button></div></div>
+<textarea id="reply" placeholder="Paste the AI's answer here" spellcheck="false" style="min-height:130px"></textarea>
+<div class="restore-out">
+<div class="step"><h3>Declassified</h3><span class="meta" id="restCount">0 values restored</span></div>
+<div class="out" id="restored" aria-live="polite"></div>
+<button type="button" class="btn line" id="copy2" style="margin-top:12px">Copy declassified text</button>
 </div>
 </section>
 
-
-
-<section id="detects" class="alt">
-<div class="wrap">
-<p class="eyebrow">WHAT IT CATCHES</p>
-<h2>28 detectors for the things that should never leave.</h2>
-<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Many also run a checksum, so ordinary numbers are left alone: Luhn for cards, mod-97 for IBANs, official check digits for national IDs.</p>
-<div class="grid">
-<div class="cat"><h3>API keys and tokens</h3><p>OpenAI-style sk- keys, Stripe, AWS, Google, GitHub, Slack, SendGrid, npm.</p><div class="ex"><span class="bad">sk_live_51Hx9aQ…</span> → <span class="tok">[API_KEY_1]</span></div></div>
-<div class="cat"><h3>Passwords and connection strings</h3><p>password= lines, database URLs with user:password@, secrets in URLs.</p><div class="ex"><span class="bad">postgres://app:S3cr3t@db</span> → <span class="tok">[DB_URL_1]</span></div></div>
-<div class="cat"><h3>Sessions and auth headers</h3><p>JWTs, Bearer and Basic Authorization headers, Slack webhooks, private key blocks.</p><div class="ex">Bearer <span class="bad">eyJhbGciOi…</span> → <span class="tok">[BEARER_TOKEN_1]</span></div></div>
-<div class="cat"><h3>Contact details</h3><p>Emails, international phones, and local formats like 8 (701) … and 0532 ….</p><div class="ex"><span class="bad">0532 123 45 67</span> → <span class="tok">[PHONE_TR_1]</span></div></div>
-<div class="cat"><h3>Money</h3><p>IBANs from any country and payment card numbers, both checksum-verified.</p><div class="ex"><span class="bad">TR33 0006 1005 …</span> → <span class="tok">[IBAN_1]</span></div></div>
-<div class="cat"><h3>National IDs</h3><p>Kazakh IIN/BIN, Turkish TC Kimlik, Russian SNILS and INN, US SSN, passport numbers.</p><div class="ex">IIN <span class="bad">040312500125</span> → <span class="tok">[KZ_IIN_1]</span></div></div>
-<div class="cat"><h3>Infrastructure</h3><p>Internal IP addresses and hostnames inside connection strings.</p><div class="ex">DB_HOST=<span class="bad">10.24.3.17</span> → <span class="tok">[IP_ADDRESS_1]</span></div></div>
-<div class="cat"><h3>Your own words</h3><p>Client names, project codenames, anything else. Add them once in the extra words box.</p><div class="ex"><span class="bad">Project Falcon</span> → <span class="tok">[CUSTOM_1]</span></div></div>
-</div>
-</div>
+<section class="sheet web-only" aria-labelledby="h-why">
+<h2 id="h-why">Why this matters</h2>
+<p>Whatever you paste into an AI chat is stored on someone else's server. A password there is a password someone else can read.</p>
+<h2 class="sm">Chain of custody</h2>
+<p>Detection runs in your browser. The originals stay in this tab and vanish when you close it. No cookies, no tracking scripts.</p>
+<p class="soft">Check it yourself: developer tools → Network. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Read the code on GitHub</a>.</p>
 </section>
 
-<section id="local" class="band">
-<div class="wrap">
-<p class="eyebrow">BUILT FOR WHERE YOU WORK</p>
-<h2>Made for Kazakhstan, Türkiye and the CIS.</h2>
-<p style="margin:16px 0 0;max-width:680px;color:var(--soft)">Many AI privacy tools focus on US formats. Hushpaste also recognises the IDs, phone numbers and bank details people actually paste here, and validates them the official way.</p>
-<div class="local">
-<div class="cc"><span class="code">KZ</span><h3>Kazakhstan</h3><ul><li>IIN and BIN, with check digit</li><li>Phones: +7 7xx and 8 (7xx)</li><li>KZ IBANs (Kaspi, Halyk and others)</li></ul></div>
-<div class="cc"><span class="code">TR</span><h3>Türkiye</h3><ul><li>T.C. Kimlik No, with both check digits</li><li>Phones: +90 and 05xx</li><li>TR IBANs</li></ul></div>
-<div class="cc"><span class="code">RU</span><h3>Russia and the CIS</h3><ul><li>SNILS, with check number</li><li>INN after "ИНН" or "INN"</li><li>Passport numbers after "паспорт"</li></ul></div>
-</div>
-</div>
-</section>
-
-<section class="alt">
-<div class="wrap">
-<p class="eyebrow">WHY MASKING</p>
-<h2>Better than deleting by hand. Better than banning AI.</h2>
-<div class="tblw"><table class="cmp">
-<thead><tr><th></th><th class="us">HUSHPASTE</th><th>DELETING BY HAND</th><th>BANNING AI</th></tr></thead>
-<tbody>
-<tr><td>Time per paste</td><td class="us"><span class="yes">Seconds</span></td><td>Minutes, every time</td><td>—</td></tr>
-<tr><td>AI still understands the text</td><td class="us"><span class="yes">Yes</span>, typed placeholders</td><td>Often not, context is gone</td><td class="no">No AI at all</td></tr>
-<tr><td>Real values back in the answer</td><td class="us"><span class="yes">Automatic</span></td><td class="no">By hand</td><td>—</td></tr>
-<tr><td>Catches what people miss</td><td class="us"><span class="yes">28 detectors</span>, checksums</td><td class="no">Depends on attention</td><td class="no">People use it anyway</td></tr>
-<tr><td>Your text leaves the device</td><td class="us"><span class="yes">Never</span></td><td>—</td><td>—</td></tr>
-</tbody></table></div>
-</div>
-</section>
-
-<section class="alt">
-<div class="wrap" style="display:flex;flex-wrap:wrap;gap:56px">
-<div style="flex:1 1 460px;min-width:0">
-<p class="eyebrow">SECURITY MODEL</p>
-<h2>Nothing to steal, because nothing leaves.</h2>
-<ul class="ticks" style="margin-top:32px">
-<li>Detection and replacement run in your browser. This page sends your text nowhere, and sets no cookies.</li>
-<li>Third-party scripts are blocked outright. Two requests are allowed and nothing else: the waitlist form and a 1&times;1 visit counter &mdash; <a href="/privacy.html">what each one sees</a>.</li>
-<li>The placeholder map lives in the open tab and is gone when you close it.</li>
-
-<li>Check it yourself: developer tools &rarr; Network, then use the tool. No request appears.</li>
-<li>Read the code: <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">source and tests on GitHub</a> &mdash; the tests cover these privacy rules too.</li>
-<li>No independent security audit yet. This page will say so when there is one.</li>
+<section class="sheet web-only" id="detects" aria-labelledby="h-det">
+<h2 id="h-det">What gets blacked out</h2>
+<ul class="redact">
+<li>API keys and tokens</li>
+<li>Passwords and database URLs</li>
+<li>Emails and phone numbers</li>
+<li>Card numbers and IBANs</li>
+<li>IP addresses</li>
+<li>Kazakh IIN and BIN</li>
+<li>Turkish TC Kimlik</li>
+<li>Russian SNILS and INN</li>
+<li>Passport numbers</li>
 </ul>
-</div>
-<div class="flow" style="flex:1 1 460px;min-width:0">
-<div><span style="color:var(--mute)">1 · </span>Your text, real values</div>
-<div class="a">↓ masked inside your browser</div>
-<div class="me"><span style="color:var(--mute)">2 · </span>Hushpaste, running locally</div>
-<div class="a">↓ placeholders only</div>
-<div><span style="color:var(--mute)">3 · </span>The AI chat</div>
-<div class="no">Hushpaste servers: not in the path</div>
-</div>
-</div>
+<p class="soft" style="margin-top:14px">Cards, IBANs and ID numbers are checked with their official check digits, so ordinary numbers stay untouched.</p>
 </section>
 
-<section>
-<div class="wrap">
-<p class="eyebrow">WHO IT IS FOR</p>
-<div class="chips"><span>Developers and DevOps</span><span>Legal</span><span>Finance and banking</span><span>Customer support</span><span>HR and recruiting</span></div>
-<div class="team" style="margin-top:64px">
-<div>
-<p class="eyebrow">FOR TEAMS</p>
-<h2 style="font-size:clamp(28px,4vw,42px)">Let your team use AI. Keep the data in.</h2>
-<p style="margin:16px 0 0;color:var(--soft)">One leaked customer list costs more than a year of any tool. Hushpaste gives every person on the team the same safety net, without reading a single prompt.</p>
-</div>
-<div>
-<ul class="ticks">
-<li>Shared rules: add your client names and codenames once, for everyone</li>
-<li>A ready AI usage policy to roll out this week (free in the Safety Kit)</li>
-<li>Reports that count what was masked, never what was written</li>
-<li>Nothing to host and nothing to approve: it runs in the browser</li>
-</ul>
-<a class="btn" href="#pricing" data-plan="team" style="margin-top:24px">See the Team plan</a>
-</div>
-</div>
-</div>
+<section class="sheet web-only faq" id="faq" aria-labelledby="h-faq">
+<h2 id="h-faq">Questions</h2>
+<details><summary>Can you see my data?</summary><p>No. Everything happens in your browser. There is no Hushpaste server in the path.</p></details>
+<details><summary>What if the AI changes a placeholder?</summary><p>It stays as it is. Restoring only swaps exact matches and never guesses.</p></details>
+<details><summary>Can I install it as an app?</summary><p>Yes. On iPhone: Share → Add to Home Screen. On Android: Install app in Chrome. It opens straight to the tool.</p></details>
+<details><summary>Is it free?</summary><p>Yes, the web tool and the app. Pro, a browser extension for $8 a month, and Team, $6 per user a month, are coming.</p></details>
+<details><summary>Is it open source?</summary><p>The code and tests are public on GitHub. There is no independent security audit yet; one is planned together with an open-source license.</p></details>
 </section>
 
-<section style="padding-top:0">
-<div class="wrap">
-<div class="kit">
-<div>
-<p class="eyebrow" style="margin-bottom:12px">FREE WITH SIGNUP</p>
-<h2 style="font-size:clamp(30px,4vw,44px);line-height:1.1">The AI Paste Safety Kit</h2>
-<p style="margin:14px 0 0;color:var(--soft)">Everything you need to stop leaks this week, before the extension ships.</p>
-</div>
-<div>
-<ul class="ticks">
-<li>Checklist: 20 types of data you should never paste into AI</li>
-<li>Ready-to-import regex rules for secrets (.json)</li>
-<li>One-page AI usage policy template for your team</li>
-</ul>
-<a class="btn" href="#join" style="margin-top:24px">Send me the kit</a>
-</div>
-</div>
-</div>
-</section>
-
-<section id="pricing" class="alt">
-<div class="wrap">
-<h2>Simple pricing.</h2>
-<p style="margin:14px 0 0;max-width:720px;color:var(--mute)">Available today: the free web tool. Pro and Team are in development. Joining the waitlist is free, and nothing is charged before launch.</p>
-<div class="row" style="align-items:stretch">
-<label class="price"><input type="radio" name="plan" value="free"><span class="dot" aria-hidden="true"></span><p class="pn">FREE</p><p class="pp">$0</p><p class="pd">Web tool for occasional use</p><ul class="ticks"><li>Paste-and-mask web tool</li><li>Built-in detection rules</li><li>AI Paste Safety Kit</li></ul><a class="btn pick" href="#demo" data-plan="free">Use the free tool</a></label>
-<label class="price"><input type="radio" name="plan" value="pro" checked><span class="dot" aria-hidden="true"></span><p class="pn">PRO <span class="soon">COMING SOON</span></p><p class="pp">$8<small> / month</small></p><p class="pd">For individuals who use AI daily</p><ul class="ticks"><li>Browser extension, auto-mask on send</li><li>Restore real values in replies</li><li>Custom rules and allowlists</li></ul><a class="btn pick" href="#join" data-plan="pro">Join the Pro waitlist</a></label>
-<label class="price"><input type="radio" name="plan" value="team"><span class="dot" aria-hidden="true"></span><p class="pn">TEAM <span class="soon">COMING SOON</span></p><p class="pp">$6<small> / user / month</small></p><p class="pd">For companies that want AI with guardrails</p><ul class="ticks"><li>Everything in Pro</li><li>Shared policies and admin rules</li><li>Reports that never contain content</li></ul><a class="btn pick" href="#join" data-plan="team">Join the Team waitlist</a></label>
-</div>
-</div>
-</section>
-
-<section id="faq">
-<div class="wrap">
-<h2 style="max-width:860px;margin:0 auto">Questions, answered straight.</h2>
-<div class="faq">
-<details open><summary>Can you see my data?</summary><p>No. Detection and replacement run in your browser. There is no Hushpaste server in the data path, and the placeholder map is held in the open tab only.</p></details>
-<details><summary>How accurate is detection?</summary><p>Values with a known format, such as keys, tokens, IBANs and emails, are caught by pattern matching. Names and organizations are not detected automatically yet, so add them in the "extra words" box and always read the masked text before you send it. No pattern-based tool can promise to catch everything.</p></details>
-<details><summary>What if the AI rewrites a placeholder?</summary><p>Restoration matches placeholders exactly. If a reply changes one, it stays as it is and is not guessed.</p></details>
-<details><summary>Does it work with Kazakh, Turkish and Russian data?</summary><p>Yes. It recognises Kazakh IIN/BIN, Turkish TC Kimlik numbers, Russian SNILS and INN, passport numbers written after "passport", "паспорт" or "pasaport", local phone formats and IBANs from every country. Names written in any language can be added in the extra words box.</p></details>
-<details><summary>Can my company use it?</summary><p>Yes. The free web tool needs no installation and sends nothing anywhere, which makes it easy to approve. The Team plan adds shared rules and reports. Join the waitlist with your work email and pick Team.</p></details>
-<details><summary>Is it open source?</summary><p>Not formally yet. The code of this site, including every detection rule, is already public on GitHub with tests anyone can run. An open-source license and an independent security audit are planned.</p></details>
-</div>
-</div>
-</section>
-
-<section id="join" class="cta">
-<div class="wrap" style="max-width:760px">
-<h2>Get early access.</h2>
-<p class="sub">Join the waitlist and be first to get the browser extension and the free Safety Kit.</p>
-<p class="sub" style="font-size:16px;margin-top:10px">Your plan: <strong class="plan-name">Pro</strong> · <a href="#pricing" style="color:var(--bg)">change</a></p>
+<section class="sheet web-only" id="join" aria-labelledby="h-join">
+<h2 id="h-join"><span id="pricing"></span>Get Pro first</h2>
+<p>Pro is a browser extension that redacts automatically when you press send. Nothing is charged before launch.</p>
+<fieldset class="plans">
+<legend>PLAN</legend>
+<label class="plan"><input type="radio" name="plan" value="pro" checked><span>Pro · $8 / month</span></label>
+<label class="plan"><input type="radio" name="plan" value="team"><span>Team · $6 / user / month</span></label>
+</fieldset>
 <div class="wl">
 <form novalidate>
-<label for="email-cta" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Work email</label>
+<label for="email-cta">WORK EMAIL</label>
 <input id="email-cta" type="email" name="email" placeholder="you@company.com" autocomplete="email">
-<button type="submit">Join the waitlist</button>
-<p class="err" role="alert" hidden style="flex-basis:100%;margin:0">Enter a valid email to join the waitlist.</p>
+<button type="submit" class="btn">Join the waitlist</button>
+<p class="err" role="alert" hidden>Enter a valid email to join the waitlist.</p>
 </form>
-<div class="ok" hidden><p class="disp" style="margin:0;font-size:22px;color:var(--lime)">You're on the list.</p><p style="margin:8px 0 0;color:var(--soft);font-size:15px">We'll email you when early access opens.</p><p style="margin:14px 0 0"><a class="btn" href="/kit.html">Open your free Safety Kit</a></p></div>
-</div>
+<div class="ok" hidden><p class="big">You're on the list.</p><p style="margin-top:6px">We'll email you when early access opens.</p><a class="btn line" href="/kit.html">Open your free Safety Kit</a></div>
+<p class="small">No spam, one email at launch. <a href="/privacy.html">Privacy</a>.</p>
 </div>
 </section>
 
 </main>
 
-<footer><div class="wrap"><span class="disp" style="font-size:18px;color:var(--text)">Hushpaste</span><span>Paste freely. Leak nothing.</span><span><a href="/privacy.html" style="color:var(--mute)">Privacy</a> &nbsp;·&nbsp; <a href="/guides/" style="color:var(--mute)">Guides</a> &nbsp;·&nbsp; <a href="/kit.html" style="color:var(--mute)">Safety Kit</a> &nbsp;·&nbsp; <a href="https://github.com/yerzhan070324-cmd/hushpaste.com" style="color:var(--mute)">GitHub</a> &nbsp;·&nbsp; <a href="mailto:hello@gethushpaste.com" style="color:var(--mute)">Contact</a> &nbsp;&middot;&nbsp; <a href="#top" style="color:var(--mute)">Back to top</a></span></div></footer>
+<footer><div class="wrap">
+<span>Hushpaste · Paste freely. Leak nothing.</span>
+<nav aria-label="Footer"><a href="/privacy.html">Privacy</a><a href="/guides/">Guides</a><a href="/kit.html">Safety Kit</a><a href="https://github.com/yerzhan070324-cmd/hushpaste.com">GitHub</a><a href="mailto:hello@gethushpaste.com">Contact</a></nav>
+</div></footer>
 
 <script src="/app.js"></script>
 
