@@ -18,6 +18,7 @@ var I18N = {
     badEmail: 'Enter a valid email to join the waitlist.',
     joining: 'Joining…',
     saveFailed: 'Sorry, your email was not saved. Please try again in a minute.',
+    saveFailedHtml: 'The form did not go through. Write to <a href="mailto:hello@gethushpaste.com?subject=Waitlist">hello@gethushpaste.com</a> and I will add you by hand.',
     sample: 'ERROR 500 in billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\n\nCustomer anna.keller@example.com called from +49 151 2345 6789.\nRefund to IBAN DE89370400440532013000, please check why it failed.'
   },
   ru: {
@@ -38,6 +39,7 @@ var I18N = {
     badEmail: 'Введите корректный email, чтобы попасть в список.',
     joining: 'Отправляем…',
     saveFailed: 'Не удалось сохранить email. Попробуйте ещё раз через минуту.',
+    saveFailedHtml: 'Форма не сработала. Напишите на <a href="mailto:hello@gethushpaste.com?subject=Waitlist">hello@gethushpaste.com</a> — добавлю вас вручную.',
     sample: 'ОШИБКА 500 в billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\n\nКлиент: aigerim.n@example.kz, тел. 8 (701) 234-56-78, ИИН 040312500125.\nВерните деньги на IBAN KZ86125KZT5004100100, платёж не прошёл.'
   },
   tr: {
@@ -58,6 +60,7 @@ var I18N = {
     badEmail: 'Bekleme listesine katılmak için geçerli bir e-posta girin.',
     joining: 'Gönderiliyor…',
     saveFailed: 'E-postanız kaydedilemedi. Lütfen bir dakika sonra tekrar deneyin.',
+    saveFailedHtml: 'Form gönderilemedi. <a href="mailto:hello@gethushpaste.com?subject=Waitlist">hello@gethushpaste.com</a> adresine yazın, sizi elle ekleyeyim.',
     sample: 'HATA 500: billing-worker\nDB_HOST=10.24.3.17\nDB_PASSWORD=correct-horse-battery\nSTRIPE_KEY=sk-live-4f9a8c1d2e7b3a60f5d9c8e1\n\nMüşteri: ayse.yilmaz@example.com.tr, tel 0532 123 45 67, TC 10000000146.\nİadeyi TR330006100519786457841326 IBAN\'ına yapın, ödeme başarısız oldu.'
   }
 };
@@ -353,7 +356,7 @@ var WAITLIST_URL = (function () { var m = document.querySelector('meta[name="wai
       btn.disabled = true; btn.textContent = T.joining;
       function fail() {
         btn.disabled = false; btn.textContent = label;
-        err.textContent = T.saveFailed;
+        err.innerHTML = T.saveFailedHtml || T.saveFailed;
         err.hidden = false;
       }
       var ctl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
