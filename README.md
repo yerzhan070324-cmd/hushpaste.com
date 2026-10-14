@@ -53,8 +53,7 @@ node --test tests/
 index.html              landing page and the tool itself
 app.js                  detection, masking and restore logic
 hushpaste-rules.json    detection rules and validators
-dossier.css             styles for the home pages (the "secret dossier" look)
-fonts-dossier.css       typewriter font for the home pages: GNU FreeMono, subset, GPLv3 with the font embedding exception
+home.css                styles for the home pages; system fonts, light and dark following the device
 fonts.css               self-hosted fonts for the other pages, no external font service
 ru/ tr/                 Russian and Turkish translations
 guides/                 five long-form guides

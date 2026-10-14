@@ -2,8 +2,8 @@
   "name": "Hushpaste",
   "short_name": "Hushpaste",
   "display": "standalone",
-  "background_color": "#D9CDAE",
-  "theme_color": "#D9CDAE",
+  "background_color": "#0E100F",
+  "theme_color": "#0E100F",
   "icons": [
     {
       "src": "/icon-512.png",

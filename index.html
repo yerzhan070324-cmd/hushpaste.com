@@ -24,9 +24,9 @@
 <meta name="twitter:title" content="Hushpaste: paste freely, leak nothing">
 <meta name="twitter:description" content="Mask secrets and personal data before they reach an AI chat. Runs in your browser.">
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
-<meta name="theme-color" content="#D9CDAE">
-<link rel="stylesheet" href="/fonts-dossier.css">
-<link rel="stylesheet" href="/dossier.css">
+<meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E100F" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="/home.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -39,7 +39,7 @@
 <body>
 
 <header class="site"><div class="wrap">
-<a class="logo" href="/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#1C1A17"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#F7F4EC"/></svg>HUSHPASTE</a>
+<a class="logo" href="/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z"/><rect x="9" y="12" width="10" height="3" rx="1.5"/></svg>Hushpaste</a>
 <nav class="top-links" aria-label="Main">
 <a class="web-only" href="/guides/">Guides</a>
 <span class="lang" aria-label="Language"><a href="/" lang="en" aria-current="page">EN</a><a href="/ru/" lang="ru">RU</a><a href="/tr/" lang="tr">TR</a></span>
@@ -48,102 +48,83 @@
 
 <main class="wrap" id="top">
 
-<div class="tabbed web-only">
-<span class="tab" aria-hidden="true">FILE NO. HP-001</span>
-<section class="sheet cover" aria-labelledby="h-cover">
-<div class="kicker"><span>HUSHPASTE</span><span class="stamp" aria-hidden="true">CONFIDENTIAL</span></div>
-<h1 id="h-cover">Some things the AI doesn't need to know.</h1>
-<p class="lede">Hushpaste blacks out <span class="bar">passwords</span>, <span class="bar">keys</span> and <span class="bar">personal data</span> before you send text to an AI. Then it puts them back in the answer.</p>
+<section class="hero web-only" aria-labelledby="h-hero">
+<h1 id="h-hero">Paste into AI.<br>Leak nothing.</h1>
+<p class="lede">Hushpaste hides passwords, keys and personal data before you send text to an AI. The answer comes back with your real values.</p>
 <p class="facts">Runs in your browser · Nothing uploaded · Free</p>
-<a class="btn" href="#demo">Redact my text ↓</a>
+<a class="btn" href="#demo">Try it free</a>
 </section>
-</div>
 
-<section class="sheet tool" id="demo" aria-labelledby="h-tool">
-<h2 id="h-tool">Redact before you send</h2>
-<p class="soft">Three steps. Everything stays on this page.</p>
+<section id="demo" aria-labelledby="h-tool">
+<h2 id="h-tool">Try it</h2>
+<p class="muted" style="margin-top:4px">Everything stays on this page.</p>
 
-<div class="step"><h3><label for="src">1. Paste the document</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Sample</button><button type="button" class="mini" id="btnClear">Clear</button></div></div>
+<div class="step"><h3><label for="src">1. Paste your text</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Sample</button><button type="button" class="mini" id="btnClear">Clear</button></div></div>
 <div class="panel">
 <textarea id="src" placeholder="Paste a log, an email or a config file" spellcheck="false"></textarea>
 <p class="drophint">Or <button type="button" id="btnFile">open a file</button>. It is read in this tab only.<input type="file" id="file" hidden></p>
 </div>
 <details class="extra">
-<summary>Hide your own words too: names, companies</summary>
+<summary>Also hide names or companies</summary>
 <label for="terms">Words to hide, separated by commas</label>
 <input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe" autocomplete="off">
 </details>
 
-<div class="step"><h3>2. Redacted copy</h3><span class="meta" id="count">0 items</span></div>
+<div class="step"><h3>2. Copy the safe version</h3><span class="meta" id="count">0 items</span></div>
 <div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
-<p class="note"><b>NOTE:</b> Names and addresses aren't caught automatically. Add them in step 1, and read the copy before you send it.</p>
-<button type="button" class="btn" id="copy1">Copy redacted text</button>
-<div class="gochat" id="gochat" hidden><span class="t">Now paste it into:</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Opens in a new tab. Keep this one open for step 3.</span></div>
+<p class="note">Names and addresses aren't found automatically. Add them in step 1 and check the text before you send it.</p>
+<button type="button" class="btn" id="copy1">Copy safe text</button>
+<div class="gochat" id="gochat" hidden><span class="t">Paste it into</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Opens in a new tab. Keep this one open.</span></div>
 <p class="netm" id="netm" role="status" hidden></p>
 <details class="map" id="mapBox" hidden>
-<summary>What was blacked out (kept only in this tab)</summary>
+<summary>What was hidden (kept only in this tab)</summary>
 <div id="map"></div>
 </details>
 
 <div class="step"><h3><label for="reply">3. Paste the AI's answer</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Example</button></div></div>
-<textarea id="reply" placeholder="Paste the AI's answer here" spellcheck="false" style="min-height:130px"></textarea>
-<div class="restore-out">
-<div class="step"><h3>Declassified</h3><span class="meta" id="restCount">0 values restored</span></div>
+<textarea id="reply" placeholder="Paste the AI's answer here" spellcheck="false" style="min-height:120px"></textarea>
+<div class="step"><h3>Answer with real values</h3><span class="meta" id="restCount">0 values restored</span></div>
 <div class="out" id="restored" aria-live="polite"></div>
-<button type="button" class="btn line" id="copy2" style="margin-top:12px">Copy declassified text</button>
-</div>
+<button type="button" class="btn quiet" id="copy2" style="margin-top:12px">Copy answer</button>
 </section>
 
-<section class="sheet web-only" aria-labelledby="h-why">
-<h2 id="h-why">Why this matters</h2>
-<p>Whatever you paste into an AI chat is stored on someone else's server. A password there is a password someone else can read.</p>
-<h2 class="sm">Chain of custody</h2>
-<p>Detection runs in your browser. The originals stay in this tab and vanish when you close it. No cookies, no tracking scripts.</p>
-<p class="soft">Check it yourself: developer tools → Network. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Read the code on GitHub</a>.</p>
+<section class="web-only" aria-labelledby="h-why">
+<h2 id="h-why">Why</h2>
+<p>Anything you paste into an AI chat is stored on someone else's server. Hushpaste keeps your secrets out of it.</p>
+<p class="muted">It all runs in your browser. Nothing is uploaded or stored, and the originals disappear when you close the tab. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">The code is on GitHub</a>.</p>
 </section>
 
-<section class="sheet web-only" id="detects" aria-labelledby="h-det">
-<h2 id="h-det">What gets blacked out</h2>
-<ul class="redact">
-<li>API keys and tokens</li>
-<li>Passwords and database URLs</li>
-<li>Emails and phone numbers</li>
-<li>Card numbers and IBANs</li>
-<li>IP addresses</li>
-<li>Kazakh IIN and BIN</li>
-<li>Turkish TC Kimlik</li>
-<li>Russian SNILS and INN</li>
-<li>Passport numbers</li>
-</ul>
-<p class="soft" style="margin-top:14px">Cards, IBANs and ID numbers are checked with their official check digits, so ordinary numbers stay untouched.</p>
+<section class="web-only" id="detects" aria-labelledby="h-det">
+<h2 id="h-det">What it hides</h2>
+<p class="muted">API keys and tokens, passwords, database URLs, emails, phone numbers, cards, IBANs, IP addresses, Kazakh IIN and BIN, Turkish TC Kimlik, Russian SNILS and INN, passport numbers.</p>
 </section>
 
-<section class="sheet web-only faq" id="faq" aria-labelledby="h-faq">
+<section class="web-only faq" id="faq" aria-labelledby="h-faq">
 <h2 id="h-faq">Questions</h2>
 <details><summary>Can you see my data?</summary><p>No. Everything happens in your browser. There is no Hushpaste server in the path.</p></details>
-<details><summary>What if the AI changes a placeholder?</summary><p>It stays as it is. Restoring only swaps exact matches and never guesses.</p></details>
-<details><summary>Can I install it as an app?</summary><p>Yes. On iPhone: Share → Add to Home Screen. On Android: Install app in Chrome. It opens straight to the tool.</p></details>
-<details><summary>Is it free?</summary><p>Yes, the web tool and the app. Pro, a browser extension for $8 a month, and Team, $6 per user a month, are coming.</p></details>
-<details><summary>Is it open source?</summary><p>The code and tests are public on GitHub. There is no independent security audit yet; one is planned together with an open-source license.</p></details>
+<details><summary>What if the AI changes a placeholder?</summary><p>It stays as it is. Only exact matches are restored, nothing is guessed.</p></details>
+<details><summary>Can I install it as an app?</summary><p>Yes. iPhone: Share → Add to Home Screen. Android: Install app in Chrome.</p></details>
+<details><summary>Is it free?</summary><p>Yes. Pro, a browser extension, is coming for $8 a month, and Team for $6 per user.</p></details>
+<details><summary>Has it been audited?</summary><p>Not yet. The code and tests are public on GitHub, and an independent audit is planned.</p></details>
 </section>
 
-<section class="sheet web-only" id="join" aria-labelledby="h-join">
+<section class="web-only" id="join" aria-labelledby="h-join">
 <h2 id="h-join"><span id="pricing"></span>Get Pro first</h2>
-<p>Pro is a browser extension that redacts automatically when you press send. Nothing is charged before launch.</p>
+<p class="muted">A browser extension that hides data automatically when you send. Nothing is charged before launch.</p>
 <fieldset class="plans">
-<legend>PLAN</legend>
+<legend>Plan</legend>
 <label class="plan"><input type="radio" name="plan" value="pro" checked><span>Pro · $8 / month</span></label>
 <label class="plan"><input type="radio" name="plan" value="team"><span>Team · $6 / user / month</span></label>
 </fieldset>
 <div class="wl">
 <form novalidate>
-<label for="email-cta">WORK EMAIL</label>
+<label for="email-cta">Work email</label>
 <input id="email-cta" type="email" name="email" placeholder="you@company.com" autocomplete="email">
-<button type="submit" class="btn">Join the waitlist</button>
+<button type="submit" class="btn">Notify me</button>
 <p class="err" role="alert" hidden>Enter a valid email to join the waitlist.</p>
 </form>
-<div class="ok" hidden><p class="big">You're on the list.</p><p style="margin-top:6px">We'll email you when early access opens.</p><a class="btn line" href="/kit.html">Open your free Safety Kit</a></div>
+<div class="ok" hidden><p class="big">You're on the list.</p><p class="muted" style="margin-top:4px">We'll email you when early access opens.</p><a class="btn quiet" href="/kit.html">Open your free Safety Kit</a></div>
 <p class="small">No spam, one email at launch. <a href="/privacy.html">Privacy</a>.</p>
 </div>
 </section>

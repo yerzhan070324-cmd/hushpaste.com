@@ -24,9 +24,9 @@
 <meta name="twitter:title" content="Hushpaste: вставляйте в ИИ без утечек">
 <meta name="twitter:description" content="Скрывайте секреты и личные данные до того, как они попадут в чат с ИИ. Работает в браузере.">
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
-<meta name="theme-color" content="#D9CDAE">
-<link rel="stylesheet" href="/fonts-dossier.css">
-<link rel="stylesheet" href="/dossier.css">
+<meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E100F" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="/home.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -39,7 +39,7 @@
 <body>
 
 <header class="site"><div class="wrap">
-<a class="logo" href="/ru/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#1C1A17"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#F7F4EC"/></svg>HUSHPASTE</a>
+<a class="logo" href="/ru/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z"/><rect x="9" y="12" width="10" height="3" rx="1.5"/></svg>Hushpaste</a>
 <nav class="top-links" aria-label="Основное">
 <a class="web-only" href="/guides/">Гайды</a>
 <span class="lang" aria-label="Language"><a href="/" lang="en">EN</a><a href="/ru/" lang="ru" aria-current="page">RU</a><a href="/tr/" lang="tr">TR</a></span>
@@ -48,102 +48,83 @@
 
 <main class="wrap" id="top">
 
-<div class="tabbed web-only">
-<span class="tab" aria-hidden="true">ДЕЛО № HP-001</span>
-<section class="sheet cover" aria-labelledby="h-cover">
-<div class="kicker"><span>HUSHPASTE</span><span class="stamp" aria-hidden="true">СЕКРЕТНО</span></div>
-<h1 id="h-cover">Кое-что ИИ знать не обязательно.</h1>
-<p class="lede">Hushpaste закрашивает <span class="bar">пароли</span>, <span class="bar">ключи</span> и <span class="bar">личные данные</span>, прежде чем вы отправите текст в ИИ. А потом возвращает их в ответ.</p>
+<section class="hero web-only" aria-labelledby="h-hero">
+<h1 id="h-hero">Вставляйте в ИИ.<br>Без утечек.</h1>
+<p class="lede">Hushpaste скрывает пароли, ключи и личные данные, прежде чем вы отправите текст в ИИ. Ответ возвращается с настоящими значениями.</p>
 <p class="facts">Работает в браузере · Ничего не загружается · Бесплатно</p>
-<a class="btn" href="#demo">Засекретить текст ↓</a>
+<a class="btn" href="#demo">Попробовать бесплатно</a>
 </section>
-</div>
 
-<section class="sheet tool" id="demo" aria-labelledby="h-tool">
-<h2 id="h-tool">Скройте перед отправкой</h2>
-<p class="soft">Три шага. Всё остаётся на этой странице.</p>
+<section id="demo" aria-labelledby="h-tool">
+<h2 id="h-tool">Попробуйте</h2>
+<p class="muted" style="margin-top:4px">Всё остаётся на этой странице.</p>
 
-<div class="step"><h3><label for="src">1. Вставьте документ</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Пример</button><button type="button" class="mini" id="btnClear">Очистить</button></div></div>
+<div class="step"><h3><label for="src">1. Вставьте текст</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Пример</button><button type="button" class="mini" id="btnClear">Очистить</button></div></div>
 <div class="panel">
 <textarea id="src" placeholder="Вставьте лог, письмо или конфиг" spellcheck="false"></textarea>
 <p class="drophint">Или <button type="button" id="btnFile">откройте файл</button>. Он читается только в этой вкладке.<input type="file" id="file" hidden></p>
 </div>
 <details class="extra">
-<summary>Скрыть и свои слова: имена, компании</summary>
+<summary>Скрыть ещё имена или компании</summary>
 <label for="terms">Слова для скрытия, через запятую</label>
 <input id="terms" type="text" placeholder="ТОО Ромашка, Проект Сокол, Айгерим Нурлановна" autocomplete="off">
 </details>
 
-<div class="step"><h3>2. Засекреченная копия</h3><span class="meta" id="count">0 совпадений</span></div>
+<div class="step"><h3>2. Скопируйте безопасную версию</h3><span class="meta" id="count">0 совпадений</span></div>
 <div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
-<p class="note"><b>ВАЖНО:</b> Имена и адреса не находятся автоматически. Добавьте их в шаге 1 и прочитайте копию перед отправкой.</p>
-<button type="button" class="btn" id="copy1">Скопировать без секретов</button>
-<div class="gochat" id="gochat" hidden><span class="t">Теперь вставьте в:</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Откроется в новой вкладке. Эту оставьте открытой для шага 3.</span></div>
+<p class="note">Имена и адреса не находятся автоматически. Добавьте их в шаге 1 и проверьте текст перед отправкой.</p>
+<button type="button" class="btn" id="copy1">Скопировать безопасный текст</button>
+<div class="gochat" id="gochat" hidden><span class="t">Вставьте в</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Откроется в новой вкладке. Эту не закрывайте.</span></div>
 <p class="netm" id="netm" role="status" hidden></p>
 <details class="map" id="mapBox" hidden>
-<summary>Что закрашено (хранится только в этой вкладке)</summary>
+<summary>Что скрыто (хранится только в этой вкладке)</summary>
 <div id="map"></div>
 </details>
 
 <div class="step"><h3><label for="reply">3. Вставьте ответ ИИ</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Пример</button></div></div>
-<textarea id="reply" placeholder="Вставьте ответ ИИ сюда" spellcheck="false" style="min-height:130px"></textarea>
-<div class="restore-out">
-<div class="step"><h3>Рассекречено</h3><span class="meta" id="restCount">восстановлено: 0</span></div>
+<textarea id="reply" placeholder="Вставьте ответ ИИ сюда" spellcheck="false" style="min-height:120px"></textarea>
+<div class="step"><h3>Ответ с настоящими данными</h3><span class="meta" id="restCount">восстановлено: 0</span></div>
 <div class="out" id="restored" aria-live="polite"></div>
-<button type="button" class="btn line" id="copy2" style="margin-top:12px">Скопировать ответ</button>
-</div>
+<button type="button" class="btn quiet" id="copy2" style="margin-top:12px">Скопировать ответ</button>
 </section>
 
-<section class="sheet web-only" aria-labelledby="h-why">
-<h2 id="h-why">Почему это важно</h2>
-<p>Всё, что вы вставляете в чат с ИИ, хранится на чужом сервере. Пароль там — это пароль, который может прочитать кто-то ещё.</p>
-<h2 class="sm">Где остаются данные</h2>
-<p>Поиск работает в вашем браузере. Оригиналы остаются в этой вкладке и исчезают, когда вы её закрываете. Без cookies и следящих скриптов.</p>
-<p class="soft">Проверьте сами: инструменты разработчика → Network. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Код открыт на GitHub</a>.</p>
+<section class="web-only" aria-labelledby="h-why">
+<h2 id="h-why">Зачем</h2>
+<p>Всё, что вы вставляете в чат с ИИ, хранится на чужом сервере. Hushpaste не пускает туда ваши секреты.</p>
+<p class="muted">Всё работает в вашем браузере. Ничего не загружается и не хранится, а оригиналы исчезают, когда вы закрываете вкладку. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Код открыт на GitHub</a>.</p>
 </section>
 
-<section class="sheet web-only" id="detects" aria-labelledby="h-det">
-<h2 id="h-det">Что закрашивается</h2>
-<ul class="redact">
-<li>API-ключи и токены</li>
-<li>Пароли и адреса баз данных</li>
-<li>Email и телефоны</li>
-<li>Номера карт и IBAN</li>
-<li>IP-адреса</li>
-<li>ИИН и БИН (Казахстан)</li>
-<li>TC Kimlik (Турция)</li>
-<li>СНИЛС и ИНН (Россия)</li>
-<li>Номера паспортов</li>
-</ul>
-<p class="soft" style="margin-top:14px">Карты, IBAN и номера документов проверяются по официальным контрольным цифрам, поэтому обычные числа остаются нетронутыми.</p>
+<section class="web-only" id="detects" aria-labelledby="h-det">
+<h2 id="h-det">Что скрывается</h2>
+<p class="muted">API-ключи и токены, пароли, адреса баз данных, email, телефоны, карты, IBAN, IP-адреса, ИИН и БИН, турецкий TC Kimlik, СНИЛС и ИНН, номера паспортов.</p>
 </section>
 
-<section class="sheet web-only faq" id="faq" aria-labelledby="h-faq">
+<section class="web-only faq" id="faq" aria-labelledby="h-faq">
 <h2 id="h-faq">Вопросы</h2>
 <details><summary>Вы видите мои данные?</summary><p>Нет. Всё происходит в вашем браузере. Серверов Hushpaste на пути данных нет.</p></details>
-<details><summary>Что если ИИ изменит метку?</summary><p>Она останется как есть. Восстановление меняет только точные совпадения и ничего не угадывает.</p></details>
-<details><summary>Можно установить как приложение?</summary><p>Да. На iPhone: «Поделиться» → «На экран „Домой“». На Android: «Установить приложение» в Chrome. Оно открывается сразу на инструменте.</p></details>
-<details><summary>Это бесплатно?</summary><p>Да, веб-инструмент и приложение бесплатны. Скоро появятся Pro — расширение для браузера за $8 в месяц — и Team за $6 с человека в месяц.</p></details>
-<details><summary>Это открытый код?</summary><p>Код и тесты открыты на GitHub. Независимого аудита безопасности пока нет, он запланирован вместе с открытой лицензией.</p></details>
+<details><summary>Что если ИИ изменит метку?</summary><p>Она останется как есть. Восстанавливаются только точные совпадения, ничего не угадывается.</p></details>
+<details><summary>Можно установить как приложение?</summary><p>Да. iPhone: «Поделиться» → «На экран „Домой“». Android: «Установить приложение» в Chrome.</p></details>
+<details><summary>Это бесплатно?</summary><p>Да. Скоро появятся Pro — расширение для браузера за $8 в месяц — и Team за $6 с человека.</p></details>
+<details><summary>Был ли аудит безопасности?</summary><p>Пока нет. Код и тесты открыты на GitHub, независимый аудит запланирован.</p></details>
 </section>
 
-<section class="sheet web-only" id="join" aria-labelledby="h-join">
+<section class="web-only" id="join" aria-labelledby="h-join">
 <h2 id="h-join"><span id="pricing"></span>Получите Pro первыми</h2>
-<p>Pro — расширение для браузера, которое скрывает данные автоматически, когда вы нажимаете «Отправить». До запуска ничего не списывается.</p>
+<p class="muted">Расширение для браузера, которое скрывает данные автоматически при отправке. До запуска ничего не списывается.</p>
 <fieldset class="plans">
-<legend>ТАРИФ</legend>
+<legend>Тариф</legend>
 <label class="plan"><input type="radio" name="plan" value="pro" checked><span>Pro · $8 / месяц</span></label>
 <label class="plan"><input type="radio" name="plan" value="team"><span>Team · $6 / человек / месяц</span></label>
 </fieldset>
 <div class="wl">
 <form novalidate>
-<label for="email-cta">РАБОЧИЙ EMAIL</label>
+<label for="email-cta">Рабочий email</label>
 <input id="email-cta" type="email" name="email" placeholder="you@company.kz" autocomplete="email">
-<button type="submit" class="btn">Записаться</button>
+<button type="submit" class="btn">Сообщить мне</button>
 <p class="err" role="alert" hidden>Введите корректный email, чтобы попасть в список.</p>
 </form>
-<div class="ok" hidden><p class="big">Вы в списке.</p><p style="margin-top:6px">Напишем вам, когда откроется ранний доступ.</p><a class="btn line" href="/kit.html">Открыть бесплатный Safety Kit</a></div>
+<div class="ok" hidden><p class="big">Вы в списке.</p><p class="muted" style="margin-top:4px">Напишем вам, когда откроется ранний доступ.</p><a class="btn quiet" href="/kit.html">Открыть бесплатный Safety Kit</a></div>
 <p class="small">Без спама, одно письмо при запуске. <a href="/privacy.html">Конфиденциальность</a>.</p>
 </div>
 </section>

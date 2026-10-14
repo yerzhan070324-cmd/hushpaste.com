@@ -24,9 +24,9 @@
 <meta name="twitter:title" content="Hushpaste: yapay zekâya sızıntısız yapıştırın">
 <meta name="twitter:description" content="Sırları ve kişisel verileri yapay zekâ sohbetine ulaşmadan gizleyin. Tarayıcıda çalışır.">
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
-<meta name="theme-color" content="#D9CDAE">
-<link rel="stylesheet" href="/fonts-dossier.css">
-<link rel="stylesheet" href="/dossier.css">
+<meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E100F" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="/home.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -39,7 +39,7 @@
 <body>
 
 <header class="site"><div class="wrap">
-<a class="logo" href="/tr/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#1C1A17"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#F7F4EC"/></svg>HUSHPASTE</a>
+<a class="logo" href="/tr/"><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z"/><rect x="9" y="12" width="10" height="3" rx="1.5"/></svg>Hushpaste</a>
 <nav class="top-links" aria-label="Ana menü">
 <a class="web-only" href="/guides/">Rehberler</a>
 <span class="lang" aria-label="Language"><a href="/" lang="en">EN</a><a href="/ru/" lang="ru">RU</a><a href="/tr/" lang="tr" aria-current="page">TR</a></span>
@@ -48,102 +48,83 @@
 
 <main class="wrap" id="top">
 
-<div class="tabbed web-only">
-<span class="tab" aria-hidden="true">DOSYA NO. HP-001</span>
-<section class="sheet cover" aria-labelledby="h-cover">
-<div class="kicker"><span>HUSHPASTE</span><span class="stamp" aria-hidden="true">GİZLİ</span></div>
-<h1 id="h-cover">Yapay zekânın her şeyi bilmesi gerekmez.</h1>
-<p class="lede">Hushpaste, metninizi yapay zekâya göndermeden önce <span class="bar">şifreleri</span>, <span class="bar">anahtarları</span> ve <span class="bar">kişisel verileri</span> karartır. Sonra yanıtta hepsini yerine koyar.</p>
+<section class="hero web-only" aria-labelledby="h-hero">
+<h1 id="h-hero">Yapay zekâya yapıştır.<br>Hiçbir şey sızmasın.</h1>
+<p class="lede">Hushpaste, metninizi yapay zekâya göndermeden önce şifreleri, anahtarları ve kişisel verileri gizler. Yanıt, gerçek değerlerinizle geri gelir.</p>
 <p class="facts">Tarayıcınızda çalışır · Hiçbir şey yüklenmez · Ücretsiz</p>
-<a class="btn" href="#demo">Metnimi gizle ↓</a>
+<a class="btn" href="#demo">Ücretsiz deneyin</a>
 </section>
-</div>
 
-<section class="sheet tool" id="demo" aria-labelledby="h-tool">
-<h2 id="h-tool">Göndermeden önce gizleyin</h2>
-<p class="soft">Üç adım. Her şey bu sayfada kalır.</p>
+<section id="demo" aria-labelledby="h-tool">
+<h2 id="h-tool">Deneyin</h2>
+<p class="muted" style="margin-top:4px">Her şey bu sayfada kalır.</p>
 
-<div class="step"><h3><label for="src">1. Belgeyi yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Örnek</button><button type="button" class="mini" id="btnClear">Temizle</button></div></div>
+<div class="step"><h3><label for="src">1. Metninizi yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Örnek</button><button type="button" class="mini" id="btnClear">Temizle</button></div></div>
 <div class="panel">
 <textarea id="src" placeholder="Bir log, e-posta veya ayar dosyası yapıştırın" spellcheck="false"></textarea>
 <p class="drophint">Ya da <button type="button" id="btnFile">dosya açın</button>. Yalnızca bu sekmede okunur.<input type="file" id="file" hidden></p>
 </div>
 <details class="extra">
-<summary>Kendi kelimelerinizi de gizleyin: isimler, şirketler</summary>
+<summary>İsim veya şirketleri de gizleyin</summary>
 <label for="terms">Gizlenecek kelimeler, virgülle ayırın</label>
 <input id="terms" type="text" placeholder="Örnek Bank, Şahin Projesi, Ayşe Yılmaz" autocomplete="off">
 </details>
 
-<div class="step"><h3>2. Karartılmış kopya</h3><span class="meta" id="count">0 öğe</span></div>
+<div class="step"><h3>2. Güvenli sürümü kopyalayın</h3><span class="meta" id="count">0 öğe</span></div>
 <div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
-<p class="note"><b>NOT:</b> İsimler ve adresler otomatik algılanmaz. Bunları 1. adımda ekleyin ve göndermeden önce kopyayı okuyun.</p>
-<button type="button" class="btn" id="copy1">Gizlenmiş metni kopyala</button>
-<div class="gochat" id="gochat" hidden><span class="t">Şimdi şuraya yapıştırın:</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Yeni sekmede açılır. 3. adım için bu sekmeyi açık tutun.</span></div>
+<p class="note">İsimler ve adresler otomatik bulunmaz. Bunları 1. adımda ekleyin ve göndermeden önce metni kontrol edin.</p>
+<button type="button" class="btn" id="copy1">Güvenli metni kopyala</button>
+<div class="gochat" id="gochat" hidden><span class="t">Şuraya yapıştırın</span><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a><a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude</a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini</a><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a><a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a><span class="gn">Yeni sekmede açılır. Bu sekmeyi kapatmayın.</span></div>
 <p class="netm" id="netm" role="status" hidden></p>
 <details class="map" id="mapBox" hidden>
-<summary>Neler karartıldı (yalnızca bu sekmede tutulur)</summary>
+<summary>Neler gizlendi (yalnızca bu sekmede tutulur)</summary>
 <div id="map"></div>
 </details>
 
 <div class="step"><h3><label for="reply">3. Yapay zekâ yanıtını yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Örnek</button></div></div>
-<textarea id="reply" placeholder="Yapay zekâ yanıtını buraya yapıştırın" spellcheck="false" style="min-height:130px"></textarea>
-<div class="restore-out">
-<div class="step"><h3>Gizliliği kaldırıldı</h3><span class="meta" id="restCount">0 değer geri yüklendi</span></div>
+<textarea id="reply" placeholder="Yapay zekâ yanıtını buraya yapıştırın" spellcheck="false" style="min-height:120px"></textarea>
+<div class="step"><h3>Gerçek değerlerle yanıt</h3><span class="meta" id="restCount">0 değer geri yüklendi</span></div>
 <div class="out" id="restored" aria-live="polite"></div>
-<button type="button" class="btn line" id="copy2" style="margin-top:12px">Gerçek değerlerle kopyala</button>
-</div>
+<button type="button" class="btn quiet" id="copy2" style="margin-top:12px">Yanıtı kopyala</button>
 </section>
 
-<section class="sheet web-only" aria-labelledby="h-why">
-<h2 id="h-why">Neden önemli</h2>
-<p>Yapay zekâ sohbetine yapıştırdığınız her şey başkasının sunucusunda saklanır. Oradaki bir şifre, başkasının da okuyabileceği bir şifredir.</p>
-<h2 class="sm">Veriler nerede kalıyor</h2>
-<p>Algılama tarayıcınızda çalışır. Orijinaller bu sekmede kalır ve sekmeyi kapattığınızda kaybolur. Çerez yok, takip betiği yok.</p>
-<p class="soft">Kendiniz kontrol edin: geliştirici araçları → Network. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Kod GitHub'da açık</a>.</p>
+<section class="web-only" aria-labelledby="h-why">
+<h2 id="h-why">Neden</h2>
+<p>Yapay zekâ sohbetine yapıştırdığınız her şey başkasının sunucusunda saklanır. Hushpaste sırlarınızı oradan uzak tutar.</p>
+<p class="muted">Her şey tarayıcınızda çalışır. Hiçbir şey yüklenmez veya saklanmaz; sekmeyi kapattığınızda orijinaller kaybolur. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Kod GitHub'da</a>.</p>
 </section>
 
-<section class="sheet web-only" id="detects" aria-labelledby="h-det">
-<h2 id="h-det">Neler karartılır</h2>
-<ul class="redact">
-<li>API anahtarları ve token'lar</li>
-<li>Şifreler ve veritabanı adresleri</li>
-<li>E-postalar ve telefonlar</li>
-<li>Kart numaraları ve IBAN'lar</li>
-<li>IP adresleri</li>
-<li>TC Kimlik numaraları</li>
-<li>Kazakistan IIN ve BIN</li>
-<li>Rusya SNILS ve INN</li>
-<li>Pasaport numaraları</li>
-</ul>
-<p class="soft" style="margin-top:14px">Kartlar, IBAN'lar ve kimlik numaraları resmî kontrol haneleriyle doğrulanır; sıradan sayılara dokunulmaz.</p>
+<section class="web-only" id="detects" aria-labelledby="h-det">
+<h2 id="h-det">Neleri gizler</h2>
+<p class="muted">API anahtarları ve token'lar, şifreler, veritabanı adresleri, e-postalar, telefonlar, kartlar, IBAN'lar, IP adresleri, TC Kimlik, Kazakistan IIN ve BIN, Rusya SNILS ve INN, pasaport numaraları.</p>
 </section>
 
-<section class="sheet web-only faq" id="faq" aria-labelledby="h-faq">
+<section class="web-only faq" id="faq" aria-labelledby="h-faq">
 <h2 id="h-faq">Sorular</h2>
 <details><summary>Verilerimi görebiliyor musunuz?</summary><p>Hayır. Her şey tarayıcınızda olur. Veri yolunda Hushpaste sunucusu yoktur.</p></details>
-<details><summary>Yapay zekâ bir yer tutucuyu değiştirirse?</summary><p>Olduğu gibi kalır. Geri getirme yalnızca birebir eşleşmeleri değiştirir, tahmin yürütmez.</p></details>
-<details><summary>Uygulama olarak yükleyebilir miyim?</summary><p>Evet. iPhone'da: Paylaş → Ana Ekrana Ekle. Android'de Chrome'da: Uygulamayı yükle. Doğrudan araçla açılır.</p></details>
-<details><summary>Ücretsiz mi?</summary><p>Evet, web aracı ve uygulama ücretsiz. Pro (ayda $8'lık tarayıcı eklentisi) ve Team (kullanıcı başına ayda $6) yakında geliyor.</p></details>
-<details><summary>Açık kaynak mı?</summary><p>Kod ve testler GitHub'da herkese açık. Henüz bağımsız bir güvenlik denetimi yok; açık kaynak lisansıyla birlikte planlanıyor.</p></details>
+<details><summary>Yapay zekâ bir yer tutucuyu değiştirirse?</summary><p>Olduğu gibi kalır. Yalnızca birebir eşleşmeler geri getirilir, tahmin yürütülmez.</p></details>
+<details><summary>Uygulama olarak yükleyebilir miyim?</summary><p>Evet. iPhone: Paylaş → Ana Ekrana Ekle. Android: Chrome'da Uygulamayı yükle.</p></details>
+<details><summary>Ücretsiz mi?</summary><p>Evet. Pro (ayda $8'lık tarayıcı eklentisi) ve Team (kullanıcı başına $6) yakında geliyor.</p></details>
+<details><summary>Güvenlik denetimi yapıldı mı?</summary><p>Henüz değil. Kod ve testler GitHub'da herkese açık; bağımsız bir denetim planlanıyor.</p></details>
 </section>
 
-<section class="sheet web-only" id="join" aria-labelledby="h-join">
+<section class="web-only" id="join" aria-labelledby="h-join">
 <h2 id="h-join"><span id="pricing"></span>Pro'yu ilk siz alın</h2>
-<p>Pro, gönder tuşuna bastığınızda verileri otomatik olarak gizleyen bir tarayıcı eklentisidir. Lansmandan önce ücret alınmaz.</p>
+<p class="muted">Gönderdiğinizde verileri otomatik gizleyen bir tarayıcı eklentisi. Lansmandan önce ücret alınmaz.</p>
 <fieldset class="plans">
-<legend>PLAN</legend>
+<legend>Plan</legend>
 <label class="plan"><input type="radio" name="plan" value="pro" checked><span>Pro · $8 / ay</span></label>
 <label class="plan"><input type="radio" name="plan" value="team"><span>Team · $6 / kullanıcı / ay</span></label>
 </fieldset>
 <div class="wl">
 <form novalidate>
-<label for="email-cta">İŞ E-POSTASI</label>
+<label for="email-cta">İş e-postası</label>
 <input id="email-cta" type="email" name="email" placeholder="siz@sirket.com.tr" autocomplete="email">
-<button type="submit" class="btn">Listeye katıl</button>
+<button type="submit" class="btn">Bana haber ver</button>
 <p class="err" role="alert" hidden>Bekleme listesine katılmak için geçerli bir e-posta girin.</p>
 </form>
-<div class="ok" hidden><p class="big">Listedesiniz.</p><p style="margin-top:6px">Erken erişim açıldığında size e-posta göndereceğiz.</p><a class="btn line" href="/kit.html">Ücretsiz Safety Kit'i aç</a></div>
+<div class="ok" hidden><p class="big">Listedesiniz.</p><p class="muted" style="margin-top:4px">Erken erişim açıldığında size e-posta göndereceğiz.</p><a class="btn quiet" href="/kit.html">Ücretsiz Safety Kit'i aç</a></div>
 <p class="small">Spam yok, lansmanda tek bir e-posta. <a href="/privacy.html">Gizlilik</a>.</p>
 </div>
 </section>

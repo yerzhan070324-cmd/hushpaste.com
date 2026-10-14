@@ -1,0 +1,156 @@
+/* Minimal: one narrow column, system fonts, hairlines instead of cards, one lime accent from the app icon */
+:root{
+  --bg:#F6F6F3;
+  --surface:#FFFFFF;
+  --line:#E1E3DE;
+  --text:#141614;
+  --muted:#5C635D;
+  --logo:#141614;
+  --btn:#141614;
+  --on-btn:#FFFFFF;
+  --tok:#C8F751;
+  --on-tok:#141614;
+  --danger:#B42D1C;
+  --good:#2C7A3B;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Roboto Mono","Liberation Mono",monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0E100F;
+    --surface:#161917;
+    --line:#272C28;
+    --text:#ECEFEC;
+    --muted:#9AA39C;
+    --logo:#C8F751;
+    --btn:#C8F751;
+    --on-btn:#0E100F;
+    --tok:#C8F751;
+    --on-tok:#0E100F;
+    --danger:#FF8A75;
+    --good:#7FD18C;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance}
+.muted{color:var(--muted)}
+
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:650;font-size:17px;text-decoration:none;padding:8px 0}
+.logo path{fill:var(--logo)}
+.logo rect{fill:var(--bg)}
+.top-links{display:flex;align-items:center;gap:4px 16px;font-size:14px}
+.top-links a{text-decoration:none;color:var(--muted);padding:10px 0}
+.top-links a:hover{color:var(--text)}
+.lang{display:inline-flex;gap:10px}
+.lang a[aria-current]{color:var(--text);font-weight:600}
+
+section{padding-block:36px;border-top:1px solid var(--line)}
+section.hero{border-top:0;padding-block:36px 40px}
+h1{font-size:clamp(36px,10vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:700}
+.lede{margin-top:16px;font-size:18px;color:var(--muted);max-width:34em}
+.facts{margin-top:14px;font-size:14px;color:var(--muted)}
+.hero .btn{margin-top:24px}
+h2{font-size:22px;letter-spacing:-.01em;font-weight:650}
+section > p + p,section > h2 + p{margin-top:10px}
+
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 20px;border:0;border-radius:12px;background:var(--btn);color:var(--on-btn);font-weight:600;font-size:16px;text-decoration:none;cursor:pointer}
+.btn:hover{opacity:.9}
+.btn.quiet{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.mini{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:transparent;font-size:14px;cursor:pointer}
+.mini:hover{border-color:var(--text)}
+
+.step{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:26px 0 10px}
+.step h3{font-size:16px;font-weight:650}
+.step .acts{display:flex;gap:8px}
+.step .meta{font-size:14px;color:var(--muted)}
+.panel{min-width:0}
+textarea,.out{display:block;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;font-family:var(--mono);font-size:14px;line-height:1.65}
+textarea{min-height:170px;resize:vertical}
+textarea:focus{outline:0;border-color:var(--text)}
+textarea::placeholder,input::placeholder{color:var(--muted);opacity:.8}
+.panel.drag textarea{border-style:dashed;border-color:var(--text)}
+.out{min-height:110px;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere}
+.tok{background:var(--tok);color:var(--on-tok);border-radius:5px;padding:1px 5px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.drophint{margin-top:8px;font-size:13px;color:var(--muted)}
+.drophint button{border:0;background:none;padding:0;text-decoration:underline;cursor:pointer;font-size:13px;color:inherit}
+details.extra{margin-top:12px}
+details.extra summary{font-size:14px;color:var(--muted);padding:6px 0}
+details.extra label{display:block;font-size:13px;color:var(--muted);margin:6px 0}
+input[type=text],input[type=email]{width:100%;min-width:0;height:52px;padding:0 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:16px}
+input[type=text]:focus,input[type=email]:focus{outline:0;border-color:var(--text)}
+.risk{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.risk:empty{display:none}
+.lvl{font-size:12px;font-weight:650;letter-spacing:.02em;padding:4px 10px;border-radius:8px;border:1px solid var(--line)}
+.lvl.high{color:var(--danger);border-color:currentColor}
+.lvl.none{color:var(--muted)}
+.chip{font-size:13px;padding:3px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.note{margin:12px 0 16px;font-size:14px;color:var(--muted)}
+.gochat{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.gochat .t{font-size:14px;color:var(--muted);margin-right:2px}
+.gochat a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:14px;font-weight:500}
+.gochat a:hover{border-color:var(--text)}
+.gochat .gn{flex-basis:100%;font-size:13px;color:var(--muted)}
+.netm{margin-top:12px;font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:baseline}
+.netm i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block;transform:translateY(-1px)}
+.netm.warn i{background:var(--danger)}
+details.map{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:2px 14px;background:var(--surface)}
+details.map summary{font-size:14px;padding:10px 0}
+#map .r{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:4px 12px;padding:7px 0;border-top:1px solid var(--line);font-family:var(--mono);font-size:13px;align-items:baseline}
+#map .r span:first-child{background:var(--tok);color:var(--on-tok);border-radius:5px;padding:0 5px;font-weight:600;white-space:nowrap}
+#map .r span:last-child{overflow-wrap:anywhere}
+
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;color:var(--muted);font-weight:400;font-size:18px;line-height:1}
+details[open] > summary::after{content:"\2212"}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{margin-top:12px;border-top:1px solid var(--line)}
+.faq summary{font-weight:550;padding:15px 0}
+.faq details p{padding:0 0 15px;color:var(--muted)}
+
+fieldset.plans{border:0;margin:16px 0 0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
+fieldset.plans legend{font-size:13px;color:var(--muted);margin-bottom:8px}
+.plan{flex:1 1 220px;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px;cursor:pointer;font-size:15px}
+.plan input{width:18px;height:18px;margin:0;flex:none;accent-color:var(--text)}
+.plan:has(input:checked){border-color:var(--text)}
+.wl form{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.wl form label{flex-basis:100%;font-size:13px;color:var(--muted)}
+.wl input[type=email]{flex:1 1 220px}
+.wl button[type=submit]{flex:1 1 150px;width:auto}
+.err{flex-basis:100%;color:var(--danger);font-size:14px}
+.err a{color:inherit}
+.ok{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--surface)}
+.ok .big{font-weight:650;font-size:18px}
+.ok .btn{margin-top:14px}
+.small{margin-top:12px;font-size:13px;color:var(--muted)}
+
+footer .wrap{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;padding-block:20px 32px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:4px 14px}
+footer a{text-decoration:none;padding:6px 0;display:inline-block}
+footer a:hover{color:var(--text)}
+
+/* reading-progress bar that app.js adds: not used in this design */
+.progress{display:none}
+
+/* installed as an app: only the tool */
+@media (display-mode: standalone){ .web-only{display:none!important} #demo{border-top:0;padding-top:8px} }
+.standalone .web-only{display:none!important}
+.standalone #demo{border-top:0;padding-top:8px}
+
+@media (min-width:640px){
+  .hero .btn,.wl button[type=submit]{width:auto;display:inline-flex}
+  textarea{min-height:200px}
+}
