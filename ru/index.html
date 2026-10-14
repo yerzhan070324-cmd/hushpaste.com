@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data: https://hushpaste.goatcounter.com; connect-src https://formspree.io; base-uri 'none'; form-action 'none'; manifest-src 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: вставляйте в ИИ без утечек</title>
 <link rel="canonical" href="https://gethushpaste.com/ru/">
@@ -26,7 +27,7 @@
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
 <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0E100F" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="/home.css">
+<link rel="stylesheet" href="/home.css?v=7f757a30">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -49,7 +50,7 @@
 <main class="wrap" id="top">
 
 <section class="hero web-only" aria-labelledby="h-hero">
-<h1 id="h-hero">Вставляйте в ИИ.<br>Без утечек.</h1>
+<h1 id="h-hero">Вставляйте в ИИ.<br><span class="hl">Без утечек.</span></h1>
 <p class="lede">Hushpaste скрывает пароли, ключи и личные данные, прежде чем вы отправите текст в ИИ. Ответ возвращается с настоящими значениями.</p>
 <div class="demo" role="img" aria-label="Пример: пароль, email и телефон превращаются в метки">
 <div class="hd" aria-hidden="true"><span>До → после</span><b class="badge">скрыто: 3</b></div>
@@ -59,15 +60,20 @@
 <div><span class="sw" style="--d:0.90s"><span class="v">+7 701 234 56 78</span><span class="tok">[PHONE_1]</span></span></div>
 </div>
 </div>
-<p class="facts">Работает в браузере · Ничего не загружается · Бесплатно</p>
+<ul class="facts">
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Работает в браузере</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M17.5 17.5H7a5 5 0 0 1-.9-9.92"/><path d="M10.6 5.1A6 6 0 0 1 18 9h.5a3.5 3.5 0 0 1 2.2 6.22"/></svg>Ничего не загружается</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Бесплатно</li>
+</ul>
 <a class="btn" href="#demo">Попробовать бесплатно</a>
 </section>
 
 <section id="demo" aria-labelledby="h-tool">
-<h2 id="h-tool">Попробуйте</h2>
-<p class="muted" style="margin-top:4px">Всё остаётся на этой странице.</p>
+<p class="eyebrow web-only">Бесплатный инструмент</p>
+<h2 id="h-tool">Попробуйте прямо здесь</h2>
+<p class="muted" style="margin-top:6px">Всё остаётся на этой странице.</p>
 
-<div class="step"><h3><label for="src">1. Вставьте текст</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Пример</button><button type="button" class="mini" id="btnClear">Очистить</button></div></div>
+<div class="step"><h3><span class="n" aria-hidden="true">1</span><label for="src">Вставьте текст</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Пример</button><button type="button" class="mini" id="btnClear">Очистить</button></div></div>
 <div class="panel">
 <textarea id="src" placeholder="Вставьте лог, письмо или конфиг" spellcheck="false"></textarea>
 <p class="drophint">Или <button type="button" id="btnFile">откройте файл</button>. Он читается только в этой вкладке.<input type="file" id="file" hidden></p>
@@ -78,7 +84,7 @@
 <input id="terms" type="text" placeholder="ТОО Ромашка, Проект Сокол, Айгерим Нурлановна" autocomplete="off">
 </details>
 
-<div class="step"><h3>2. Скопируйте безопасную версию</h3><span class="meta" id="count">0 совпадений</span></div>
+<div class="step"><h3><span class="n" aria-hidden="true">2</span>Скопируйте безопасную версию</h3><span class="meta" id="count">0 совпадений</span></div>
 <div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
 <p class="note">Имена и адреса не находятся автоматически. Добавьте их в шаге 1 и проверьте текст перед отправкой.</p>
@@ -90,7 +96,7 @@
 <div id="map"></div>
 </details>
 
-<div class="step"><h3><label for="reply">3. Вставьте ответ ИИ</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Пример</button></div></div>
+<div class="step"><h3><span class="n" aria-hidden="true">3</span><label for="reply">Вставьте ответ ИИ</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Пример</button></div></div>
 <textarea id="reply" placeholder="Вставьте ответ ИИ сюда" spellcheck="false" style="min-height:120px"></textarea>
 <div class="step"><h3>Ответ с настоящими данными</h3><span class="meta" id="restCount">восстановлено: 0</span></div>
 <div class="out" id="restored" aria-live="polite"></div>
@@ -98,14 +104,30 @@
 </section>
 
 <section class="web-only" aria-labelledby="h-why">
-<h2 id="h-why">Зачем</h2>
-<p>Всё, что вы вставляете в чат с ИИ, хранится на чужом сервере. Hushpaste не пускает туда ваши секреты.</p>
-<p class="muted">Всё работает в вашем браузере. Ничего не загружается и не хранится, а оригиналы исчезают, когда вы закрываете вкладку. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Код открыт на GitHub</a>.</p>
+<p class="eyebrow">Зачем</p>
+<h2 class="statement" id="h-why">Всё, что вы вставляете в ИИ, хранится <span class="hl">на чужом сервере.</span></h2>
+<p class="body">Hushpaste не пускает туда ваши секреты. Всё работает в браузере, ничего не загружается, а оригиналы исчезают, когда вы закрываете вкладку. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Код открыт на GitHub</a>.</p>
 </section>
 
 <section class="web-only" id="detects" aria-labelledby="h-det">
-<h2 id="h-det">Что скрывается</h2>
-<p class="muted">API-ключи и токены, пароли, адреса баз данных, email, телефоны, карты, IBAN, IP-адреса, ИИН и БИН, турецкий TC Kimlik, СНИЛС и ИНН, номера паспортов.</p>
+<p class="eyebrow">Что скрывает</p>
+<h2 class="statement" id="h-det">Он знает, как выглядят секреты.</h2>
+<ul class="chips">
+<li>API-ключи</li>
+<li>Токены</li>
+<li>Пароли</li>
+<li>Адреса баз данных</li>
+<li>Email</li>
+<li>Телефоны</li>
+<li>Карты</li>
+<li>IBAN</li>
+<li>IP-адреса</li>
+<li>Паспорта</li>
+<li class="id">KZ · ИИН / БИН</li>
+<li class="id">TR · TC Kimlik</li>
+<li class="id">RU · СНИЛС / ИНН</li>
+</ul>
+<p class="muted small-note">Карты, IBAN и номера документов проверяются по официальным контрольным цифрам, поэтому обычные числа не трогаются.</p>
 </section>
 
 <section class="web-only faq" id="faq" aria-labelledby="h-faq">
@@ -118,8 +140,10 @@
 </section>
 
 <section class="web-only" id="join" aria-labelledby="h-join">
-<h2 id="h-join"><span id="pricing"></span>Скоро: Pro</h2>
-<p class="muted">Расширение для браузера, которое скрывает данные автоматически при отправке. Оставьте email, и мы напишем, когда оно будет готово.</p>
+<div class="card">
+<p class="eyebrow"><span class="soon">Скоро</span></p>
+<h2 class="statement" id="h-join"><span id="pricing"></span>Hushpaste Pro</h2>
+<p class="muted" style="margin-top:8px">Расширение для браузера, которое скрывает данные автоматически при отправке. Оставьте email, и мы напишем, когда оно будет готово.</p>
 <div class="wl">
 <form novalidate>
 <label for="email-cta">Рабочий email</label>
@@ -129,6 +153,7 @@
 </form>
 <div class="ok" hidden><p class="big">Вы в списке.</p><p class="muted" style="margin-top:4px">Напишем вам, когда откроется ранний доступ.</p><a class="btn quiet" href="/kit.html">Открыть бесплатный Safety Kit</a></div>
 <p class="small">Без спама, одно письмо при запуске. <a href="/privacy.html">Конфиденциальность</a>.</p>
+</div>
 </div>
 </section>
 

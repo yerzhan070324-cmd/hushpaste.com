@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data: https://hushpaste.goatcounter.com; connect-src https://formspree.io; base-uri 'none'; form-action 'none'; manifest-src 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: paste freely, leak nothing</title>
 <link rel="canonical" href="https://gethushpaste.com/">
@@ -26,7 +27,7 @@
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
 <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0E100F" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="/home.css">
+<link rel="stylesheet" href="/home.css?v=7f757a30">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -49,7 +50,7 @@
 <main class="wrap" id="top">
 
 <section class="hero web-only" aria-labelledby="h-hero">
-<h1 id="h-hero">Paste into AI.<br>Leak nothing.</h1>
+<h1 id="h-hero">Paste into AI.<br><span class="hl">Leak nothing.</span></h1>
 <p class="lede">Hushpaste hides passwords, keys and personal data before you send text to an AI. The answer comes back with your real values.</p>
 <div class="demo" role="img" aria-label="Example: a password, an email and a phone number turn into placeholders">
 <div class="hd" aria-hidden="true"><span>Before → after</span><b class="badge">3 hidden</b></div>
@@ -59,15 +60,20 @@
 <div><span class="sw" style="--d:0.90s"><span class="v">+49 151 2345 6789</span><span class="tok">[PHONE_1]</span></span></div>
 </div>
 </div>
-<p class="facts">Runs in your browser · Nothing uploaded · Free</p>
+<ul class="facts">
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Runs in your browser</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M17.5 17.5H7a5 5 0 0 1-.9-9.92"/><path d="M10.6 5.1A6 6 0 0 1 18 9h.5a3.5 3.5 0 0 1 2.2 6.22"/></svg>Nothing uploaded</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Free</li>
+</ul>
 <a class="btn" href="#demo">Try it free</a>
 </section>
 
 <section id="demo" aria-labelledby="h-tool">
-<h2 id="h-tool">Try it</h2>
-<p class="muted" style="margin-top:4px">Everything stays on this page.</p>
+<p class="eyebrow web-only">Free tool</p>
+<h2 id="h-tool">Try it right here</h2>
+<p class="muted" style="margin-top:6px">Everything stays on this page.</p>
 
-<div class="step"><h3><label for="src">1. Paste your text</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Sample</button><button type="button" class="mini" id="btnClear">Clear</button></div></div>
+<div class="step"><h3><span class="n" aria-hidden="true">1</span><label for="src">Paste your text</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Sample</button><button type="button" class="mini" id="btnClear">Clear</button></div></div>
 <div class="panel">
 <textarea id="src" placeholder="Paste a log, an email or a config file" spellcheck="false"></textarea>
 <p class="drophint">Or <button type="button" id="btnFile">open a file</button>. It is read in this tab only.<input type="file" id="file" hidden></p>
@@ -78,7 +84,7 @@
 <input id="terms" type="text" placeholder="Acme Bank, Project Falcon, Jane Doe" autocomplete="off">
 </details>
 
-<div class="step"><h3>2. Copy the safe version</h3><span class="meta" id="count">0 items</span></div>
+<div class="step"><h3><span class="n" aria-hidden="true">2</span>Copy the safe version</h3><span class="meta" id="count">0 items</span></div>
 <div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
 <p class="note">Names and addresses aren't found automatically. Add them in step 1 and check the text before you send it.</p>
@@ -90,7 +96,7 @@
 <div id="map"></div>
 </details>
 
-<div class="step"><h3><label for="reply">3. Paste the AI's answer</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Example</button></div></div>
+<div class="step"><h3><span class="n" aria-hidden="true">3</span><label for="reply">Paste the AI's answer</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Example</button></div></div>
 <textarea id="reply" placeholder="Paste the AI's answer here" spellcheck="false" style="min-height:120px"></textarea>
 <div class="step"><h3>Answer with real values</h3><span class="meta" id="restCount">0 values restored</span></div>
 <div class="out" id="restored" aria-live="polite"></div>
@@ -98,14 +104,30 @@
 </section>
 
 <section class="web-only" aria-labelledby="h-why">
-<h2 id="h-why">Why</h2>
-<p>Anything you paste into an AI chat is stored on someone else's server. Hushpaste keeps your secrets out of it.</p>
-<p class="muted">It all runs in your browser. Nothing is uploaded or stored, and the originals disappear when you close the tab. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">The code is on GitHub</a>.</p>
+<p class="eyebrow">Why</p>
+<h2 class="statement" id="h-why">Anything you paste into AI is stored on <span class="hl">someone else's server.</span></h2>
+<p class="body">Hushpaste keeps your secrets out of it. Everything runs in your browser, nothing is uploaded, and the originals vanish when you close the tab. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">The code is on GitHub</a>.</p>
 </section>
 
 <section class="web-only" id="detects" aria-labelledby="h-det">
-<h2 id="h-det">What it hides</h2>
-<p class="muted">API keys and tokens, passwords, database URLs, emails, phone numbers, cards, IBANs, IP addresses, Kazakh IIN and BIN, Turkish TC Kimlik, Russian SNILS and INN, passport numbers.</p>
+<p class="eyebrow">What it hides</p>
+<h2 class="statement" id="h-det">It knows what a secret looks like.</h2>
+<ul class="chips">
+<li>API keys</li>
+<li>Tokens</li>
+<li>Passwords</li>
+<li>Database URLs</li>
+<li>Emails</li>
+<li>Phone numbers</li>
+<li>Cards</li>
+<li>IBANs</li>
+<li>IP addresses</li>
+<li>Passports</li>
+<li class="id">KZ · IIN / BIN</li>
+<li class="id">TR · TC Kimlik</li>
+<li class="id">RU · SNILS / INN</li>
+</ul>
+<p class="muted small-note">Cards, IBANs and ID numbers are checked with their official check digits, so ordinary numbers stay untouched.</p>
 </section>
 
 <section class="web-only faq" id="faq" aria-labelledby="h-faq">
@@ -118,8 +140,10 @@
 </section>
 
 <section class="web-only" id="join" aria-labelledby="h-join">
-<h2 id="h-join"><span id="pricing"></span>Pro is coming soon</h2>
-<p class="muted">A browser extension that hides data automatically when you send. Leave your email and we'll tell you when it's ready.</p>
+<div class="card">
+<p class="eyebrow"><span class="soon">Coming soon</span></p>
+<h2 class="statement" id="h-join"><span id="pricing"></span>Hushpaste Pro</h2>
+<p class="muted" style="margin-top:8px">A browser extension that hides data automatically when you send. Leave your email and we'll tell you when it's ready.</p>
 <div class="wl">
 <form novalidate>
 <label for="email-cta">Work email</label>
@@ -129,6 +153,7 @@
 </form>
 <div class="ok" hidden><p class="big">You're on the list.</p><p class="muted" style="margin-top:4px">We'll email you when early access opens.</p><a class="btn quiet" href="/kit.html">Open your free Safety Kit</a></div>
 <p class="small">No spam, one email at launch. <a href="/privacy.html">Privacy</a>.</p>
+</div>
 </div>
 </section>
 

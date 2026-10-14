@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data: https://hushpaste.goatcounter.com; connect-src https://formspree.io; base-uri 'none'; form-action 'none'; manifest-src 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no, email=no, address=no">
 <meta name="waitlist-url" content="https://formspree.io/f/mnpjvzbo">
 <title>Hushpaste: yapay zekâya sızıntısız yapıştırın</title>
 <link rel="canonical" href="https://gethushpaste.com/tr/">
@@ -26,7 +27,7 @@
 <meta name="twitter:image" content="https://gethushpaste.com/og-image.png">
 <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0E100F" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="/home.css">
+<link rel="stylesheet" href="/home.css?v=7f757a30">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -49,7 +50,7 @@
 <main class="wrap" id="top">
 
 <section class="hero web-only" aria-labelledby="h-hero">
-<h1 id="h-hero">Yapay zekâya yapıştır.<br>Hiçbir şey sızmasın.</h1>
+<h1 id="h-hero">Yapay zekâya yapıştır.<br><span class="hl">Hiçbir şey sızmasın.</span></h1>
 <p class="lede">Hushpaste, metninizi yapay zekâya göndermeden önce şifreleri, anahtarları ve kişisel verileri gizler. Yanıt, gerçek değerlerinizle geri gelir.</p>
 <div class="demo" role="img" aria-label="Örnek: bir şifre, bir e-posta ve bir telefon numarası yer tutuculara dönüşür">
 <div class="hd" aria-hidden="true"><span>Önce → sonra</span><b class="badge">3 gizlendi</b></div>
@@ -59,15 +60,20 @@
 <div><span class="sw" style="--d:0.90s"><span class="v">+90 532 123 45 67</span><span class="tok">[PHONE_1]</span></span></div>
 </div>
 </div>
-<p class="facts">Tarayıcınızda çalışır · Hiçbir şey yüklenmez · Ücretsiz</p>
+<ul class="facts">
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Tarayıcınızda çalışır</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M17.5 17.5H7a5 5 0 0 1-.9-9.92"/><path d="M10.6 5.1A6 6 0 0 1 18 9h.5a3.5 3.5 0 0 1 2.2 6.22"/></svg>Hiçbir şey yüklenmez</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Ücretsiz</li>
+</ul>
 <a class="btn" href="#demo">Ücretsiz deneyin</a>
 </section>
 
 <section id="demo" aria-labelledby="h-tool">
-<h2 id="h-tool">Deneyin</h2>
-<p class="muted" style="margin-top:4px">Her şey bu sayfada kalır.</p>
+<p class="eyebrow web-only">Ücretsiz araç</p>
+<h2 id="h-tool">Hemen burada deneyin</h2>
+<p class="muted" style="margin-top:6px">Her şey bu sayfada kalır.</p>
 
-<div class="step"><h3><label for="src">1. Metninizi yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Örnek</button><button type="button" class="mini" id="btnClear">Temizle</button></div></div>
+<div class="step"><h3><span class="n" aria-hidden="true">1</span><label for="src">Metninizi yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnSample">Örnek</button><button type="button" class="mini" id="btnClear">Temizle</button></div></div>
 <div class="panel">
 <textarea id="src" placeholder="Bir log, e-posta veya ayar dosyası yapıştırın" spellcheck="false"></textarea>
 <p class="drophint">Ya da <button type="button" id="btnFile">dosya açın</button>. Yalnızca bu sekmede okunur.<input type="file" id="file" hidden></p>
@@ -78,7 +84,7 @@
 <input id="terms" type="text" placeholder="Örnek Bank, Şahin Projesi, Ayşe Yılmaz" autocomplete="off">
 </details>
 
-<div class="step"><h3>2. Güvenli sürümü kopyalayın</h3><span class="meta" id="count">0 öğe</span></div>
+<div class="step"><h3><span class="n" aria-hidden="true">2</span>Güvenli sürümü kopyalayın</h3><span class="meta" id="count">0 öğe</span></div>
 <div class="out" id="out" aria-live="polite"></div>
 <div class="risk" id="risk" role="status" aria-live="polite"></div>
 <p class="note">İsimler ve adresler otomatik bulunmaz. Bunları 1. adımda ekleyin ve göndermeden önce metni kontrol edin.</p>
@@ -90,7 +96,7 @@
 <div id="map"></div>
 </details>
 
-<div class="step"><h3><label for="reply">3. Yapay zekâ yanıtını yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Örnek</button></div></div>
+<div class="step"><h3><span class="n" aria-hidden="true">3</span><label for="reply">Yapay zekâ yanıtını yapıştırın</label></h3><div class="acts"><button type="button" class="mini" id="btnExample">Örnek</button></div></div>
 <textarea id="reply" placeholder="Yapay zekâ yanıtını buraya yapıştırın" spellcheck="false" style="min-height:120px"></textarea>
 <div class="step"><h3>Gerçek değerlerle yanıt</h3><span class="meta" id="restCount">0 değer geri yüklendi</span></div>
 <div class="out" id="restored" aria-live="polite"></div>
@@ -98,14 +104,30 @@
 </section>
 
 <section class="web-only" aria-labelledby="h-why">
-<h2 id="h-why">Neden</h2>
-<p>Yapay zekâ sohbetine yapıştırdığınız her şey başkasının sunucusunda saklanır. Hushpaste sırlarınızı oradan uzak tutar.</p>
-<p class="muted">Her şey tarayıcınızda çalışır. Hiçbir şey yüklenmez veya saklanmaz; sekmeyi kapattığınızda orijinaller kaybolur. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Kod GitHub'da</a>.</p>
+<p class="eyebrow">Neden</p>
+<h2 class="statement" id="h-why">Yapay zekâya yapıştırdığınız her şey <span class="hl">başkasının sunucusunda</span> saklanır.</h2>
+<p class="body">Hushpaste sırlarınızı oradan uzak tutar. Her şey tarayıcınızda çalışır, hiçbir şey yüklenmez ve sekmeyi kapattığınızda orijinaller kaybolur. <a href="https://github.com/yerzhan070324-cmd/hushpaste.com">Kod GitHub'da</a>.</p>
 </section>
 
 <section class="web-only" id="detects" aria-labelledby="h-det">
-<h2 id="h-det">Neleri gizler</h2>
-<p class="muted">API anahtarları ve token'lar, şifreler, veritabanı adresleri, e-postalar, telefonlar, kartlar, IBAN'lar, IP adresleri, TC Kimlik, Kazakistan IIN ve BIN, Rusya SNILS ve INN, pasaport numaraları.</p>
+<p class="eyebrow">Neleri gizler</p>
+<h2 class="statement" id="h-det">Bir sırrın neye benzediğini bilir.</h2>
+<ul class="chips">
+<li>API anahtarları</li>
+<li>Token'lar</li>
+<li>Şifreler</li>
+<li>Veritabanı adresleri</li>
+<li>E-postalar</li>
+<li>Telefonlar</li>
+<li>Kartlar</li>
+<li>IBAN'lar</li>
+<li>IP adresleri</li>
+<li>Pasaportlar</li>
+<li class="id">TR · TC Kimlik</li>
+<li class="id">KZ · IIN / BIN</li>
+<li class="id">RU · SNILS / INN</li>
+</ul>
+<p class="muted small-note">Kartlar, IBAN'lar ve kimlik numaraları resmî kontrol haneleriyle doğrulanır; sıradan sayılara dokunulmaz.</p>
 </section>
 
 <section class="web-only faq" id="faq" aria-labelledby="h-faq">
@@ -118,8 +140,10 @@
 </section>
 
 <section class="web-only" id="join" aria-labelledby="h-join">
-<h2 id="h-join"><span id="pricing"></span>Yakında: Pro</h2>
-<p class="muted">Gönderdiğinizde verileri otomatik gizleyen bir tarayıcı eklentisi. E-postanızı bırakın, hazır olduğunda haber verelim.</p>
+<div class="card">
+<p class="eyebrow"><span class="soon">Yakında</span></p>
+<h2 class="statement" id="h-join"><span id="pricing"></span>Hushpaste Pro</h2>
+<p class="muted" style="margin-top:8px">Gönderdiğinizde verileri otomatik gizleyen bir tarayıcı eklentisi. E-postanızı bırakın, hazır olduğunda haber verelim.</p>
 <div class="wl">
 <form novalidate>
 <label for="email-cta">İş e-postası</label>
@@ -129,6 +153,7 @@
 </form>
 <div class="ok" hidden><p class="big">Listedesiniz.</p><p class="muted" style="margin-top:4px">Erken erişim açıldığında size e-posta göndereceğiz.</p><a class="btn quiet" href="/kit.html">Ücretsiz Safety Kit'i aç</a></div>
 <p class="small">Spam yok, lansmanda tek bir e-posta. <a href="/privacy.html">Gizlilik</a>.</p>
+</div>
 </div>
 </section>
 
