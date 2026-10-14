@@ -144,6 +144,14 @@ footer nav{display:flex;flex-wrap:wrap;gap:4px 14px}
 footer a{text-decoration:none;padding:6px 0;display:inline-block}
 footer a:hover{color:var(--text)}
 
+/* hero demo: secrets turn into placeholders. Without motion both are shown side by side */
+.demo{margin-top:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.demo .hd{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.badge{font-weight:600;font-size:11px;color:var(--on-tok);background:var(--tok);border-radius:999px;padding:2px 9px}
+.demo .bd{padding:12px 14px;font-family:var(--mono);font-size:13.5px;line-height:2.05;overflow-x:auto;white-space:nowrap}
+.sw{display:inline-flex;gap:8px;align-items:baseline}
+.sw .v{text-decoration:line-through;color:var(--muted)}
+
 /* reading-progress bar that app.js adds: not used in this design */
 .progress{display:none}
 
@@ -151,6 +159,35 @@ footer a:hover{color:var(--text)}
 @media (display-mode: standalone){ .web-only{display:none!important} #demo{border-top:0;padding-top:8px} }
 .standalone .web-only{display:none!important}
 .standalone #demo{border-top:0;padding-top:8px}
+
+@media (prefers-reduced-motion: no-preference){
+  /* the swap: value fades up and out, the placeholder settles in; staggered per line, 8s loop */
+  .sw{display:inline-grid;gap:0}
+  .sw > span{grid-area:1/1;justify-self:start}
+  .sw .v{text-decoration:none;color:inherit;animation:hp-out 8s var(--d,0s) infinite both}
+  .sw .tok{animation:hp-in 8s var(--d,0s) infinite both}
+  .badge{animation:hp-badge 8s .9s infinite both}
+  @keyframes hp-out{0%,16%{opacity:1;transform:none;filter:none}23%,80%{opacity:0;transform:translateY(-5px);filter:blur(3px)}88%,100%{opacity:1;transform:none;filter:none}}
+  @keyframes hp-in{0%,16%{opacity:0;transform:translateY(5px) scale(.94)}23%,80%{opacity:1;transform:none}88%,100%{opacity:0;transform:translateY(5px) scale(.94)}}
+  @keyframes hp-badge{0%,18%{opacity:0;transform:scale(.8)}24%,80%{opacity:1;transform:none}86%,100%{opacity:0;transform:scale(.8)}}
+
+  /* page load: the intro rises in, one line after another */
+  .hero > *{animation:hp-rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero > :nth-child(2){animation-delay:.08s}
+  .hero > :nth-child(3){animation-delay:.16s}
+  .hero > :nth-child(4){animation-delay:.24s}
+  .hero > :nth-child(5){animation-delay:.32s}
+  @keyframes hp-rise{from{opacity:0;transform:translateY(12px)}}
+
+  /* scroll: headings and the questions fade up as they arrive (classes added by app.js) */
+  .js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+  .js .rv.in{opacity:1;transform:none}
+
+  /* touch feedback */
+  .btn,.mini,.gochat a{transition:transform .12s ease,opacity .15s ease,border-color .15s ease}
+  .btn:active,.mini:active,.gochat a:active{transform:scale(.97)}
+  .tok{transition:background-color .2s ease}
+}
 
 @media (min-width:640px){
   .hero .btn,.wl button[type=submit]{width:auto;display:inline-flex}
