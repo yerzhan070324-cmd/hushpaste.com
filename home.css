@@ -120,6 +120,8 @@ details[open] > summary::after{content:"\2212"}
 .faq details:first-of-type{margin-top:12px;border-top:1px solid var(--line)}
 .faq summary{font-weight:550;padding:15px 0}
 .faq details p{padding:0 0 15px;color:var(--muted)}
+.faq details:last-of-type{border-bottom:0}
+section.faq{padding-bottom:20px}
 
 fieldset.plans{border:0;margin:16px 0 0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
 fieldset.plans legend{font-size:13px;color:var(--muted);margin-bottom:8px}
