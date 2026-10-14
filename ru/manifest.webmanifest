@@ -1,0 +1,25 @@
+{
+  "name": "Hushpaste",
+  "short_name": "Hushpaste",
+  "display": "standalone",
+  "background_color": "#0C110E",
+  "theme_color": "#0C110E",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "lang": "ru",
+  "start_url": "/ru/",
+  "scope": "/ru/",
+  "id": "/ru/",
+  "description": "Скрывает API-ключи и личные данные перед отправкой в AI-чат и возвращает их в ответе."
+}

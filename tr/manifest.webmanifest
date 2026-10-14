@@ -1,0 +1,25 @@
+{
+  "name": "Hushpaste",
+  "short_name": "Hushpaste",
+  "display": "standalone",
+  "background_color": "#0C110E",
+  "theme_color": "#0C110E",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "lang": "tr",
+  "start_url": "/tr/",
+  "scope": "/tr/",
+  "id": "/tr/",
+  "description": "API anahtarlarını ve kişisel verileri yapay zekâ sohbetine yapıştırmadan önce gizler, yanıtta geri getirir."
+}

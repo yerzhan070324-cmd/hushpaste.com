@@ -58,8 +58,13 @@ ru/ tr/                 Russian and Turkish translations
 guides/                 five long-form guides
 kit.html                AI Paste Safety Kit
 privacy.html            privacy notice
+manifest.webmanifest    install as an app (also ru/, tr/)
 tests/                  detection and privacy-guarantee tests
 ```
+
+## Install as an app
+
+On iPhone or iPad open gethushpaste.com in Safari, tap Share, then Add to Home Screen. On Android, Chrome offers Install app. It opens full-screen with its own icon, and it still runs entirely in the browser.
 
 ## How it is served
 
