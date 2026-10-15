@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; img-src 'self' data: https://hushpaste.goatcounter.com; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does ChatGPT leak your data? What happens to your paste · Hushpaste</title>
+<meta name="description" content="Will ChatGPT leak your data? What happens to what you paste, the real privacy risks, which settings help, and how to use AI without sharing secrets.">
+<link rel="canonical" href="https://gethushpaste.com/guides/does-chatgpt-leak-your-data.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Hushpaste">
+<meta property="og:url" content="https://gethushpaste.com/guides/does-chatgpt-leak-your-data.html">
+<meta property="og:title" content="Does ChatGPT leak your data?">
+<meta property="og:description" content="What happens to what you paste into ChatGPT, the real privacy risks, and how to use AI without sharing secrets.">
+<meta property="og:image" content="https://gethushpaste.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0C110E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M14 2 24 6V13C24 19 19.5 23.5 14 26 8.5 23.5 4 19 4 13V6Z' fill='%23C8F751'/%3E%3Crect x='9' y='12' width='10' height='3' rx='1.5' fill='%230C110E'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/fonts.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does ChatGPT leak your data?","acceptedAnswer":{"@type":"Answer","text":"ChatGPT does not publish your chats, but everything you paste is sent to and stored by OpenAI, may be used for training depending on your settings, and can be exposed through a stolen account or a bug. Do not paste real secrets or personal data; replace them with placeholders first."}},
+{"@type":"Question","name":"Does Temporary Chat keep my data private?","acceptedAnswer":{"@type":"Answer","text":"Temporary Chat is not saved to your history or used for training, but it is still sent to OpenAI and kept for a short time for safety checks. It lowers the risk; it does not remove it."}},
+{"@type":"Question","name":"Is Claude more private than ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Policies differ in the details, but every cloud AI receives and stores what you send. The safe approach is the same for all of them: do not send the real secret in the first place."}}
+]}
+</script>
+<style>
+:root{--bg:#0C110E;--panel:#141B17;--deep:#0A0E0C;--line:#26312B;--text:#E9EFEA;--soft:#B4C0B9;--mute:#93A19A;--lime:#C8F751;--limeline:#3F5A1E;--coral:#FF9B80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Instrument Sans',system-ui,sans-serif;font-size:17px;line-height:1.65}
+a{color:var(--lime)}
+a:hover{color:#E3FF9A}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.top a.back{color:var(--mute);font-size:15px;text-decoration:none;padding:12px 0}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;padding:20px 0}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.04em;color:var(--lime);margin:24px 0 0}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;margin:0}
+h1{font-size:clamp(34px,6vw,52px);line-height:1.06;letter-spacing:-.02em;margin-top:12px}
+h2{font-size:26px;line-height:1.2;margin-top:48px}
+h3{font-size:20px;margin-top:28px}
+p,ul,ol{margin:14px 0 0;color:var(--soft)}
+ul,ol{padding-left:22px}
+li{margin-top:8px}
+strong{color:var(--text)}
+.lead{font-size:20px;color:var(--text)}
+.answer{margin-top:24px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--lime);border-radius:12px}
+.answer p{margin:0;color:var(--text)}
+.tablewrap{margin-top:16px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;color:var(--soft)}
+th,td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--line)}
+th{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--mute);font-weight:500}
+td:first-child{color:var(--text)}
+pre{margin:16px 0 0;padding:16px 18px;background:var(--deep);border:1px solid var(--line);border-radius:12px;overflow-x:auto;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C9D4CD}
+code{font-family:'IBM Plex Mono',monospace;font-size:.9em;color:var(--text)}
+.bad{color:var(--coral)}
+.tok{color:var(--lime)}
+.cta{margin-top:40px;padding:24px;background:#172210;border:1px solid var(--limeline);border-radius:14px}
+.cta p{margin:0;color:var(--text)}
+.btn{display:inline-block;margin-top:16px;border-radius:8px;background:var(--lime);color:var(--bg);font-weight:600;font-size:16px;padding:0 22px;min-height:48px;line-height:48px;text-decoration:none}
+.btn:hover{color:var(--bg);background:#D8FF78}
+.more{margin-top:48px;padding-top:24px;border-top:1px solid var(--line)}
+.more ul{list-style:none;padding:0}
+footer{padding:48px 0 56px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+footer a{color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><a class="logo" href="/"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L24 6 V13 C24 19 19.5 23.5 14 26 C8.5 23.5 4 19 4 13 V6 Z" fill="#C8F751"/><rect x="9" y="12" width="10" height="3" rx="1.5" fill="#0C110E"/></svg>Hushpaste</a><a class="back" href="/guides/">All guides</a></div>
+<main>
+<article>
+<p class="eyebrow">GUIDE · PRIVACY</p>
+<h1>Does ChatGPT leak your data?</h1>
+<p class="lead">You paste stack traces, config files and customer emails into ChatGPT every day. Here is what actually happens to that text, where the real risks are, and how to keep using AI without handing over anything you would regret.</p>
+<div class="answer"><p><strong>Short answer:</strong> ChatGPT will not post your chats publicly, but everything you paste leaves your device, is stored on OpenAI's servers, and can be exposed by a stolen account, a bug or a training setting you forgot to turn off. The safe habit is simple: never paste real secrets or personal data. Replace them with placeholders first.</p></div>
+
+<h2>What happens to text you paste into ChatGPT</h2>
+<p>The moment you press Enter, your message is sent to OpenAI and saved with your chat history. From there it can be:</p>
+<ul>
+<li><strong>Stored</strong> for as long as the chat exists, and for a while after you delete it.</li>
+<li><strong>Used to train future models</strong>, unless you have turned that off in your data controls. On business plans it is off by default.</li>
+<li><strong>Reviewed by people</strong> in some cases, for example for safety and abuse monitoring.</li>
+<li><strong>Read by anyone who gets into your account</strong>, including a teammate on a shared login or someone who steals your password.</li>
+</ul>
+<p>None of this means OpenAI is careless. It means your paste is now data on a third-party server, with every risk that brings.</p>
+
+<h2>Has ChatGPT actually leaked data before?</h2>
+<p>Yes. The best-known cases were not clever attacks on the model. They were ordinary software bugs and human mistakes:</p>
+<ul>
+<li><strong>The 2023 chat history bug.</strong> A bug in an open-source library briefly showed some users the titles of other people's chats and exposed limited payment details for a small share of subscribers. OpenAI took ChatGPT offline to fix it.</li>
+<li><strong>The Samsung incident.</strong> Engineers pasted internal source code and meeting notes into ChatGPT to get help. Nothing was hacked, but confidential data had left the company, and Samsung restricted AI tools afterwards.</li>
+<li><strong>Stolen accounts.</strong> Security researchers have found large batches of ChatGPT logins for sale, taken by malware on people's computers. Whoever buys one can read the whole chat history.</li>
+</ul>
+<p>The pattern is clear. The biggest risk is not the AI remembering your secret and telling a stranger. It is that the secret now exists in one more place that can break.</p>
+
+<h2>The real risks, ranked</h2>
+<div class="tablewrap"><table>
+<tr><th>RISK</th><th>HOW LIKELY</th><th>WHAT IT COSTS YOU</th></tr>
+<tr><td>Your account is stolen and your history is read</td><td>Realistic</td><td>Every key, password and customer detail you ever pasted</td></tr>
+<tr><td>You break a company or legal rule (GDPR, NDA, client contract)</td><td>Very common</td><td>A job, a client or a fine, even if nothing leaks</td></tr>
+<tr><td>A bug exposes chats</td><td>Rare, but it has happened</td><td>Whatever was in those chats</td></tr>
+<tr><td>Your data ends up in training</td><td>Possible if training is on</td><td>Hard to measure, impossible to undo</td></tr>
+<tr><td>The model repeats your secret to someone else</td><td>Very unlikely</td><td>Mostly a theoretical worry</td></tr>
+</table></div>
+
+<h2>Do ChatGPT's privacy settings fix it?</h2>
+<p>They help, but they do not make pasting secrets safe.</p>
+<ul>
+<li><strong>Turning off model training</strong> (Settings → Data controls) stops new chats from being used to improve models. Your chats are still stored.</li>
+<li><strong>Temporary Chat</strong> is not saved to your history or used for training, but it is still sent to OpenAI and kept for a short period for safety checks.</li>
+<li><strong>Deleting a chat</strong> removes it from your view. Removal from the servers is not instant.</li>
+</ul>
+<p>Settings limit how far your data travels. They cannot un-send a password you already pasted.</p>
+
+<h2>How to use ChatGPT without leaking anything</h2>
+<p>The AI almost never needs the real values. It needs the <strong>shape</strong> of your problem. So swap the sensitive parts for placeholders before you paste:</p>
+<pre>DATABASE_URL=postgres://<span class="bad">admin:Sup3rS3cret@db.acme.io</span>:5432/prod
+Customer: <span class="bad">Jane Miller, jane.miller@gmail.com, +1 415 555 0182</span></pre>
+<p>becomes</p>
+<pre>DATABASE_URL=postgres://<span class="tok">[USER_1]:[PASSWORD_1]@[HOST_1]</span>:5432/prod
+Customer: <span class="tok">[NAME_1], [EMAIL_1], [PHONE_1]</span></pre>
+<p>ChatGPT can still debug the connection string or draft the reply to the customer. When the answer comes back, you put the real values back on your side.</p>
+<ol>
+<li><strong>Mask secrets:</strong> API keys, tokens, passwords, connection strings, private keys.</li>
+<li><strong>Mask personal data:</strong> names, emails, phone numbers, addresses, IDs, card numbers.</li>
+<li><strong>Keep the structure.</strong> Use consistent placeholders like <code>[EMAIL_1]</code> so the AI can follow the logic.</li>
+<li><strong>Restore locally.</strong> Swap the real values back into the answer on your own device, never in the chat.</li>
+<li><strong>If you already pasted a real secret, rotate it now.</strong> Deleting the chat is not enough.</li>
+</ol>
+
+<h2>Is Claude or Gemini more private than ChatGPT?</h2>
+<p>Each company has its own retention and training rules, and they change often. But every cloud AI receives and stores what you send. Switching assistants changes who holds your data, not whether someone does. The fix that works everywhere is the same: do not send the real secret in the first place.</p>
+
+<div class="cta"><p><strong>Mask it in one paste.</strong> The free Hushpaste tool finds keys, tokens, emails, IBANs and other secrets in your text and swaps them for placeholders, right in your browser. Nothing is uploaded. When the AI answers, paste the reply back and the real values return.</p><a class="btn" href="/#demo">Open the free tool</a></div>
+</article>
+<nav class="more" aria-label="More guides"><p class="eyebrow" style="margin:0">MORE GUIDES</p><ul><li><a href="/guides/is-it-safe-to-paste-customer-data-into-chatgpt.html">Is it safe to paste customer data into ChatGPT?</a></li><li><a href="/guides/hide-api-keys-from-ai.html">How to hide API keys before sharing code with AI</a></li><li><a href="/guides/paste-env-file-into-chatgpt.html">How to paste a .env file into ChatGPT safely</a></li></ul></nav>
+</main>
+</div>
+<footer><div class="wrap"><span>Hushpaste · Paste freely. Leak nothing.</span><span><a href="/guides/">Guides</a> &nbsp;·&nbsp; <a href="/kit.html">Safety Kit</a> &nbsp;·&nbsp; <a href="mailto:hello@gethushpaste.com">Contact</a> &nbsp;&middot;&nbsp; <a href="/privacy.html">Privacy</a></span></div></footer>
+<img src="https://hushpaste.goatcounter.com/count?p=/guides/does-chatgpt-leak-your-data.html&amp;t=Does%20ChatGPT%20leak%20your%20data%3F%20%C2%B7%20Hushpaste" alt="" width="1" height="1" style="position:absolute;left:-9999px;top:0">
+</body>
+</html>
